@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="T_RoleB" catalog="StudentDB" class="model.TroleB">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_RoleSystemModel" catalog="StudentDB"
+		class="model.Trolesystemmodel">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_User" catalog="StudentDB" class="model.Tuser">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="T_SystemLog" catalog="StudentDB"
+		class="model.TSystemLog">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_SystemModel" catalog="StudentDB"
+		class="model.TSystemModel">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="VRoleSystemModel" catalog="StudentDB"
+		class="model.VRoleSystemModel">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_AdminRole" catalog="StudentDB"
+		class="model.TAdminRole">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="VAdminUser" catalog="StudentDB"
+		class="model.VAdminUser">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ Notice" catalog="StudentDB" class="model.TNotice">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ College" catalog="StudentDB"
+		class="model.TCollege">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ Class" catalog="StudentDB" class="model.TClass">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ major" catalog="StudentDB" class="model.Tmajor">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="Vmajor" catalog="StudentDB" class="model.Vmajor">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="Vclass" catalog="StudentDB" class="model.Vclass">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_Stuinfo" catalog="StudentDB"
+		class="model.TStuinfo">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ Semester" catalog="StudentDB"
+		class="model.Tsemester">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ Curriculum" catalog="StudentDB"
+		class="model.TCurriculum">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="VCurriculum" catalog="StudentDB"
+		class="model.VCurriculum">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_teacherinfo" catalog="StudentDB"
+		class="model.Tteacher">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="VTeacher" catalog="StudentDB" class="model.VTeacher">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="VCourse" catalog="StudentDB" class="model.VCourse">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="T_ Course" catalog="StudentDB" class="model.TCourse">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="Vstudent" catalog="StudentDB" class="model.Vstudent">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+<table name="Vsheet" catalog="StudentDB" class="model.Vsheet">
+	<primary-key>
+		<generator class="identity"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>
