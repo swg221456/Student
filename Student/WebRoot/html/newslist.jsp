@@ -118,7 +118,7 @@
 		<blockquote class="layui-elem-quote not_border_left">
 			<form class="layui-form" action="">
 			  	<div class="layui-input-inline">
-					<input type="text" name="userName" id="userName" placeholder="请输入用户名或真实姓名" class="layui-input" autocomplete="off">
+					<input type="text" name="userName" id="userName" placeholder="请输入标题" class="layui-input" autocomplete="off">
 			    </div>
 			    
 			    <div class="layui-inline">
