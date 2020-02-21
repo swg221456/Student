@@ -34,6 +34,9 @@
             <property name="roleName" type="java.lang.String">
                 <column name="roleName" length="30" />
             </property>
+            <property name="usertype" type="java.lang.Boolean">
+                <column name="usertype" />
+            </property>
         
     </class>
 </hibernate-mapping>

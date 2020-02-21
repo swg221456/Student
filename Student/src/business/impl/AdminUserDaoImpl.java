@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import model.Tteacher;
 import model.Tuser;
 import model.VAdminUser;
 import business.basic.iHibBaseDAO;
@@ -110,6 +111,24 @@ public class AdminUserDaoImpl implements AdminUserDAO {
 		String hql = "from VAdminUser where roleID != 1 order by userid asc";
 		List<VAdminUser> list = hdao.select(hql);
 		return list;
+	}
+
+	@Override
+	public boolean changeState(String teacherid) {
+		Tuser modelsql = (Tuser) hdao.findById(
+				Tuser.class, teacherid);
+		String sql = "";
+		if (modelsql.getUsertype()) {
+			//sql = "update Tcar set status=false where carId="
+				//	+modelsql.getCarId();
+			 modelsql.setUsertype(false);
+		} else {
+			//sql = "update Tcar set status=true where carId="
+				//	+ modelsql.getCarId();
+			modelsql.setUsertype(true);
+		}
+
+		return hdao.update(modelsql);
 	}
 
 }

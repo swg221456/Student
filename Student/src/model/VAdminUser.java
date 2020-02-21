@@ -15,6 +15,7 @@ public class VAdminUser implements java.io.Serializable {
 		private Integer isDel;
 		private String roleName;
 		private String remark;
+		private Boolean usertype;
 
 		// Constructors
 
@@ -31,7 +32,8 @@ public class VAdminUser implements java.io.Serializable {
 
 		/** full constructor */
 		public VAdminUser(String userid, String account, String pwd,
-				Integer roleId, Integer isDel, String roleName, String remark) {
+				Integer roleId, Integer isDel, String roleName, String remark,
+				Boolean usertype) {
 			this.userid = userid;
 			this.account = account;
 			this.pwd = pwd;
@@ -39,6 +41,7 @@ public class VAdminUser implements java.io.Serializable {
 			this.isDel = isDel;
 			this.roleName = roleName;
 			this.remark = remark;
+			this.usertype = usertype;
 		}
 
 		// Property accessors
@@ -97,6 +100,14 @@ public class VAdminUser implements java.io.Serializable {
 
 		public void setRemark(String remark) {
 			this.remark = remark;
+		}
+
+		public Boolean getUsertype() {
+			return this.usertype;
+		}
+
+		public void setUsertype(Boolean usertype) {
+			this.usertype = usertype;
 		}
 
 }

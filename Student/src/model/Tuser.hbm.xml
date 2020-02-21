@@ -22,7 +22,7 @@
         <property name="isDel" type="java.lang.Integer">
             <column name="isDel" />
         </property>
-        <property name="usertype" type="java.lang.Integer">
+        <property name="usertype" type="java.lang.Boolean">
             <column name="usertype" />
         </property>
     </class>

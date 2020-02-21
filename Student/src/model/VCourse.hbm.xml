@@ -40,6 +40,9 @@
             <property name="semesterName" type="java.lang.String">
                 <column name="semesterName" />
             </property>
-        
+            <property name="semesterid" type="java.lang.Integer">
+                <column name="semesterid" />
+            </property>
+       
     </class>
 </hibernate-mapping>

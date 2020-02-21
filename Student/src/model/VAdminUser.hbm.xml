@@ -28,6 +28,9 @@
             <property name="remark" type="java.lang.String">
                 <column name="remark" />
             </property>
-       
+            <property name="usertype" type="java.lang.Boolean">
+                <column name="usertype" />
+            </property>
+        
     </class>
 </hibernate-mapping>

@@ -112,6 +112,7 @@ public class AdminUserController {
 		user.setIsDel(0);
 		user.setRoleId(roleid);
 		user.setPwd(pwd);
+		user.setUsertype(true);
 
 		if (audao.addAdminUser(user)) {
 			laydata.code = LayuiData.SUCCESS;
@@ -214,7 +215,7 @@ public class AdminUserController {
 		user.setPwd(pwd);
 		HttpSession session = request.getSession();
 		VAdminUser loginuser = audao.login(user);
-		if (loginuser != null) {
+		if (loginuser != null && loginuser.getUsertype()==true) {
 			session.setAttribute("loginuser", loginuser);
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "登陆成功";

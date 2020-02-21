@@ -76,6 +76,14 @@ public interface AdminUserDAO {
 	 * @return 更新结果，true为成功，false为失败
 	 */
 	public boolean updatePwd(String userid, String pwd);
+	
+	/**
+	 * 根据菜单id 改变菜单是否删除
+	 * 
+	 * @param rolemodelid
+	 * @return true or false
+	 */
+	public boolean changeState(String teacherid);
 
 	/**
 	 * 获取管理员

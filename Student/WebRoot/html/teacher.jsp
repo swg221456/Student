@@ -130,7 +130,7 @@
 		<script type="text/html" id="switchTpl">
 		  <input type="checkbox" lay-filter="open" name="status" value="{{d.teacherid}}" {{ d.auditstatus == "0" ? 'checked' : '' }} lay-skin="switch" lay-text="启用|停用">
 		</script>
-
+		
 		<script type="text/html" id="barDemo">
 			
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -243,7 +243,7 @@
 					theme: '#1E9FFF',						
 			 },
 		});
-		
+		/* 修改教师状态 */
 		form.on('switch(open)', function(data){
 		
   	 		if(data.elem.checked){
@@ -281,6 +281,8 @@
 				});
   	 		}
 		});
+		
+		
 		
 		/* 点击查询对网站用户进行筛选 */
 		$("#btnselfrontinfo").click(function(){

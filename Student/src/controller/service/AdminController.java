@@ -260,6 +260,7 @@ public class AdminController {
 		user.setTeasex(teasex);
 		user.setUserid(userid);
 		
+		
 
 		if (audao.addNotice(user)) {
 			laydata.code = LayuiData.SUCCESS;
@@ -299,6 +300,41 @@ public class AdminController {
 		PrintWriter out = response.getWriter();
 		LayuiData td = new LayuiData();
 		if (smdao.changeState(id)) {
+			td.code = LayuiData.SUCCESS;
+
+			td.msg = "启用成功";
+
+			// System.out.println(JSON.toJSON(td));
+		} else {
+			td.code = LayuiData.ERRR;
+			td.msg = "启用失败";
+		}
+		out.write(JSON.toJSONString(td));
+		// {"code":10001,"msg":"执行成功","result1":"......."}
+		out.flush();
+		out.close();
+	}
+	
+	/**
+	 * 实现根据传入rolemodelid改变该id功能菜单是否可用
+	 * 
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * */
+	@RequestMapping(value = "changeuser")
+	public void changeUser(String userid, HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+
+		AdminUserDAO smdao = new  AdminUserDaoImpl();
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		LayuiData td = new LayuiData();
+		if (smdao.changeState(userid)) {
 			td.code = LayuiData.SUCCESS;
 
 			td.msg = "启用成功";

@@ -13,7 +13,7 @@ public class Tuser implements java.io.Serializable {
 	private String pwd;
 	private Integer roleId;
 	private Integer isDel;
-	private Integer usertype;
+	private Boolean usertype;
 
 	// Constructors
 
@@ -30,7 +30,7 @@ public class Tuser implements java.io.Serializable {
 
 	/** full constructor */
 	public Tuser(String userid, String account, String pwd, Integer roleId,
-			Integer isDel, Integer usertype) {
+			Integer isDel, Boolean usertype) {
 		this.userid = userid;
 		this.account = account;
 		this.pwd = pwd;
@@ -81,11 +81,11 @@ public class Tuser implements java.io.Serializable {
 		this.isDel = isDel;
 	}
 
-	public Integer getUsertype() {
+	public Boolean getUsertype() {
 		return this.usertype;
 	}
 
-	public void setUsertype(Integer usertype) {
+	public void setUsertype(Boolean usertype) {
 		this.usertype = usertype;
 	}
 

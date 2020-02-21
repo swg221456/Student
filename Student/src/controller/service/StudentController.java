@@ -101,6 +101,8 @@ public class StudentController {
 		// return "";
 	}
 	
+	
+	
 	/**
 	 * 获取管理员用户列表
 	 * 
@@ -138,6 +140,70 @@ public class StudentController {
 			
 			opreation += "and  curriculumid like '%"+curriculumid+"%'  ";
 		}
+		
+		
+		// System.out.println(opreation);
+		int allcount = audao.getsheetList(opreation);
+
+		List list = audao.getsheetList(opreation, page, limit);
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		LayuiData laydata = new LayuiData();
+		laydata.code = LayuiData.SUCCESS;
+		laydata.msg = "执行成功";
+		laydata.count = allcount;
+		laydata.data = list;
+		Writer out;
+		try {
+			out = response.getWriter();
+			out.write(JSON.toJSONString(laydata));
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// return "";
+	}
+	
+	/**
+	 * 获取管理员用户列表
+	 * 
+	 * @param request
+	 * @param page
+	 * @param limit
+	 * @param realname
+	 * @param roleid
+	 * @param response
+	 * @param model
+	 */
+	@RequestMapping(value = "getmysheet")
+	public void getmysheetList(HttpServletRequest request, int page,
+			int limit, Integer semesterid,
+			HttpServletResponse response, Model model) {
+
+		HttpSession session = request.getSession();
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
+		StudentDAO audao = new StudentDaoImpl();
+		// 查询条件
+		Expression exp = new Expression();
+		String opreation = "";
+		
+		
+		if (semesterid != null && semesterid != 0) {
+			
+			opreation += "and  semesterid like '%"+semesterid+"%'  ";
+		}
+		
+		/*if (modle != null ) {
+			
+			opreation += "and  userid like '%"+modle.getUserid()+"%'  ";
+		}
+		*/
+		
 		
 		
 		// System.out.println(opreation);

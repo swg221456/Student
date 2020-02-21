@@ -130,9 +130,12 @@
 		<!-- 条件筛选框End -->
 
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
+		<script type="text/html" id="switchTpl">
+		  <input type="checkbox" lay-filter="open" name="status" value="{{d.teacherid}}" {{ d.auditstatus == "0" ? 'checked' : '' }} lay-skin="switch" lay-text="启用|停用">
+		</script>
 
 		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
+			
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -213,6 +216,13 @@
 					field : 'roleName',
 					align : 'center',
 					title : '用户类型'
+				},{
+					field:'usertype', 
+					title:'是否授权',
+					align : 'center',
+					templet: '#switchTpl', 
+					unresize: true
+					
 				},{
 					title : '操作',
 					toolbar : '#barDemo',
@@ -313,6 +323,45 @@
 				},
 				btn2 : function() {layer.closeAll();}
 			});
+		});
+		
+		/* 修改教师是否启用 */
+		form.on('switch(open)', function(data){
+		
+  	 		if(data.elem.checked){
+  	 			//data.value
+  	 			$.ajax({
+				type : 'get',
+				url : '../admin2/changeuser?userid=' + this.value,
+				datatype : 'json',
+				success : function(data) {
+					if (data.code == "0") {		
+						layer.msg('启用成功！请刷新页面', {icon: 1}); 
+					} else {
+	    	        	layer.msg('启用失败！', {icon: 2});
+					}
+				},
+				error : function() {
+					layer.msg('启用失败！请重试', {icon: 2});		
+				}
+				});
+  	 		}else{
+  	 			$.ajax({
+				type : 'get',
+				url : '../admin2/changeuser?userid=' + this.value,
+				datatype : 'json',
+				success : function(data) {
+					if (data.code == "0") {		
+						layer.msg('取消启用成功！请刷新页面', {icon: 1}); 
+					} else {
+	    	        	layer.msg('取消启用失败！', {icon: 2});
+					}
+				},
+				error : function() {
+					layer.msg('取消失败！请重试', {icon: 2});		
+				}
+				});
+  	 		}
 		});
 	
 		//表格工具栏事件 

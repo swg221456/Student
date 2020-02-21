@@ -73,6 +73,12 @@
             <property name="className" type="java.lang.String">
                 <column name="className" />
             </property>
-        
+            <property name="semesterid" type="java.lang.Integer">
+                <column name="semesterid" />
+            </property>
+            <property name="userid" type="java.lang.String">
+                <column name="userid" length="50" />
+            </property>
+       
     </class>
 </hibernate-mapping>

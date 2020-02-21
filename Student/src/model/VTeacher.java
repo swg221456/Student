@@ -17,6 +17,7 @@ public class VTeacher implements java.io.Serializable {
 		private Integer isdelete;
 		private String account;
 		private String roleName;
+		private Boolean usertype;
 
 		// Constructors
 
@@ -33,7 +34,7 @@ public class VTeacher implements java.io.Serializable {
 		/** full constructor */
 		public VTeacher(Integer teacherid, String teaName, String teaphone,
 				String userid, String teasex, Boolean auditstatus,
-				Integer isdelete, String account, String roleName) {
+				Integer isdelete, String account, String roleName, Boolean usertype) {
 			this.teacherid = teacherid;
 			this.teaName = teaName;
 			this.teaphone = teaphone;
@@ -43,6 +44,7 @@ public class VTeacher implements java.io.Serializable {
 			this.isdelete = isdelete;
 			this.account = account;
 			this.roleName = roleName;
+			this.usertype = usertype;
 		}
 
 		// Property accessors
@@ -117,6 +119,14 @@ public class VTeacher implements java.io.Serializable {
 
 		public void setRoleName(String roleName) {
 			this.roleName = roleName;
+		}
+
+		public Boolean getUsertype() {
+			return this.usertype;
+		}
+
+		public void setUsertype(Boolean usertype) {
+			this.usertype = usertype;
 		}
 
 }

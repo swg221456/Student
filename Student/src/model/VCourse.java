@@ -19,6 +19,7 @@ public class VCourse implements java.io.Serializable {
 		private String curriculumName;
 		private String introduce;
 		private String semesterName;
+		private Integer semesterid;
 
 		// Constructors
 
@@ -27,17 +28,19 @@ public class VCourse implements java.io.Serializable {
 		}
 
 		/** minimal constructor */
-		public VCourse(Integer courseid, Integer isdelete, String className) {
+		public VCourse(Integer courseid, Integer isdelete, String className,
+				Integer semesterid) {
 			this.courseid = courseid;
 			this.isdelete = isdelete;
 			this.className = className;
+			this.semesterid = semesterid;
 		}
 
 		/** full constructor */
 		public VCourse(Integer courseid, Integer curriculumid, Integer teacherid,
 				Integer classid, String remakes, Integer isdelete,
 				String className, String teaName, String curriculumName,
-				String introduce, String semesterName) {
+				String introduce, String semesterName, Integer semesterid) {
 			this.courseid = courseid;
 			this.curriculumid = curriculumid;
 			this.teacherid = teacherid;
@@ -49,6 +52,7 @@ public class VCourse implements java.io.Serializable {
 			this.curriculumName = curriculumName;
 			this.introduce = introduce;
 			this.semesterName = semesterName;
+			this.semesterid = semesterid;
 		}
 
 		// Property accessors
@@ -139,6 +143,14 @@ public class VCourse implements java.io.Serializable {
 
 		public void setSemesterName(String semesterName) {
 			this.semesterName = semesterName;
+		}
+
+		public Integer getSemesterid() {
+			return this.semesterid;
+		}
+
+		public void setSemesterid(Integer semesterid) {
+			this.semesterid = semesterid;
 		}
 
 }

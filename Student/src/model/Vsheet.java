@@ -30,6 +30,8 @@ public class Vsheet implements java.io.Serializable {
 		private Integer majorid;
 		private String majorName;
 		private String className;
+		private Integer semesterid;
+		private String userid;
 
 		// Constructors
 
@@ -40,7 +42,7 @@ public class Vsheet implements java.io.Serializable {
 		/** minimal constructor */
 		public Vsheet(Integer sheetid, Integer isdelete, Integer classid,
 				Integer collegeid, String collegeName, Integer majorid,
-				String majorName, String className) {
+				String majorName, String className, Integer semesterid) {
 			this.sheetid = sheetid;
 			this.isdelete = isdelete;
 			this.classid = classid;
@@ -49,6 +51,7 @@ public class Vsheet implements java.io.Serializable {
 			this.majorid = majorid;
 			this.majorName = majorName;
 			this.className = className;
+			this.semesterid = semesterid;
 		}
 
 		/** full constructor */
@@ -58,7 +61,8 @@ public class Vsheet implements java.io.Serializable {
 				String curriculumName, String semesterName, String introduce,
 				String stuname, String stunum, String agend, String phone,
 				Integer classid, Integer collegeid, String collegeName,
-				Integer majorid, String majorName, String className) {
+				Integer majorid, String majorName, String className,
+				Integer semesterid, String userid) {
 			this.sheetid = sheetid;
 			this.courseid = courseid;
 			this.stuinfoid = stuinfoid;
@@ -81,6 +85,8 @@ public class Vsheet implements java.io.Serializable {
 			this.majorid = majorid;
 			this.majorName = majorName;
 			this.className = className;
+			this.semesterid = semesterid;
+			this.userid = userid;
 		}
 
 		// Property accessors
@@ -259,6 +265,22 @@ public class Vsheet implements java.io.Serializable {
 
 		public void setClassName(String className) {
 			this.className = className;
+		}
+
+		public Integer getSemesterid() {
+			return this.semesterid;
+		}
+
+		public void setSemesterid(Integer semesterid) {
+			this.semesterid = semesterid;
+		}
+
+		public String getUserid() {
+			return this.userid;
+		}
+
+		public void setUserid(String userid) {
+			this.userid = userid;
 		}
 
 }
