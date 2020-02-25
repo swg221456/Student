@@ -114,9 +114,10 @@ public class AdminUserDaoImpl implements AdminUserDAO {
 	}
 
 	@Override
-	public boolean changeState(String teacherid) {
+	public boolean changeState(String id) {
+		
 		Tuser modelsql = (Tuser) hdao.findById(
-				Tuser.class, teacherid);
+				Tuser.class, id);
 		String sql = "";
 		if (modelsql.getUsertype()) {
 			//sql = "update Tcar set status=false where carId="

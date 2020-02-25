@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>学生信息管理</title>
+<title>高校人才资源管理平台</title>
 
 	<!--图标样式-->
-	<link rel="stylesheet" href="../layui/css/layui.css">
-	<link rel="stylesheet" href="。。/css/login2.css">
+	<link rel="stylesheet" href="layui/css/layui.css">
+	<link rel="stylesheet" href="css/login2.css">
 
 
 </head>
@@ -57,8 +57,8 @@
 
 
 
-	<script src="。。/js/login.js"></script>
-	<script src="。。/layui/layui.all.js"></script>
+	<script src="js/login.js"></script>
+	<script src="layui/layui.all.js"></script>
 
 
 </body>

@@ -1,6 +1,7 @@
 package model;
 
 
+
 /**
  * TStuinfo entity. @author MyEclipse Persistence Tools
  */
@@ -16,7 +17,7 @@ public class TStuinfo implements java.io.Serializable {
 	private String birthday;
 	private String phone;
 	private String email;
-	private Integer userid;
+	private String userid;
 	private Integer classid;
 	private Integer isdelete;
 	private String stucard;
@@ -34,7 +35,7 @@ public class TStuinfo implements java.io.Serializable {
 
 	/** full constructor */
 	public TStuinfo(String stuname, String stunum, String agend,
-			String birthday, String phone, String email, Integer userid,
+			String birthday, String phone, String email, String userid,
 			Integer classid, Integer isdelete, String stucard) {
 		this.stuname = stuname;
 		this.stunum = stunum;
@@ -83,7 +84,7 @@ public class TStuinfo implements java.io.Serializable {
 	}
 
 	public String getBirthday() {
-		return util.ReturnDate.datetimeFormatnotime(this.birthday);
+		return util.ReturnDate.datetimeFormatnotime(this.birthday) ;
 	}
 
 	public void setBirthday(String birthday) {
@@ -106,11 +107,11 @@ public class TStuinfo implements java.io.Serializable {
 		this.email = email;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return this.userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

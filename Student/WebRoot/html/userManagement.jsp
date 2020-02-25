@@ -131,7 +131,7 @@
 
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
 		<script type="text/html" id="switchTpl">
-		  <input type="checkbox" lay-filter="open" name="status" value="{{d.teacherid}}" {{ d.auditstatus == "0" ? 'checked' : '' }} lay-skin="switch" lay-text="启用|停用">
+		  <input type="checkbox" lay-filter="open" name="status" value="{{d.userid}}" {{ d.auditstatus == "0" ? 'checked' : '' }} lay-skin="switch" lay-text="启用|停用">
 		</script>
 
 		<script type="text/html" id="barDemo">

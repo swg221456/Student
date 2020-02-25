@@ -20,7 +20,7 @@
             <column name="agend" length="50" />
         </property>
         <property name="birthday" type="java.lang.String">
-            <column name="birthday"  />
+            <column name="birthday" length="19" />
         </property>
         <property name="phone" type="java.lang.String">
             <column name="phone" length="50" />
@@ -28,8 +28,8 @@
         <property name="email" type="java.lang.String">
             <column name="email" length="50" />
         </property>
-        <property name="userid" type="java.lang.Integer">
-            <column name="userid" />
+        <property name="userid" type="java.lang.String">
+            <column name="userid" length="50" />
         </property>
         <property name="classid" type="java.lang.Integer">
             <column name="classid" not-null="true" />

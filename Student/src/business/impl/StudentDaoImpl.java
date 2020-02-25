@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import model.TClass;
 import model.TStuinfo;
 import model.Tmajor;
+import model.Tuser;
 import model.Vclass;
 import model.Vsheet;
 import model.Vstudent;
@@ -36,7 +37,7 @@ public class StudentDaoImpl implements StudentDAO {
 
 	@Override
 	public int getNoticeList(String wherecondition) {
-		String hql = "select count(stuinfoid)  from Vstudent where isdelete = 0";
+		String hql = "select count(stuinfoid)  from Vstudent where isdelete = 0  ";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
 		}
@@ -95,6 +96,23 @@ public class StudentDaoImpl implements StudentDAO {
 			hql += wherecondition;
 		}
 		return hdao.selectValue(hql);
+	}
+
+	@Override
+	public List<Vstudent> getstuList(String wherecondition) {
+		String hql = "from Vstudent where isdelete = 0 ";
+		if (wherecondition != null && !wherecondition.equals("")) {
+			hql += wherecondition;
+		}
+		hql += "  order by stuinfoid asc";
+		List<Vstudent> list = hdao.select(hql);
+		return list;
+	}
+
+	@Override
+	public TStuinfo getstu(int id) {
+		TStuinfo adminuser = (TStuinfo) hdao.findById(TStuinfo.class,id);
+		return adminuser;
 	}
 
 }

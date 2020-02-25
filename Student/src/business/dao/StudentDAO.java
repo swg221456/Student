@@ -31,6 +31,8 @@ public interface StudentDAO {
 	public List<Vstudent> getNoticeList(String wherecondition, int page,
 			int pageSize);
 	
+	public List<Vstudent> getstuList(String wherecondition);
+	
 	public List<Vsheet> getsheetList(String wherecondition, int page,
 			int pageSize);
 	public int getsheetList(String wherecondition);
@@ -53,6 +55,8 @@ public interface StudentDAO {
 	 */
 
 	public boolean addNotice(TStuinfo user);
+	
+	public TStuinfo getstu(int id);
 
 	
 

@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.TNotice;
+import model.TStuinfo;
 import model.Tuser;
 import model.VAdminUser;
+import model.Vstudent;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,6 +102,111 @@ public class StudentController {
 		}
 		// return "";
 	}
+	
+	/**
+	 * 获取管理员用户列表
+	 * 
+	 * @param request
+	 * @param page
+	 * @param limit
+	 * @param realname
+	 * @param roleid
+	 * @param response
+	 * @param model
+	 */
+	@RequestMapping(value = "getmystudent")
+	public void getmyUserList(HttpServletRequest request, int page,
+			int limit, 
+			HttpServletResponse response, Model model) {
+
+		StudentDAO audao = new StudentDaoImpl();
+		// 查询条件
+		Expression exp = new Expression();
+		String opreation = "";
+		HttpSession session = request.getSession();
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
+		
+		if (modle != null ) {
+			
+			opreation += "and  userid like '%"+modle.getUserid()+"%'  ";
+		}
+		
+		
+		// System.out.println(opreation);
+		int allcount = audao.getNoticeList(opreation);
+
+		List list = audao.getNoticeList(opreation, page, limit);
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		LayuiData laydata = new LayuiData();
+		laydata.code = LayuiData.SUCCESS;
+		laydata.msg = "执行成功";
+		laydata.count = allcount;
+		laydata.data = list;
+		Writer out;
+		try {
+			out = response.getWriter();
+			out.write(JSON.toJSONString(laydata));
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// return "";
+	}
+	
+	
+	@RequestMapping(value = "getmystu")
+	public void getmyList(HttpServletRequest request,
+			HttpServletResponse response, Model model) {
+
+		StudentDAO audao = new StudentDaoImpl();
+		// 查询条件
+		Expression exp = new Expression();
+		String opreation = "";
+		HttpSession session = request.getSession();
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
+		
+		if (modle != null ) {
+			
+			opreation += "and  userid like '%"+modle.getUserid()+"%'  ";
+		}
+		
+		
+		// System.out.println(opreation);
+		int allcount = audao.getNoticeList(opreation);
+
+		List<Vstudent> list = audao.getstuList(opreation);
+		
+		
+		
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		LayuiData laydata = new LayuiData();
+		laydata.code = LayuiData.SUCCESS;
+		laydata.msg = "执行成功";
+		laydata.count = allcount;
+		laydata.data = list;
+		Writer out;
+		try {
+			out = response.getWriter();
+			out.write(JSON.toJSONString(laydata));
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// return "";
+	}
+	
 	
 	
 	
@@ -276,4 +383,57 @@ public class StudentController {
 		out.close();
 
 	}
+	
+	/**
+	 * 实现学生用户的修改
+	 * 
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upstudent")
+	public void upAdminUser( String stuname, String stunum,String agend,String birthday,String phone,String email,Integer id, String stucard,
+			  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		
+		StudentDAO audao = new StudentDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		TStuinfo user = new TStuinfo();
+		
+		user = audao.getstu(id);
+		user.setAgend(agend);
+		user.setBirthday(birthday);
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setStucard(stucard);
+		user.setStuname(stuname);
+		user.setStunum(stunum);
+		
+		
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "信息修改成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "修改失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
+	
 }
