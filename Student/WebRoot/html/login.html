@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="../layui/css/layui.css" media="all">
    <link rel="stylesheet" href="../layui/css/admin.css" media="all">
    <link rel="stylesheet" href="../layui/css/login.css" media="all">
+
+   
 </head>
 <style>
 	{ background:url("../image/login_bg.jpg") no-repeat center center; background-size:100% 100%;-moz-background-size:100% 100%;}
@@ -50,7 +52,7 @@
           <button class="layui-btn layui-btn-fluid" id ="login-button" type="button" >登 入</button>
         </div>
         <div class="layui-form-item">
-          <button class="layui-btn layui-btn-fluid" id ="add-button"  type="button" >用户注册</button>
+          <button class="layui-btn layui-btn-fluid" id="adduser" lay-event="adduser" lay-filter="adduser"  type="button" >用户注册</button>
         </div>
       </div>
     </div>
@@ -64,16 +66,199 @@
         <span><a href="" target="_blank">地址</a></span>
       </p>
     </div>
+    
+    
+    <!-- 用户信息添加Start -->
+		<div id="add-blogUser" style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				<div class="layui-form-item">
+				      <label class="layui-form-label">用户类型:</label>
+				      <div class="layui-input-block">
+				       	<select id="addusertype">
+						  <option value="">请选择用户类型</option> 
+						</select> 
+				      </div>
+				    </div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">用户名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addUserName" id="addUserName"
+								lay-verify="addUserName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">用户密码:</label>
+						<div class="layui-input-block">
+							<input type="password" name="addpwd" id="addpwd"  autocomplete="off" placeholder="请输入用户密码" class="layui-input">
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">真实姓名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="realname" id="realname" lay-verify="realname" autocomplete="off" placeholder="请输入真实姓名" class="layui-input">
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息添加End -->
+		
+		
+		<!-- 教师添加Start -->
+		<div id="add-teacher"  style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label">教师名称:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addteaName" id="addteaName"
+								lay-verify="addteaName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+						</div>
+					</div>
+					
+					<div class="layui-form-item">
+						<label class="layui-form-label">电话号码:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addteaphone" id="addteaphone"  autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div> 
+					<div class="layui-form-item">
+					<label class="layui-form-label">选择性别:</label>
+						<div class="layui-inline">
+							<select id="addteasex" name="addteasex" lay-filter="addmajor">							
+							<option value="男">男</option>
+						  <option value="女">女</option>
+							</select>
+						</div>
+						  						
+					</div>
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息添加End -->
+		
+		<!-- 学生添加Start -->
+		<div id="add-stu" style="display:none;">
+			<div class="artTypeLayer">   
+				<form class="layui-form" action="">
+				<div class="layui-form-item">
+						<label class="layui-form-label">选择院系:</label>
+						<div class="layui-inline">
+							<select id="slcollege" name="slcollege" lay-filter="slcollege">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						 <label class="layui-form-label">选择专业:</label>
+						<div class="layui-inline">
+							<select id="slmajor" name="slmajor" lay-filter="slmajor">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						 <label class="layui-form-label">选择班级:</label>
+						<div class="layui-inline">
+							<select id="slclass" name="slclass" lay-filter="slclass">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">姓名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addstuname" id="addstuname"
+								lay-verify="addstuname" autocomplete="off"  class="layui-input">
+						</div>
+					</div>
+					
+					<div class="layui-form-item">
+					<label class="layui-form-label">选择性别:</label>
+						<div class="layui-inline">
+							<select id="addagend" name="addagend" >							
+							<option value="男">男</option>
+						  <option value="女">女</option>
+							</select>
+						</div>
+						  						
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">生日:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addbirthday" id="addbirthday" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">学号:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addstunum" id="addstunum" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">身份证号:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addstucard" id="addstucard" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">电话:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addphone" id="addphone" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">邮箱:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addemail" id="addemail" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					
+					
+				</form>
+			 </div>
+		</div>
+		<!-- 用户信息修改End -->
    
 
+	
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
 	<script type="text/javascript" src="../lib/md5.js" ></script>
+	<script src="../js/loadselect.js" charset="utf-8"></script>
+	<script src="../layui/layui.js" charset="utf-8"></script>
 	<script src="../layui/layui.all.js" charset="utf-8"></script>
  	<script>
-		layui.use(['form','layer'], function(){
-			var layer = layui.layer
-			var form = layui.form;	  
-			var $ = layui.jquery;
+		layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function() {
+		var table = layui.table, form = layui.form, 
+			layer = layui.layer, $ = layui.jquery,
+			laydate = layui.laydate, laytpl = layui.laytpl,
+			element = layui.element;
+			
+			loadcollege("slcollege",form,"../college/loadcollege");
+		
+			form.on('select(slcollege)', function(data)
+					{
+					var paretid = $("#slcollege").val();
+				 	//调用方法加载select管理员角色
+					loadmajor("slmajor", form, "../college/loadmajor?collegeid="+paretid);
+					});
+					
+			form.on('select(slmajor)', function(data)
+					{
+					var paretid = $("#slmajor").val();
+				 	//调用方法加载select管理员角色
+					loadclass("slclass", form, "../college/loadclass?majorid="+paretid);
+					});
+			
+			//日期选择器
+			laydate.render({ 
+			  elem: '#addbirthday'
+			  //,type: 'date' //默认，可不填
+			});
 			/* 点击登录 */
 			$("#login-button").click(function(){
 				var username=$("#user_name").val().trim();
@@ -145,6 +330,234 @@
 			window.location.href = "../html/add.html";
 			
 			});
+			
+			
+			/* 添加一个用户 */
+		$("#adduser").click(function(){
+			//加载角色类型
+			loadRoleType('addusertype',form);
+			$("#addnoticeName").val("");
+			$("#addnoticecontent").val("");
+			$("#addremarks").val("");
+			layer.open({
+				type : 1,
+				title : '用户注册',
+				area : [ '460px', '345px' ],
+				shade : 0.4,
+				content : $('#add-blogUser'),
+				btn : [ '下一步', '返回' ],
+				yes : function() {
+					var addUserName = $("#addUserName").val().trim();
+					var realname = $("#realname").val().trim();
+					var pwd = $("#addpwd").val().trim();
+					var usertype = $("#addusertype").val();
+
+					if(addUserName == "") {
+						layer.tips('不能为空', '#addUserName');
+						return;
+					} 
+					if(realname==""){
+						layer.tips('不能为空', '#realname');
+						return;
+					}
+					if(pwd == "") {
+						layer.tips('不能为空', '#pwd');
+						return;
+					}
+					if(usertype==""){
+						layer.tips('请选择用户类型', '#usertype');
+						return;
+					}
+					$.ajax({
+						type : 'get',
+						url : '../admin/adduser?userid='+addUserName+'&pwd='+pwd+'&roleid='+usertype+'&realname='+realname,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								if(usertype != 12){
+									var laji = layer.open({
+										type : 1,
+										title : '教师用户添加',
+										area :  [ '460px', '400px' ],
+										shade : 0.4,
+										content : $('#add-teacher'),
+										btn : [ '保存'],
+										yes: function(){
+											var addteaName = $("#addteaName").val().trim();
+											var addteaphone = $("#addteaphone").val().trim();
+											var addteasex = $("#addteasex").val();
+						
+											if(addteaName == "") {
+												layer.tips('不能为空', '#addteaName');
+												return;
+											} 
+											if(addteaphone==""){
+												layer.tips('不能为空', '#addteaphone');
+												return;
+											}
+											
+											$.ajax({
+												type : 'get',
+												url : '../admin/addteach?teaName='+addteaName+'&teaphone='+addteaphone+'&teasex='+addteasex,
+												datatype : 'json',
+												success : function(data) {
+													if (data.code == "0") {
+														layer.confirm(data.msg, {
+														  btn: ['确定'],
+														  icon:1
+														  
+														}, function(){
+															
+															layer.closeAll();
+														});
+													}else{
+														layer.confirm(data.msg, {
+														  btn: ['确定'],
+														  icon:2
+														});
+													}
+												},
+												error : function() {
+													layer.confirm('添加成功', {
+									        				icon: 6,
+															  btn: ['确定']
+														});
+												}
+											});
+											
+						        		},
+									});
+								
+								}else{
+									var laji = layer.open({
+										type : 1,
+										title : '学生用户添加',
+										area :  [ '560px', '665px' ],
+										shade : 0.4,
+										content : $('#add-stu'),
+										btn : [ '保存'],
+										yes: function(){
+											var stuname = $("#addstuname").val();
+											var agend = $("#addagend").val();
+											var birthday = $("#addbirthday").val().trim();
+											var phone = $("#addphone").val().trim();
+											var stunum = $("#addstunum").val().trim();
+											var email = $("#addemail").val().trim();
+											var stucard = $("#addstucard").val().trim();
+											var classid = $("#slclass").val().trim();
+						
+											if(stuname == "") {
+												layer.tips('不能为空', '#stuname');
+												return;
+											} 
+											if(agend == "") {
+												layer.tips('不能为空', '#agend');
+												return;
+											} 
+											if(phone == "") {
+												layer.tips('不能为空', '#phone');
+												return;
+											} 
+											if(birthday == "") {
+												layer.tips('不能为空', '#birthday');
+												return;
+											} 
+											
+											if(email == "") {
+												layer.tips('不能为空', '#email');
+												return;
+											} 
+											if(stucard == "") {
+												layer.tips('不能为空', '#stucard');
+												return;
+											} 
+											
+											$.ajax({
+												type : 'get',
+												url : '../admin/addstu?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&classid='+classid,
+												datatype : 'json',
+												success : function(data) {
+													if (data.code == "0") {
+														layer.confirm(data.msg, {
+														  btn: ['确定'],
+														  
+														  icon:1
+														}, function(){
+															$.ajax({
+																	type : 'get',
+																	url : '../admin/adminlogin?userid='+addUserName+'&pwd='+pwd,
+																	datatype : 'json',
+																	beforeSend:function(){
+																	//layer.load(0, {shade: false});
+																	},
+																	success : function(data) {
+																		if (data.code == 0) {
+																		layer.msg(data.msg);
+																		//layer.alert(data.msg, {icon: 1});
+																		if (top.location !== self.location) {
+												   							 top.location = "index.jsp";//跳出框架，并回到首页
+															         	}else{
+															         		window.location.href = "../html/index.jsp";
+															         	}
+																		
+																		} else {
+																			layer.alert(data.msg, {icon: 2});
+																			$("input").val("");
+																		}
+																	},
+																	error:function(){
+																	
+													    	        	layer.alert("后台报错", {icon: 2});
+													    	        },
+													    	       /* complete:function(){
+													    	        layer.alert("操作完成");
+													    	        }*/
+																});
+														});
+													}else{
+														layer.confirm(data.msg, {
+														  btn: ['确定'],
+														  icon:2
+														});
+													}
+												},
+												error : function() {
+													layer.confirm('添加成功', {
+									        				icon: 6,
+															  btn: ['确定']
+														});
+												}
+											});
+											
+						        		},
+									});
+									
+								
+								}
+								
+								
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('出现错误，请重试！', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
+			});
+		});
+			
+			
+		
+			
 		
 			
 	});

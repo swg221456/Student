@@ -86,26 +86,39 @@
 <body>
 	<!--弹框调用内容Start-->
 	<div id="adminuserdetail" class="adminuserdetail">			
-		<table class="layui-table">
-		    <tbody>
-		      <tr>
-		        <td class="tdbck">用户ID</td>
-		        <td><span id="txtclaid"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">真实姓名</td>
-		        <td><span id="txtadminuserrealname"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">用户类型</td>
-		        <td><span id="txtadminuserusertype"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">创建时间</td>
-		        <td><span id="txtadmincreatetime"></span></td>
-		      </tr>
-		    </tbody>
-		  </table>
+		
+		  <div class="artTypeLayer">
+				<form class="layui-form" action="">
+				<div class="layui-form-item">
+				      <label class="layui-form-label">用户类型:</label>
+				      <div class="layui-input-block">
+				       	<select id="txtusertype">
+						  <option value="">请选择用户类型</option> 
+						</select> 
+				      </div>
+				    </div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">用户名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="txtuserid" id="txtuserid"
+								lay-verify="txtuserid" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">用户密码:</label>
+						<div class="layui-input-block">
+							<input type="password" name="txtpassword" id="txtpassword"  autocomplete="off" placeholder="请输入用户密码" class="layui-input">
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">真实姓名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="realname" id="textrealname" lay-verify="textrealname" autocomplete="off" placeholder="请输入真实姓名" class="layui-input">
+						</div>
+					</div>
+					
+				</form>
+			</div>
 	</div>
 	<!--弹框调用内容END-->	
 
@@ -135,7 +148,7 @@
 		</script>
 
 		<script type="text/html" id="barDemo">
-			
+			<a class="layui-btn layui-btn-xs layui-btn-xs" lay-event="up">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -161,7 +174,7 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">用户密码:</label>
 						<div class="layui-input-block">
-							<input type="password" name="addpwd" id="addpwd"  autocomplete="off" placeholder="请输入用户密码" class="layui-input">
+							<input type="password" name="addpwd" id="addpwd"  autocomplete="off"  class="layui-input">
 						</div>
 					</div> 
 					<div class="layui-form-item">
@@ -366,29 +379,75 @@
 	
 		//表格工具栏事件 
 		table.on('tool(blogUser)', function(obj) {
+			loadRoleType('txtusertype',form);
 			var data = obj.data;
-			$("#txtclaid").text(data.userid);
-			$("#txtadminuserrealname").text(data.account);
-			$("#txtadminuserusertype").text(data.roleName);
-			$("#txtadminuserdesc").text(data.signed);
-			$("#txtadmincreatetime").text(data.createtime);
+			$("#txtuserid").val(data.userid);
+			$("#textrealname").val(data.account);
+			$("#txtpassword").val(data.pwd);
+			$("#txtusertype").val(data.roleId);
+			
 			
 			switch (obj.event) {
-				case 'seluser':
+				case 'up':
 					layer.open({
-				        type: 1, 
-				        title: '管理员信息详情',
-				        area: ['600px', '430px'],
-				        shade: 0.8,
-				        content: $('#adminuserdetail'),
-				        btn: ['返回'], 
-				        yes: function(){
-				          layer.closeAll();
-				          $(".adminuserdetail").css("display","none");
-				        },
-				        cancel: function(){ 
-						  $(".adminuserdetail").css("display","none");
+				    type: 1, 
+				    title: '用户信息修改',
+				    area : [ '460px', '365px' ],
+					shade : 0.4,
+					content : $('#adminuserdetail'),
+					btn : [ '保存', '返回' ],
+					yes : function() {
+					var txtUserName = $("#txtuserid").val().trim();
+					var txtrealname = $("#textrealname").val().trim();
+					var txtpwd = $("#txtpassword").val().trim();
+					var usertype = $("#txtusertype").val();
+
+					if(txtUserName == "") {
+						layer.tips('不能为空', '#txtUserName');
+						return;
+					} 
+					if(txtrealname==""){
+						layer.tips('不能为空', '#txtrealname');
+						return;
+					}
+					if(txtpwd == "") {
+						layer.tips('不能为空', '#txtpwd');
+						return;
+					}
+					
+					$.ajax({
+						type : 'get',
+						url : '../admin/upadminuser?userid='+txtUserName+'&pwd='+txtpwd+'&roleid='+usertype+'&realname='+txtrealname,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('出现错误，请重试！', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
 						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
 				    });
 				break;
 				

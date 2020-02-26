@@ -89,20 +89,24 @@
 		<table class="layui-table">
 		    <tbody>
 		      <tr>
-		        <td class="tdbck">用户ID</td>
-		        <td><span id="txtclaid"></span></td>
+		        <td class="tdbck">标题</td>
+		        <td><span id="txtnoticeName"></span></td>
 		      </tr>
 		      <tr>
-		        <td class="tdbck">真实姓名</td>
-		        <td><span id="txtadminuserrealname"></span></td>
+		        <td class="tdbck">内容</td>
+		        <td><span id="txtnoticecontent"></span></td>
+		      </tr>
+		       <tr>
+		        <td class="tdbck">备注</td>
+		        <td><span id="txtremarks"></span></td>
 		      </tr>
 		      <tr>
-		        <td class="tdbck">用户类型</td>
-		        <td><span id="txtadminuserusertype"></span></td>
+		        <td class="tdbck">创建人</td>
+		        <td><span id="txtuserid"></span></td>
 		      </tr>
 		      <tr>
 		        <td class="tdbck">创建时间</td>
-		        <td><span id="txtadmincreatetime"></span></td>
+		        <td><span id="txtcreatedate"></span></td>
 		      </tr>
 		    </tbody>
 		  </table>
@@ -114,25 +118,21 @@
 		<blockquote class="layui-elem-quote not_border_left">
 			<form class="layui-form" action="">
 			  	<div class="layui-input-inline">
-					<input type="text" name="userName" id="userName" placeholder="请输入姓名" class="layui-input" autocomplete="off">
+					<input type="text" name="userName" id="userName" placeholder="请输入标题" class="layui-input" autocomplete="off">
 			    </div>
 			    
 			    <div class="layui-inline">
 	     	   		<button id="btnselfrontinfo" type="button" class="layui-btn layui-bg-blue">查询</button>
 			    </div>
-				<button type="button" class="layui-btn layui-bg-blue" id="addartType" lay-event="addartType" lay-filter="addartType" style="margin-left: 10px;">新增教师</button>
+				<button type="button" class="layui-btn layui-bg-blue" id="addartType" lay-event="addartType" lay-filter="addartType" style="margin-left: 10px;">新增公告</button>
 			</form>
 		</blockquote>
 		<!-- 条件筛选框End -->
 
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
-		
-		<script type="text/html" id="switchTpl">
-		  <input type="checkbox" lay-filter="open" name="status" value="{{d.teacherid}}" {{ d.auditstatus == "0" ? 'checked' : '' }} lay-skin="switch" lay-text="启用|停用">
-		</script>
-		
+
 		<script type="text/html" id="barDemo">
-			
+			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -142,35 +142,23 @@
 				<form class="layui-form" action="">
 				
 					<div class="layui-form-item">
-						<label class="layui-form-label">教师名称:</label>
+						<label class="layui-form-label">标题:</label>
 						<div class="layui-input-block">
-							<input type="text" name="addteaName" id="addteaName"
-								lay-verify="addteaName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+							<input type="text" name="addnoticeName" id="addnoticeName"
+								lay-verify="addnoticeName" autocomplete="off" placeholder="请输入标题" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">选择用户:</label>
-						<div class="layui-inline">
-							<select id="userid" name="userid" lay-filter="addmajor">							
-							
-							</select>
-						</div>
-					</div> 
-					<div class="layui-form-item">
-						<label class="layui-form-label">电话号码:</label>
+						<label class="layui-form-label">内容:</label>
 						<div class="layui-input-block">
-							<input type="text" name="addteaphone" id="addteaphone"  autocomplete="off" placeholder="" class="layui-input">
+							<input type="text" name="addnoticecontent" id="addnoticecontent"  autocomplete="off"  class="layui-input">
 						</div>
 					</div> 
 					<div class="layui-form-item">
-					<label class="layui-form-label">选择性别:</label>
-						<div class="layui-inline">
-							<select id="addteasex" name="addteasex" lay-filter="addmajor">							
-							<option value="男">男</option>
-						  <option value="女">女</option>
-							</select>
+						<label class="layui-form-label">备注:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addremarks" id="addremarks" autocomplete="off" placeholder="" class="layui-input">
 						</div>
-						  						
 					</div>
 					
 				</form>
@@ -188,14 +176,13 @@
 			layer = layui.layer, $ = layui.jquery,
 			laydate = layui.laydate, laytpl = layui.laytpl,
 			element = layui.element;
-		
-		loaduserby("userid",form,"../admin2/loacduser");
+	
 		
 		/*加载表格*/
 		table.render({
 			elem : '#blogUser',
 			id:'adminUserid',
-			url : '../admin2/getteacher',
+			url : '../admin2/getnotice',
 			title : '管理员用户数据表',
 			height: "full-160",
 			skin : 'line',
@@ -207,28 +194,25 @@
 					align : 'center',
 					width : 80
 				}, {
-					field : 'teaName',
-					title : '教师名称',
+					field : 'noticeName',
+					title : '标题',
 					align : 'center'
+				}, {
+					field : 'noticecontent',
+					align : 'center',
+					title : '内容'
+				},{
+					field : 'remarks',
+					align : 'center',
+					title : '备注'
 				},{
 					field : 'userid',
 					align : 'center',
-					title : '用户名'
+					title : '创建人'
 				},{
-					field : 'teaphone',
+					field : 'createdate',
 					align : 'center',
-					title : '电话号码'
-				},{
-					field : 'teasex',
-					align : 'center',
-					title : '性别'
-				},{
-					field:'auditstatus', 
-					title:'状态',
-					align : 'center',
-					templet: '#switchTpl', 
-					unresize: true
-					
+					title : '创建时间'
 				},{
 					title : '操作',
 					toolbar : '#barDemo',
@@ -243,54 +227,14 @@
 					theme: '#1E9FFF',						
 			 },
 		});
-		/* 修改教师状态 */
-		form.on('switch(open)', function(data){
-		
-  	 		if(data.elem.checked){
-  	 			//data.value
-  	 			$.ajax({
-				type : 'get',
-				url : '../admin2/changestate?id=' + this.value,
-				datatype : 'json',
-				success : function(data) {
-					if (data.code == "0") {		
-						layer.msg('启用成功！请刷新页面', {icon: 1}); 
-					} else {
-	    	        	layer.msg('启用失败！', {icon: 2});
-					}
-				},
-				error : function() {
-					layer.msg('启用失败！请重试', {icon: 2});		
-				}
-				});
-  	 		}else{
-  	 			$.ajax({
-				type : 'get',
-				url : '../admin2/changestate?id=' + this.value,
-				datatype : 'json',
-				success : function(data) {
-					if (data.code == "0") {		
-						layer.msg('取消启用成功！请刷新页面', {icon: 1}); 
-					} else {
-	    	        	layer.msg('取消启用失败！', {icon: 2});
-					}
-				},
-				error : function() {
-					layer.msg('取消失败！请重试', {icon: 2});		
-				}
-				});
-  	 		}
-		});
-		
-		
 		
 		/* 点击查询对网站用户进行筛选 */
 		$("#btnselfrontinfo").click(function(){
-			var useridornickname=$("#userName").val().trim();
+			var slnoticename=$("#userName").val().trim();
 			table.reload('adminUserid', {
 				method : 'post',
 				where : {
-					'realname' : useridornickname,
+					'noticename' : slnoticename,
 					
 						},
 				page : {
@@ -303,36 +247,30 @@
 		$("#addartType").click(function(){
 			//加载角色类型
 			loadRoleType('addusertype',form);
-			$("#addteaName").val("");
-			$("#addteaphone").val("");
-			$("#userid").val("");
-			$("#addteasex").val("");
-			
+			$("#addnoticeName").val("");
+			$("#addnoticecontent").val("");
+			$("#addremarks").val("");
 			layer.open({
 				type : 1,
-				title : '教师用户添加',
-				area : [ '460px', '400px' ],
+				title : '公告添加',
+				area : [ '460px', '335px' ],
 				shade : 0.4,
 				content : $('#add-blogUser'),
 				btn : [ '保存', '返回' ],
 				yes : function() {
-					var addteaName = $("#addteaName").val().trim();
-					var addteaphone = $("#addteaphone").val().trim();
-					var userid = $("#userid").val();
-					var addteasex = $("#addteasex").val();
+					var noticeName = $("#addnoticeName").val().trim();
+					var noticecontent = $("#addnoticecontent").val().trim();
+					var remarks = $("#addremarks").val().trim();
+					
 
-					if(addteaName == "") {
-						layer.tips('不能为空', '#addteaName');
+					if(noticeName == "") {
+						layer.tips('不能为空', '#noticeName');
 						return;
 					} 
-					if(addteaphone==""){
-						layer.tips('不能为空', '#addteaphone');
-						return;
-					}
 					
 					$.ajax({
 						type : 'get',
-						url : '../admin/addteach?teaName='+addteaName+'&teaphone='+addteaphone+'&userid='+userid+'&teasex='+addteasex,
+						url : '../admin2/addnotice?noticeName=' + noticeName +'&noticecontent='+noticecontent+'&remarks='+remarks,
 						datatype : 'json',
 						success : function(data) {
 							if (data.code == "0") {
@@ -355,7 +293,7 @@
 							}
 						},
 						error : function() {
-							layer.confirm('出现错误，请重试！', {
+							layer.confirm('添加成功', {
 			        				icon: 6,
 									  btn: ['确定']
 								});
@@ -365,16 +303,15 @@
 				btn2 : function() {layer.closeAll();}
 			});
 		});
-		
-		
 	
 		//表格工具栏事件 
 		table.on('tool(blogUser)', function(obj) {
 			var data = obj.data;
-			$("#txtclaid").text(data.userid);
-			$("#txtadminuserrealname").text(data.account);
-			$("#txtadminuserusertype").text(data.roleName);
-			$("#txtadminuserdesc").text(data.signed);
+			$("#txtnoticeName").text(data.noticeName);
+			$("#txtnoticecontent").text(data.noticecontent);
+			$("#txtremarks").text(data.remarks);
+			$("#txtuserid").text(data.userid);
+			$("#txtcreatedate").text(data.createdate);
 			$("#txtadmincreatetime").text(data.createtime);
 			
 			switch (obj.event) {
@@ -404,7 +341,7 @@
 					}, function(){
 						$.ajax({
 			        		type: 'get',
-			        		url: "../del/delteacher?id="+data.teacherid,
+			        		url: "../del/delnotice?id="+data.noticeid,
 			        		dataType: 'json',
 			        		success:function(data){
 			        			if(data.code == 0){

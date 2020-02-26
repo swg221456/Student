@@ -403,7 +403,7 @@ public class StudentController {
 		// String md5Str = EnCriptUtil.fix(userid, pwd);
 		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
 		TStuinfo user = new TStuinfo();
-		
+		birthday += " 01:01:00";
 		user = audao.getstu(id);
 		user.setAgend(agend);
 		user.setBirthday(birthday);
