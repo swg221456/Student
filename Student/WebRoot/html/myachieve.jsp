@@ -130,6 +130,7 @@
 							
 							</select>
 						</div>
+				
 				</div>
 			  	
 			    
@@ -160,9 +161,9 @@
 			layer = layui.layer, $ = layui.jquery,
 			laydate = layui.laydate, laytpl = layui.laytpl,
 			element = layui.element;
+		
 		//调用方法加载select管理员角色
 		loadseme("slseme",form,"../curr/loacdseme");
-		
 		
 		/*加载表格*/
 		table.render({

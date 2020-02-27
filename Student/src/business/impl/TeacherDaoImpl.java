@@ -89,4 +89,11 @@ public class TeacherDaoImpl implements TeacherDAO {
 		return hdao.update(user);
 	}
 
+	@Override
+	public List<VTeacher> getteacher(String userid) {
+		String hql = "from VTeacher where userid = '"+userid+"' ";
+		List<VTeacher> list = hdao.select(hql);
+		return list;
+	}
+
 }

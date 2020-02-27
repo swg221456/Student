@@ -16,6 +16,7 @@ import model.VCurriculum;
 import model.VTeacher;
 import model.Vclass;
 import model.Vmajor;
+import model.Vsheet;
 
 /**
  * 管理端管理员用户业务接口
@@ -44,6 +45,10 @@ public interface CourseDAO {
 	public int getNoticeList(String wherecondition);
 	
 	public List<VCourse> getNoticeList();
+	
+	public List<VCourse> getNoticeList(int teacherid,int classid);
+	
+	public List<Vsheet> getNcourseList(int stuinfoid,int courseid);
 
 	/**
 	 * 实现一个新闻的添加

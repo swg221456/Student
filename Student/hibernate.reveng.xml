@@ -129,7 +129,12 @@
 			<generator class="identity"></generator>
 		</primary-key>
 	</table>
-<table name="Vsheet" catalog="StudentDB" class="model.Vsheet">
+	<table name="Vsheet" catalog="StudentDB" class="model.Vsheet">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+<table name="T_ Sheet" catalog="StudentDB" class="model.TSheet">
 	<primary-key>
 		<generator class="identity"></generator>
 	</primary-key>

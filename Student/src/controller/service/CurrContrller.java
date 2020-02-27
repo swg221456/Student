@@ -2,36 +2,44 @@ package controller.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.*;
 
-import java.util.List;
+import javafx.scene.layout.VBox;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 
+
+import javax.servlet.http.HttpSession;
+
 import model.TCourse;
 import model.TCurriculum;
-
 import model.Tsemester;
 
 
+
+
+import model.VAdminUser;
+import model.VTeacher;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import util.Expression;
 import util.LayuiData;
-
+import business.basic.iHibBaseDAO;
 import business.dao.CourseDAO;
 import business.dao.CurriculumDAO;
-
 import business.dao.SemesterDAO;
-
+import business.dao.TeacherDAO;
 import business.impl.CourseDaoImpl;
 import business.impl.CurriculumDaoImpl;
-
 import business.impl.SemesterDaoImpl;
+import business.impl.TeacherDaoImpl;
 
 import com.alibaba.fastjson.JSON;
 
@@ -304,6 +312,57 @@ public class CurrContrller {
 
 		CurriculumDAO ardao = new CurriculumDaoImpl();
 		List list = ardao.getNoticeList();
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		LayuiData laydata = new LayuiData();
+
+		if (list != null) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "查询成功，共查出" + list.size() + "条记录";
+			laydata.data = list;
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "查询失败";
+		}
+
+		Writer out;
+		try {
+			out = response.getWriter();
+			out.write(JSON.toJSONString(laydata));
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// return "";
+
+	}
+	
+	
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/loacdcourseby")
+	public void GetLoacdcurrby( HttpServletRequest request,Integer classid,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+
+		HttpSession session = request.getSession();
+		VAdminUser user = (VAdminUser) session.getAttribute("loginuser");
+		
+		TeacherDAO tedao = new TeacherDaoImpl();
+		List<VTeacher> vteaList = tedao.getteacher(user.getUserid());
+		VTeacher vter = new VTeacher();
+		for (VTeacher vv:vteaList){
+			vter = vv;
+		}
+		
+		CourseDAO ardao = new CourseDaoImpl();
+		List list = ardao.getNoticeList(vter.getTeacherid(),classid);
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");

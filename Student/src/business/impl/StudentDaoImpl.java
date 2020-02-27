@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import model.TClass;
+import model.TSheet;
 import model.TStuinfo;
 import model.Tmajor;
 import model.Tuser;
@@ -112,6 +113,36 @@ public class StudentDaoImpl implements StudentDAO {
 	@Override
 	public TStuinfo getstu(int id) {
 		TStuinfo adminuser = (TStuinfo) hdao.findById(TStuinfo.class,id);
+		return adminuser;
+	}
+
+	@Override
+	public List<Vstudent> getstuList(int classid) {
+		String hql = "from Vstudent where isdelete = 0 and classid="+classid+ "";
+		
+		hql += "  order by stuinfoid asc";
+		List<Vstudent> list = hdao.select(hql);
+		return list;
+	}
+
+	@Override
+	public boolean addsheet(TSheet user) {
+		Object id =  hdao.insert(user);
+		if (id != null && !id.equals("")) {
+
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean upsheet(TSheet user) {
+		return hdao.update(user);
+	}
+
+	@Override
+	public TSheet getSheet(int id) {
+		TSheet adminuser = (TSheet) hdao.findById(TSheet.class,id);
 		return adminuser;
 	}
 

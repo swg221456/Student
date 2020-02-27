@@ -42,6 +42,8 @@ public interface TeacherDAO {
 	public int getNoticeList(String wherecondition);
 	
 	public List<VTeacher> getNoticeList();
+	
+	public List<VTeacher> getteacher(String userid);
 
 	/**
 	 * 实现一个新闻的添加

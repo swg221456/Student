@@ -84,47 +84,51 @@
 	</style>
 </head>
 <body>
-	<!--弹框调用内容Start-->
-	<div id="adminuserdetail" class="adminuserdetail">			
-		<table class="layui-table">
-		    <tbody>
-		      <tr>
-		        <td class="tdbck">标题</td>
-		        <td><span id="txtnoticeName"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">内容</td>
-		        <td><span id="txtnoticecontent"></span></td>
-		      </tr>
-		       <tr>
-		        <td class="tdbck">备注</td>
-		        <td><span id="txtremarks"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">创建人</td>
-		        <td><span id="txtuserid"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">创建时间</td>
-		        <td><span id="txtcreatedate"></span></td>
-		      </tr>
-		    </tbody>
-		  </table>
-	</div>
-	<!--弹框调用内容END-->	
+	
 
 	<div class="blogUser-con">
 		<!-- 条件筛选框Start -->
 		<blockquote class="layui-elem-quote not_border_left">
 			<form class="layui-form" action="">
 			  	<div class="layui-input-inline">
-					<input type="text" name="userName" id="userName" placeholder="请输入标题" class="layui-input" autocomplete="off">
-			    </div>
+			    <label class="layui-form-label">选择院系:</label>
+						<div class="layui-inline">
+							<select id="slcollege" name="slcollege" lay-filter="slcollege">							
+							
+							</select>
+						</div>
+				</div>
+				<div class="layui-input-inline">
+			    <label class="layui-form-label">选择专业:</label>
+						<div class="layui-inline">
+							<select id="slmajor" name="slmajor" lay-filter="slmajor">							
+							
+							</select>
+						</div>
+				</div>
+				<div class="layui-input-inline">
+			    <label class="layui-form-label">选择班级:</label>
+						<div class="layui-inline">
+							<select id="slclass" name="slclass" lay-filter="slclass">							
+							
+							</select>
+						</div>
+				</div>
+				<div class="layui-input-inline">
+			    <label class="layui-form-label">选择课程:</label>
+						<div class="layui-inline">
+							<select id="slcouser" name="slcouser" lay-filter="slcouser">							
+							
+							</select>
+						</div>
+				</div>
+			
+			  	
 			    
 			    <div class="layui-inline">
 	     	   		<button id="btnselfrontinfo" type="button" class="layui-btn layui-bg-blue">查询</button>
 			    </div>
-				<button type="button" class="layui-btn layui-bg-blue" id="addartType" lay-event="addartType" lay-filter="addartType" style="margin-left: 10px;">新增公告</button>
+				
 			</form>
 		</blockquote>
 		<!-- 条件筛选框End -->
@@ -132,255 +136,16 @@
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
 
 		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
-			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+			<a class="layui-btn layui-btn-xs" lay-event="seluser">保存</a>
+			
 		</script>
 
-		<!-- 用户信息添加Start -->
-		<div id="add-blogUser">
-			<div class="artTypeLayer">
-				<form class="layui-form" action="">
-				
-					<div class="layui-form-item">
-						<label class="layui-form-label">标题:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addnoticeName" id="addnoticeName"
-								lay-verify="addnoticeName" autocomplete="off" placeholder="请输入标题" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">内容:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addnoticecontent" id="addnoticecontent"  autocomplete="off"  class="layui-input">
-						</div>
-					</div> 
-					<div class="layui-form-item">
-						<label class="layui-form-label">备注:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addremarks" id="addremarks" autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div>
-					
-				</form>
-			</div>
-		</div>
-		<!-- 用户信息添加End -->
+		
 		
 	</div>
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
 	<script src="../js/loadselect.js" charset="utf-8"></script>
 	<script src="../layui/layui.js" charset="utf-8"></script>
-	<script>
-	layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function() {
-		var table = layui.table, form = layui.form, 
-			layer = layui.layer, $ = layui.jquery,
-			laydate = layui.laydate, laytpl = layui.laytpl,
-			element = layui.element;
-	
-		
-		/*加载表格*/
-		table.render({
-			elem : '#blogUser',
-			id:'adminUserid',
-			url : '../admin2/getnotice',
-			title : '管理员用户数据表',
-			height: "full-160",
-			skin : 'line',
-			even : true,
-			cols : [ 
-			     [ {
-					type : 'numbers',
-					title : '序号',
-					align : 'center',
-					width : 80
-				}, {
-					field : 'noticeName',
-					title : '标题',
-					align : 'center'
-				}, {
-					field : 'noticecontent',
-					align : 'center',
-					title : '内容'
-				},{
-					field : 'remarks',
-					align : 'center',
-					title : '备注'
-				},{
-					field : 'userid',
-					align : 'center',
-					title : '创建人'
-				},{
-					field : 'createdate',
-					align : 'center',
-					title : '创建时间'
-				},{
-					title : '操作',
-					toolbar : '#barDemo',
-					align : 'center'
-				} ] 
-			 ],
-			 page: {
-					layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
-					groups: 5,
-					limit: 10,
-					limits: [10, 20, 30, 40, 50],
-					theme: '#1E9FFF',						
-			 },
-		});
-		
-		/* 点击查询对网站用户进行筛选 */
-		$("#btnselfrontinfo").click(function(){
-			var slnoticename=$("#userName").val().trim();
-			table.reload('adminUserid', {
-				method : 'post',
-				where : {
-					'noticename' : slnoticename,
-					
-						},
-				page : {
-					curr : 1
-					}
-			});
-		});
-		
-		/* 添加一个网站用户 */
-		$("#addartType").click(function(){
-			//加载角色类型
-			loadRoleType('addusertype',form);
-			$("#addnoticeName").val("");
-			$("#addnoticecontent").val("");
-			$("#addremarks").val("");
-			layer.open({
-				type : 1,
-				title : '公告添加',
-				area : [ '460px', '335px' ],
-				shade : 0.4,
-				content : $('#add-blogUser'),
-				btn : [ '保存', '返回' ],
-				yes : function() {
-					var noticeName = $("#addnoticeName").val().trim();
-					var noticecontent = $("#addnoticecontent").val().trim();
-					var remarks = $("#addremarks").val().trim();
-					
-
-					if(noticeName == "") {
-						layer.tips('不能为空', '#noticeName');
-						return;
-					} 
-					
-					$.ajax({
-						type : 'get',
-						url : '../admin2/addnotice?noticeName=' + noticeName +'&noticecontent='+noticecontent+'&remarks='+remarks,
-						datatype : 'json',
-						success : function(data) {
-							if (data.code == "0") {
-								layer.confirm(data.msg, {
-								  btn: ['确定'],
-								  icon:1
-								}, function(){
-									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
-						                where: {
-						                	keyword:data.code=='10001'
-						                }
-						            });	
-									layer.closeAll();
-								});
-							}else{
-								layer.confirm(data.msg, {
-								  btn: ['确定'],
-								  icon:2
-								});
-							}
-						},
-						error : function() {
-							layer.confirm('添加成功', {
-			        				icon: 6,
-									  btn: ['确定']
-								});
-						}
-					});						
-				},
-				btn2 : function() {layer.closeAll();}
-			});
-		});
-	
-		//表格工具栏事件 
-		table.on('tool(blogUser)', function(obj) {
-			var data = obj.data;
-			$("#txtnoticeName").text(data.noticeName);
-			$("#txtnoticecontent").text(data.noticecontent);
-			$("#txtremarks").text(data.remarks);
-			$("#txtuserid").text(data.userid);
-			$("#txtcreatedate").text(data.createdate);
-			$("#txtadmincreatetime").text(data.createtime);
-			
-			switch (obj.event) {
-				case 'seluser':
-					layer.open({
-				        type: 1, 
-				        title: '管理员信息详情',
-				        area: ['600px', '430px'],
-				        shade: 0.8,
-				        content: $('#adminuserdetail'),
-				        btn: ['返回'], 
-				        yes: function(){
-				          layer.closeAll();
-				          $(".adminuserdetail").css("display","none");
-				        },
-				        cancel: function(){ 
-						  $(".adminuserdetail").css("display","none");
-						}
-				    });
-				break;
-				
-				//删除按钮操作
-				case 'del':
-					layer.confirm('确定要删除么？', {
-					  btn: ['确定','取消'],
-					  icon:3
-					}, function(){
-						$.ajax({
-			        		type: 'get',
-			        		url: "../del/delnotice?id="+data.noticeid,
-			        		dataType: 'json',
-			        		success:function(data){
-			        			if(data.code == 0){
-			        				layer.confirm(data.msg, {
-			        				icon: 1,
-									  btn: ['确定']
-									}, function(){
-										table.reload("adminUserid", { //此处是上文提到的 初始化标识id
-							                where: {
-							                	keyword:data.code=='0'
-							                }
-							            });	
-										layer.closeAll();
-									});          				 
-			        			}
-			        			else{
-			        				layer.confirm(data.msg, {
-			        				icon: 7,
-										  btn: ['确定']
-									});
-			        			}
-			        		},
-			        		error:function(){
-			        			layer.confirm('出现错误，删除失败，请重试！', {
-			        				icon: 6,
-									  btn: ['确定']
-								});
-			        		},
-			        	});   
-					}, function(){ 
-						layer.closeAll();
-					});
-				break;
-				
-			}
-			;
-		});
-	
-	});
-	</script>
+	<script src="../js/sheet.js"></script>
 </body>
 </html>

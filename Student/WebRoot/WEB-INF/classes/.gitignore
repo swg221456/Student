@@ -1,1 +1,7 @@
+/applicationContext.xml
+/business/
+/common/
 /controller/
+/hibernate.cfg.xml
+/model/
+/util/

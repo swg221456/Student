@@ -8,6 +8,7 @@ import model.TCourse;
 import model.Tteacher;
 import model.VCourse;
 import model.VTeacher;
+import model.Vsheet;
 import business.basic.iHibBaseDAO;
 import business.basic.iHibBaseDAOImpl;
 import business.dao.CourseDAO;
@@ -77,6 +78,20 @@ public class CourseDaoImpl implements CourseDAO {
 	@Override
 	public boolean update(TCourse user) {
 		return hdao.update(user);
+	}
+
+	@Override
+	public List<VCourse> getNoticeList(int teacherid,int classid) {
+		String hql = "from VCourse where teacherid = "+teacherid+" and classid ='"+classid+"' ";
+		List<VCourse> list = hdao.select(hql);
+		return list;
+	}
+
+	@Override
+	public List<Vsheet> getNcourseList(int stuinfoid, int courseid) {
+		String hql = "from Vsheet where stuinfoid = "+stuinfoid+" and courseid ="+courseid+" and isdelete =0 ";
+		List<Vsheet> list = hdao.select(hql);
+		return list;
 	}
 
 }

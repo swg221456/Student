@@ -5,6 +5,7 @@ import java.util.List;
 import model.TClass;
 import model.TCollege;
 import model.TNotice;
+import model.TSheet;
 import model.TStuinfo;
 import model.Tmajor;
 import model.Tuser;
@@ -47,6 +48,8 @@ public interface StudentDAO {
 	public int getNoticeList(String wherecondition);
 	
 	public List<Vstudent> getNoticeList(int id);
+	
+	public List<Vstudent> getstuList(int classid);
 
 	/**
 	 * 实现一个新闻的添加
@@ -55,6 +58,10 @@ public interface StudentDAO {
 	 */
 
 	public boolean addNotice(TStuinfo user);
+	
+	public boolean addsheet(TSheet user);
+	public boolean upsheet(TSheet user);
+	public TSheet getSheet(int id);
 	
 	public TStuinfo getstu(int id);
 
