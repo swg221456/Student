@@ -30,9 +30,7 @@ public interface AdminUserDAO {
 	 */
 	public List<VAdminUser> getaAdminUserList(int roleID);
 	
-	public List<VAdminUser> getaAdminUserList();
 	
-	public List<VAdminUser> getUserList();
 
 	/**
 	 * 根据条件获取符合条件的管理员用户的数量
@@ -92,6 +90,10 @@ public interface AdminUserDAO {
 	 *            用户id
 	 */
 	public Tuser getuser(String userid);
+	
+	public List<VAdminUser> getaAdminUserList();
+	
+	public List<VAdminUser> getUserList();
 
 	/**
 	 * 更新管理员用户

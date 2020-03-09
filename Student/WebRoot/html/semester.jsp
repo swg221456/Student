@@ -200,10 +200,6 @@
 					align : 'center',
 					title : '结束时间'
 				},{
-					field : 'userid',
-					align : 'center',
-					title : '创建人'
-				},{
 					title : '操作',
 					toolbar : '#barDemo',
 					align : 'center'

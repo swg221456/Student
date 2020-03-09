@@ -32,7 +32,7 @@ public interface CourseDAO {
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<VCourse> getNoticeList(String wherecondition, int page,
+	public List<VCourse> getCourseList(String wherecondition, int page,
 			int pageSize);
 
 	/**
@@ -42,13 +42,13 @@ public interface CourseDAO {
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getCourseList(String wherecondition);
 	
-	public List<VCourse> getNoticeList();
+	public List<VCourse> getCourseList();
 	
-	public List<VCourse> getNoticeList(int teacherid,int classid);
+	public List<VCourse> getCourseList(int teacherid,int classid);
 	
-	public List<Vsheet> getNcourseList(int stuinfoid,int courseid);
+	public List<Vsheet> getVsheetList(int stuinfoid,int courseid);
 
 	/**
 	 * 实现一个新闻的添加
@@ -56,7 +56,7 @@ public interface CourseDAO {
 	 * @param user
 	 */
 
-	public boolean addNotice(TCourse user);
+	public boolean addTCourse(TCourse user);
 
 	
 
@@ -66,7 +66,7 @@ public interface CourseDAO {
 	 * @param user
 	 */
 
-	public boolean delAdminUser(TCourse user);
+	public boolean delTCourse(TCourse user);
 
 	
 	

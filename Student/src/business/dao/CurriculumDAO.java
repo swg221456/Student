@@ -22,49 +22,56 @@ import model.Vmajor;
 public interface CurriculumDAO {
 
 	/**
-	 * 根据条件获取新闻列表
+	 * 根据条件获取课程列表
 	 * 
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<VCurriculum> getNoticeList(String wherecondition, int page,
+	public List<VCurriculum> getVcurrList(String wherecondition, int page,
 			int pageSize);
 
 	/**
-	 * 根据条件获取符合条件的新闻
+	 * 根据条件获取符合条件的课程
 	 * 
 	 * @param wherecondition
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getVcurrList(String wherecondition);
 	
-	public List<VCurriculum> getNoticeList();
+	/**
+	 * 获取所有课程
+	 * 
+	 * @param wherecondition
+	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
+	 * @return
+	 */
+	public List<VCurriculum> getVcurrList();
 
 	/**
-	 * 实现一个新闻的添加
+	 * 实现一个课程的添加
 	 * 
 	 * @param user
 	 */
 
-	public boolean addNotice(TCurriculum user);
+	public boolean addTCurr(TCurriculum user);
 
 	
 
 	/**
-	 * 实现一个新闻的修改
+	 * 实现一个课程的删除
 	 * 
 	 * @param user
 	 */
 
-	public boolean delAdminUser(TCurriculum user);
+	public boolean delTCurr(TCurriculum user);
 
 	
 
 	
 
 	/**
-	 * 更新管理员用户
+	 * 更新课程
 	 * 
 	 * @param user
 	 * @return

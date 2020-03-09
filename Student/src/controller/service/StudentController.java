@@ -32,7 +32,7 @@ import business.dao.NoticeDAO;
 import business.dao.StudentDAO;
 import business.dao.TeacherDAO;
 import business.impl.AdminUserDaoImpl;
-import business.impl.CourseDaoImpl;
+import business.impl.CourseDAOImpl;
 import business.impl.NoticeDaoImpl;
 import business.impl.StudentDaoImpl;
 import business.impl.TeacherDaoImpl;
@@ -85,9 +85,9 @@ public class StudentController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getVstuList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getVstuList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -141,9 +141,9 @@ public class StudentController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getVstuList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getVstuList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -186,7 +186,7 @@ public class StudentController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getVstuList(opreation);
 
 		List<Vstudent> list = audao.getstuList(opreation);
 		
@@ -233,6 +233,9 @@ public class StudentController {
 			int limit, Integer classid,Integer collegeid,Integer majorid,Integer curriculumid,
 			HttpServletResponse response, Model model) {
 
+		HttpSession session = request.getSession();
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
 		StudentDAO audao = new StudentDaoImpl();
 		// 查询条件
 		Expression exp = new Expression();
@@ -253,6 +256,10 @@ public class StudentController {
 		if (curriculumid != null && curriculumid != 0) {
 			
 			opreation += "and  curriculumid like '%"+curriculumid+"%'  ";
+		}
+		if (modle != null ) {
+			
+			opreation += "and  userid like '%"+modle.getUserid()+"%'  ";
 		}
 		
 		
@@ -312,11 +319,11 @@ public class StudentController {
 			opreation += "and  semesterid like '%"+semesterid+"%'  ";
 		}
 		
-		/*if (modle != null ) {
+		if (modle != null ) {
 			
 			opreation += "and  userid like '%"+modle.getUserid()+"%'  ";
 		}
-		*/
+		
 		
 		
 		
@@ -463,13 +470,13 @@ public class StudentController {
 		TStuinfo user = new TStuinfo();
 		List<Vstudent> stuList = audao.getstuList(classid);
 		
-		CourseDAO coudao = new CourseDaoImpl();
+		CourseDAO coudao = new CourseDAOImpl();
 		boolean ad = false;
 		boolean up = false;
 		for (Vstudent vv:stuList){
 			Vstudent vter = vv;
 			int stuinfoid = vter.getStuinfoid();
-			List list = coudao.getNcourseList(stuinfoid, courseid);
+			List list = coudao.getCourseList(stuinfoid, courseid);
 			if (list.size() == 0) {
 				TSheet sheet = new TSheet();
 				sheet.setCourseid(courseid);
@@ -523,7 +530,7 @@ public class StudentController {
 		VAdminUser user = (VAdminUser) session.getAttribute("loginuser");
 		
 		TeacherDAO tedao = new TeacherDaoImpl();
-		List<VTeacher> vteaList = tedao.getteacher(user.getUserid());
+		List<VTeacher> vteaList = tedao.getVteacherList(user.getUserid());
 		VTeacher vter = new VTeacher();
 		for (VTeacher vv:vteaList){
 			vter = vv;

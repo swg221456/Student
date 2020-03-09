@@ -41,7 +41,7 @@ import business.dao.TeacherDAO;
 import business.impl.AdminUserDaoImpl;
 import business.impl.ClassDaoImpl;
 import business.impl.CollegeDaoImpl;
-import business.impl.CourseDaoImpl;
+import business.impl.CourseDAOImpl;
 import business.impl.CurriculumDaoImpl;
 import business.impl.MajorDaoImpl;
 import business.impl.NoticeDaoImpl;
@@ -69,7 +69,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delNotice(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -104,7 +104,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delTteacher(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -139,7 +139,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delCollege(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -174,7 +174,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delMajor(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -209,7 +209,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delClass(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -244,7 +244,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delSemester(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -279,7 +279,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delTCurr(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {
@@ -306,7 +306,7 @@ public class DelController {
 	public void delcourse(HttpServletRequest request,  
 			  Integer id,
 			HttpServletResponse response, Model model) {
-		CourseDAO audao = new CourseDaoImpl();
+		CourseDAO audao = new CourseDAOImpl();
 		TCourse user = new TCourse();
 		user.setCourseid(id);
 
@@ -314,7 +314,7 @@ public class DelController {
 		response.setContentType("application/json");
 
 		LayuiData laydata = new LayuiData();
-		if (audao.delAdminUser(user)) {
+		if (audao.delTCourse(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {

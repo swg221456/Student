@@ -29,7 +29,7 @@ public interface TeacherDAO {
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<VTeacher> getNoticeList(String wherecondition, int page,
+	public List<VTeacher> getteacherList(String wherecondition, int page,
 			int pageSize);
 
 	/**
@@ -39,11 +39,11 @@ public interface TeacherDAO {
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getteacherList(String wherecondition);
 	
-	public List<VTeacher> getNoticeList();
+	public List<VTeacher> getteacherList();
 	
-	public List<VTeacher> getteacher(String userid);
+	public List<VTeacher> getVteacherList(String userid);
 
 	/**
 	 * 实现一个新闻的添加
@@ -51,7 +51,7 @@ public interface TeacherDAO {
 	 * @param user
 	 */
 
-	public boolean addNotice(Tteacher user);
+	public boolean addTteacher(Tteacher user);
 
 	
 
@@ -61,7 +61,7 @@ public interface TeacherDAO {
 	 * @param user
 	 */
 
-	public boolean delAdminUser(Tteacher user);
+	public boolean delTteacher(Tteacher user);
 
 	
 	/**

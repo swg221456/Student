@@ -19,7 +19,7 @@ public class SemesterDaoImpl implements SemesterDAO {
 	}
 
 	@Override
-	public List<Tsemester> getNoticeList(String wherecondition, int page,
+	public List<Tsemester> getSemesterList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from Tsemester where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -31,7 +31,7 @@ public class SemesterDaoImpl implements SemesterDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getSemesterList(String wherecondition) {
 		String hql = "select count(semesterid)  from Tsemester where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -40,7 +40,7 @@ public class SemesterDaoImpl implements SemesterDAO {
 	}
 
 	@Override
-	public boolean addNotice(Tsemester user) {
+	public boolean addSemester(Tsemester user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -50,7 +50,7 @@ public class SemesterDaoImpl implements SemesterDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(Tsemester user) {
+	public boolean delSemester(Tsemester user) {
 		Tsemester adminuser = (Tsemester) hdao.findById(Tsemester.class,
 				user.getSemesterid());
 		adminuser.setIsdelete(1);
@@ -63,7 +63,7 @@ public class SemesterDaoImpl implements SemesterDAO {
 	}
 
 	@Override
-	public List<Tsemester> getNoticeList() {
+	public List<Tsemester> getSemesterList() {
 		String hql = "from Tsemester where isdelete = 0 ";
 		
 		hql += "  order by semesterid asc";

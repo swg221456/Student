@@ -43,19 +43,19 @@ public interface NoticeDAO {
 	
 
 	/**
-	 * 实现一个新闻的修改
+	 * 实现一个新闻的删除
 	 * 
 	 * @param user
 	 */
 
-	public boolean delAdminUser(TNotice user);
+	public boolean delNotice(TNotice user);
 
 	
 
 	
 
 	/**
-	 * 更新管理员用户
+	 * 更新新闻
 	 * 
 	 * @param user
 	 * @return

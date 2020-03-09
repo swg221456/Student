@@ -51,7 +51,7 @@ public class NoticeDaoImpl implements NoticeDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(TNotice user) {
+	public boolean delNotice(TNotice user) {
 		TNotice adminuser = (TNotice) hdao.findById(TNotice.class,
 				user.getNoticeid());
 		adminuser.setIsdelete(1);

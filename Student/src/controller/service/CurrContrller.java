@@ -36,7 +36,7 @@ import business.dao.CourseDAO;
 import business.dao.CurriculumDAO;
 import business.dao.SemesterDAO;
 import business.dao.TeacherDAO;
-import business.impl.CourseDaoImpl;
+import business.impl.CourseDAOImpl;
 import business.impl.CurriculumDaoImpl;
 import business.impl.SemesterDaoImpl;
 import business.impl.TeacherDaoImpl;
@@ -77,9 +77,9 @@ public class CurrContrller {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getSemesterList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getSemesterList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -137,7 +137,7 @@ public class CurrContrller {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addSemester(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "学期添加成功";
 		} else {
@@ -164,7 +164,7 @@ public class CurrContrller {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
 		SemesterDAO ardao = new SemesterDaoImpl();
-		List list = ardao.getNoticeList();
+		List list = ardao.getSemesterList();
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -231,9 +231,9 @@ public class CurrContrller {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getVcurrList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getVcurrList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -265,7 +265,7 @@ public class CurrContrller {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addcurri")
-	public void addcurrUser( String curriName, Integer semesterid,String introduce, String remarks,
+	public void addcurr( String curriName, Integer semesterid,String introduce, String remarks,
 			  HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
@@ -284,7 +284,7 @@ public class CurrContrller {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addTCurr(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "课程添加成功";
 		} else {
@@ -311,7 +311,7 @@ public class CurrContrller {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
 		CurriculumDAO ardao = new CurriculumDaoImpl();
-		List list = ardao.getNoticeList();
+		List list = ardao.getVcurrList();
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -355,14 +355,14 @@ public class CurrContrller {
 		VAdminUser user = (VAdminUser) session.getAttribute("loginuser");
 		
 		TeacherDAO tedao = new TeacherDaoImpl();
-		List<VTeacher> vteaList = tedao.getteacher(user.getUserid());
+		List<VTeacher> vteaList = tedao.getVteacherList(user.getUserid());
 		VTeacher vter = new VTeacher();
 		for (VTeacher vv:vteaList){
 			vter = vv;
 		}
 		
-		CourseDAO ardao = new CourseDaoImpl();
-		List list = ardao.getNoticeList(vter.getTeacherid(),classid);
+		CourseDAO ardao = new CourseDAOImpl();
+		List list = ardao.getCourseList(vter.getTeacherid(),classid);
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -409,7 +409,7 @@ public class CurrContrller {
 			int limit, Integer classid,Integer teacherid,
 			HttpServletResponse response, Model model) {
 
-		CourseDAO audao = new CourseDaoImpl();
+		CourseDAO audao = new CourseDAOImpl();
 		// 查询条件
 		Expression exp = new Expression();
 		String opreation = "";
@@ -428,9 +428,9 @@ public class CurrContrller {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getCourseList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getCourseList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -467,7 +467,7 @@ public class CurrContrller {
 		// System.out.println(userid + "," + realname + "," + roleid);
 		
 
-		CourseDAO audao = new CourseDaoImpl();
+		CourseDAO audao = new CourseDAOImpl();
 		LayuiData laydata = new LayuiData();
 		// String md5Str = EnCriptUtil.fix(userid, pwd);
 		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
@@ -482,7 +482,7 @@ public class CurrContrller {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addTCourse(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "任课添加成功";
 		} else {

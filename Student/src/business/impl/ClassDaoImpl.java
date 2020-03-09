@@ -22,7 +22,7 @@ public class ClassDaoImpl implements ClassDAO {
 	}
 
 	@Override
-	public List<Vclass> getNoticeList(String wherecondition, int page,
+	public List<Vclass> getClassList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from Vclass where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -34,7 +34,7 @@ public class ClassDaoImpl implements ClassDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getClassList(String wherecondition) {
 		String hql = "select count(classid)  from Vclass where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -43,7 +43,7 @@ public class ClassDaoImpl implements ClassDAO {
 	}
 
 	@Override
-	public List<Vclass> getNoticeList(int id) {
+	public List<Vclass> getClassList(int id) {
 		String hql ="";
 		if (id != 0 ) {		
 		 hql = "from Vclass where isdelete = 0 and majorid ="+id;
@@ -57,7 +57,7 @@ public class ClassDaoImpl implements ClassDAO {
 	}
 
 	@Override
-	public boolean addNotice(TClass user) {
+	public boolean addClass(TClass user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -67,7 +67,7 @@ public class ClassDaoImpl implements ClassDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(TClass user) {
+	public boolean delClass(TClass user) {
 		TClass adminuser = (TClass) hdao.findById(TClass.class,
 				user.getClassid());
 		adminuser.setIsdelete(1);

@@ -25,7 +25,7 @@ public class StudentDaoImpl implements StudentDAO {
 	}
 
 	@Override
-	public List<Vstudent> getNoticeList(String wherecondition, int page,
+	public List<Vstudent> getVstuList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from Vstudent where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -37,7 +37,7 @@ public class StudentDaoImpl implements StudentDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getVstuList(String wherecondition) {
 		String hql = "select count(stuinfoid)  from Vstudent where isdelete = 0  ";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -46,7 +46,7 @@ public class StudentDaoImpl implements StudentDAO {
 	}
 
 	@Override
-	public List<Vstudent> getNoticeList(int id) {
+	public List<Vstudent> getVstudentList(int id) {
 		String hql = "from Vstudent where isdelete = 0 and calssid ="+id;
 		
 		hql += "  order by classid asc";
@@ -55,7 +55,7 @@ public class StudentDaoImpl implements StudentDAO {
 	}
 
 	@Override
-	public boolean addNotice(TStuinfo user) {
+	public boolean addStu(TStuinfo user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -65,7 +65,7 @@ public class StudentDaoImpl implements StudentDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(TStuinfo user) {
+	public boolean delStu(TStuinfo user) {
 		TStuinfo adminuser = (TStuinfo) hdao.findById(TStuinfo.class,
 				user.getStuinfoid());
 		adminuser.setIsdelete(1);

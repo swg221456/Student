@@ -47,7 +47,7 @@ public class AdminController {
 	 * @param model
 	 */
 	@RequestMapping(value = "getnotice")
-	public void getAdminUserList(HttpServletRequest request, int page,
+	public void getNoticeList(HttpServletRequest request, int page,
 			int limit, String noticename,
 			HttpServletResponse response, Model model) {
 
@@ -98,8 +98,8 @@ public class AdminController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addnotice")
-	public void addAdminUser( String noticeName, String noticecontent,
-			String remarks,  HttpServletRequest request,
+	public void addNotice(String noticeName,String noticecontent,
+			String remarks, HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
 		HttpSession session = request.getSession();
@@ -167,9 +167,9 @@ public class AdminController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getteacherList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getteacherList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -262,7 +262,7 @@ public class AdminController {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addTteacher(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "教师添加成功";
 		} else {
@@ -359,7 +359,7 @@ public class AdminController {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
 		TeacherDAO ardao = new TeacherDaoImpl();
-		List list = ardao.getNoticeList();
+		List list = ardao.getteacherList();
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");

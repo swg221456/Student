@@ -21,7 +21,7 @@ public class TeacherDaoImpl implements TeacherDAO {
 	}
 
 	@Override
-	public List<VTeacher> getNoticeList(String wherecondition, int page,
+	public List<VTeacher> getteacherList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from VTeacher where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -33,7 +33,7 @@ public class TeacherDaoImpl implements TeacherDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getteacherList(String wherecondition) {
 		String hql = "select count(teacherid)  from VTeacher where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -42,14 +42,14 @@ public class TeacherDaoImpl implements TeacherDAO {
 	}
 
 	@Override
-	public List<VTeacher> getNoticeList() {
+	public List<VTeacher> getteacherList() {
 		String hql = "from VTeacher where isdelete = 0 and auditstatus = false order by teacherid asc";
 		List<VTeacher> list = hdao.select(hql);
 		return list;
 	}
 
 	@Override
-	public boolean addNotice(Tteacher user) {
+	public boolean addTteacher(Tteacher user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -59,7 +59,7 @@ public class TeacherDaoImpl implements TeacherDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(Tteacher user) {
+	public boolean delTteacher(Tteacher user) {
 		Tteacher adminuser = (Tteacher) hdao.findById(Tteacher.class,
 				user.getTeacherid());
 		adminuser.setIsdelete(1);
@@ -90,7 +90,7 @@ public class TeacherDaoImpl implements TeacherDAO {
 	}
 
 	@Override
-	public List<VTeacher> getteacher(String userid) {
+	public List<VTeacher> getVteacherList(String userid) {
 		String hql = "from VTeacher where userid = '"+userid+"' ";
 		List<VTeacher> list = hdao.select(hql);
 		return list;

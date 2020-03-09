@@ -14,15 +14,15 @@ import business.basic.iHibBaseDAOImpl;
 import business.dao.CourseDAO;
 
 @Component("coursedao")
-public class CourseDaoImpl implements CourseDAO {
+public class CourseDAOImpl implements CourseDAO {
 	private iHibBaseDAO hdao = null;
 
-	public CourseDaoImpl() {
+	public CourseDAOImpl() {
 		this.hdao = new iHibBaseDAOImpl();
 	}
 
 	@Override
-	public List<VCourse> getNoticeList(String wherecondition, int page,
+	public List<VCourse> getCourseList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from VCourse where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -34,7 +34,7 @@ public class CourseDaoImpl implements CourseDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getCourseList(String wherecondition) {
 		String hql = "select count(courseid)  from VCourse where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -43,14 +43,14 @@ public class CourseDaoImpl implements CourseDAO {
 	}
 
 	@Override
-	public List<VCourse> getNoticeList() {
+	public List<VCourse> getCourseList() {
 		String hql = "from VCourse where isdelete = 0  order by teacherid asc";
 		List<VCourse> list = hdao.select(hql);
 		return list;
 	}
 
 	@Override
-	public boolean addNotice(TCourse user) {
+	public boolean addTCourse(TCourse user) {
 		String hql = "from VCourse where curriculumid = "+user.getCurriculumid()+" "
 				+ " and teacherid = "+user.getTeacherid()+""
 				+ " and classid = "+user.getClassid()+""
@@ -68,7 +68,7 @@ public class CourseDaoImpl implements CourseDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(TCourse user) {
+	public boolean delTCourse(TCourse user) {
 		TCourse adminuser = (TCourse) hdao.findById(TCourse.class,
 				user.getCourseid());
 		adminuser.setIsdelete(1);
@@ -81,14 +81,14 @@ public class CourseDaoImpl implements CourseDAO {
 	}
 
 	@Override
-	public List<VCourse> getNoticeList(int teacherid,int classid) {
+	public List<VCourse> getCourseList(int teacherid,int classid) {
 		String hql = "from VCourse where teacherid = "+teacherid+" and classid ='"+classid+"' ";
 		List<VCourse> list = hdao.select(hql);
 		return list;
 	}
 
 	@Override
-	public List<Vsheet> getNcourseList(int stuinfoid, int courseid) {
+	public List<Vsheet> getVsheetList(int stuinfoid, int courseid) {
 		String hql = "from Vsheet where stuinfoid = "+stuinfoid+" and courseid ="+courseid+" and isdelete =0 ";
 		List<Vsheet> list = hdao.select(hql);
 		return list;

@@ -16,49 +16,49 @@ import model.VAdminUser;
 public interface SemesterDAO {
 
 	/**
-	 * 根据条件获取新闻列表
+	 * 根据条件获取学期列表
 	 * 
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<Tsemester> getNoticeList(String wherecondition, int page,
+	public List<Tsemester> getSemesterList(String wherecondition, int page,
 			int pageSize);
 	
-	public List<Tsemester> getNoticeList();
+	public List<Tsemester> getSemesterList();
 
 	/**
-	 * 根据条件获取符合条件的新闻
+	 * 根据条件获取符合条件的学期
 	 * 
 	 * @param wherecondition
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getSemesterList(String wherecondition);
 
 	/**
-	 * 实现一个新闻的添加
+	 * 实现一个学期的添加
 	 * 
 	 * @param user
 	 */
 
-	public boolean addNotice(Tsemester user);
+	public boolean addSemester(Tsemester user);
 
 	
 
 	/**
-	 * 实现一个新闻的修改
+	 * 实现一个学期的删除
 	 * 
 	 * @param user
 	 */
 
-	public boolean delAdminUser(Tsemester user);
+	public boolean delSemester(Tsemester user);
 
 	
 
 	
 
 	/**
-	 * 更新管理员用户
+	 * 更新学期
 	 * 
 	 * @param user
 	 * @return

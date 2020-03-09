@@ -22,7 +22,7 @@ public class CurriculumDaoImpl implements CurriculumDAO {
 	}
 
 	@Override
-	public List<VCurriculum> getNoticeList(String wherecondition, int page,
+	public List<VCurriculum> getVcurrList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from VCurriculum where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -34,7 +34,7 @@ public class CurriculumDaoImpl implements CurriculumDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getVcurrList(String wherecondition) {
 		String hql = "select count(curriculumid)  from VCurriculum where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -43,14 +43,14 @@ public class CurriculumDaoImpl implements CurriculumDAO {
 	}
 
 	@Override
-	public List<VCurriculum> getNoticeList() {
+	public List<VCurriculum> getVcurrList() {
 		String hql = "from VCurriculum where isdelete = 0 order by curriculumid asc";
 		List<VCurriculum> list = hdao.select(hql);
 		return list;
 	}
 
 	@Override
-	public boolean addNotice(TCurriculum user) {
+	public boolean addTCurr(TCurriculum user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -60,7 +60,7 @@ public class CurriculumDaoImpl implements CurriculumDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(TCurriculum user) {
+	public boolean delTCurr(TCurriculum user) {
 		TCurriculum adminuser = (TCurriculum) hdao.findById(TCurriculum.class,
 				user.getCurriculumid());
 		adminuser.setIsdelete(1);

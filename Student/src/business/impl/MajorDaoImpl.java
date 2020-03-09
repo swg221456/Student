@@ -20,7 +20,7 @@ public class MajorDaoImpl implements MajorDAO {
 	}
 
 	@Override
-	public List<Vmajor> getNoticeList(String wherecondition, int page,
+	public List<Vmajor> getVmajorList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from Vmajor where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -32,7 +32,7 @@ public class MajorDaoImpl implements MajorDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getVmajorList(String wherecondition) {
 		String hql = "select count(majorid)  from Vmajor where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -41,7 +41,7 @@ public class MajorDaoImpl implements MajorDAO {
 	}
 
 	@Override
-	public boolean addNotice(Tmajor user) {
+	public boolean addMajor(Tmajor user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -51,7 +51,7 @@ public class MajorDaoImpl implements MajorDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(Tmajor user) {
+	public boolean delMajor(Tmajor user) {
 		Tmajor adminuser = (Tmajor) hdao.findById(Tmajor.class,
 				user.getMajorid());
 		adminuser.setIsdelete(1);
@@ -64,7 +64,7 @@ public class MajorDaoImpl implements MajorDAO {
 	}
 
 	@Override
-	public List<Vmajor> getNoticeList(int id) {
+	public List<Vmajor> getVmajorList(int id) {
 		String hql = "from Vmajor where isdelete = 0 and collegeid="+id;
 		
 		hql += " order by majorid asc";

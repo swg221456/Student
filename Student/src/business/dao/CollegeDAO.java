@@ -16,12 +16,12 @@ import model.VAdminUser;
 public interface CollegeDAO {
 
 	/**
-	 * 根据条件获取新闻列表
+	 * 根据条件获取学院列表
 	 * 
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<TCollege> getNoticeList(String wherecondition, int page,
+	public List<TCollege> getCollegeList(String wherecondition, int page,
 			int pageSize);
 
 	/**
@@ -31,34 +31,34 @@ public interface CollegeDAO {
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getCollegeList(String wherecondition);
 	
-	public List<TCollege> getNoticeList();
+	public List<TCollege> getCollegeList();
 
 	/**
-	 * 实现一个新闻的添加
+	 * 实现一个学院的添加
 	 * 
 	 * @param user
 	 */
 
-	public boolean addNotice(TCollege user);
+	public boolean addCollege(TCollege user);
 
 	
 
 	/**
-	 * 实现一个新闻的修改
+	 * 实现一个学院的修改
 	 * 
 	 * @param user
 	 */
 
-	public boolean delAdminUser(TCollege user);
+	public boolean delCollege(TCollege user);
 
 	
 
 	
 
 	/**
-	 * 更新管理员用户
+	 * 更新学院
 	 * 
 	 * @param user
 	 * @return

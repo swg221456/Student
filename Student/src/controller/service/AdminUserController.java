@@ -236,7 +236,7 @@ public class AdminUserController {
 		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
 		
 		if(dao.addAdminUser(u1)){
-		if (audao.addNotice(user)) {
+		if (audao.addTteacher(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "教师用户注册成功，请等待审核";
 		} else {
@@ -308,7 +308,7 @@ public class AdminUserController {
 		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
 		
 		if(dao.addAdminUser(u1)){
-		if (audao.addNotice(user)) {
+		if (audao.addStu(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "学生用户注册成功";
 		} else {

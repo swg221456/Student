@@ -36,7 +36,7 @@ public class AdminRoleDaoImpl implements AdminRoleDAO {
 	}
 
 	@Override
-	public List<TroleB> getaAdminUserList(String opreation) {
+	public List<TroleB> getRolelist(String opreation) {
 		String hql = "from TroleB";
 		if (opreation != null && !opreation.equals("")) {
 			hql += opreation;

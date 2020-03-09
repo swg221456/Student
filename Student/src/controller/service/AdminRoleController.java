@@ -36,7 +36,7 @@ public class AdminRoleController {
 			HttpServletResponse response, Model model) {
 
 		AdminRoleDAO ardao = new AdminRoleDaoImpl();
-		List list = ardao.getaAdminUserList("");
+		List list = ardao.getRolelist("");
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -86,7 +86,7 @@ public class AdminRoleController {
 		}
 		String expstring = exp.toString();
 
-		List list = rdao.getaAdminUserList(expstring);
+		List list = rdao.getRolelist(expstring);
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");

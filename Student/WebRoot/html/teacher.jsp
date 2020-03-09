@@ -332,7 +332,7 @@
 					
 					$.ajax({
 						type : 'get',
-						url : '../admin/addteach?teaName='+addteaName+'&teaphone='+addteaphone+'&userid='+userid+'&teasex='+addteasex,
+						url : '../admin2/addteacher?teaName='+addteaName+'&teaphone='+addteaphone+'&userid='+userid+'&teasex='+addteasex,
 						datatype : 'json',
 						success : function(data) {
 							if (data.code == "0") {

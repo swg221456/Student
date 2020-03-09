@@ -29,7 +29,7 @@ public interface StudentDAO {
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<Vstudent> getNoticeList(String wherecondition, int page,
+	public List<Vstudent> getVstuList(String wherecondition, int page,
 			int pageSize);
 	
 	public List<Vstudent> getstuList(String wherecondition);
@@ -45,9 +45,9 @@ public interface StudentDAO {
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getVstuList(String wherecondition);
 	
-	public List<Vstudent> getNoticeList(int id);
+	public List<Vstudent> getVstudentList(int id);
 	
 	public List<Vstudent> getstuList(int classid);
 
@@ -57,7 +57,7 @@ public interface StudentDAO {
 	 * @param user
 	 */
 
-	public boolean addNotice(TStuinfo user);
+	public boolean addStu(TStuinfo user);
 	
 	public boolean addsheet(TSheet user);
 	public boolean upsheet(TSheet user);
@@ -73,7 +73,7 @@ public interface StudentDAO {
 	 * @param user
 	 */
 
-	public boolean delAdminUser(TStuinfo user);
+	public boolean delStu(TStuinfo user);
 
 	
 

@@ -19,7 +19,7 @@ public class CollegeDaoImpl implements CollegeDAO {
 	}
 
 	@Override
-	public List<TCollege> getNoticeList(String wherecondition, int page,
+	public List<TCollege> getCollegeList(String wherecondition, int page,
 			int pageSize) {
 		String hql = "from TCollege where isdelete = 0 ";
 		if (wherecondition != null && !wherecondition.equals("")) {
@@ -31,7 +31,7 @@ public class CollegeDaoImpl implements CollegeDAO {
 	}
 
 	@Override
-	public int getNoticeList(String wherecondition) {
+	public int getCollegeList(String wherecondition) {
 		String hql = "select count(collegeid)  from TCollege where isdelete = 0";
 		if (wherecondition != null && !wherecondition.equals("")) {
 			hql += wherecondition;
@@ -40,7 +40,7 @@ public class CollegeDaoImpl implements CollegeDAO {
 	}
 
 	@Override
-	public boolean addNotice(TCollege user) {
+	public boolean addCollege(TCollege user) {
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
@@ -50,7 +50,7 @@ public class CollegeDaoImpl implements CollegeDAO {
 	}
 
 	@Override
-	public boolean delAdminUser(TCollege user) {
+	public boolean delCollege(TCollege user) {
 		TCollege adminuser = (TCollege) hdao.findById(TCollege.class,
 				user.getCollegeid());
 		adminuser.setIsdelete(1);
@@ -63,7 +63,7 @@ public class CollegeDaoImpl implements CollegeDAO {
 	}
 
 	@Override
-	public List<TCollege> getNoticeList() {
+	public List<TCollege> getCollegeList() {
 		String hql = "from TCollege  where isdelete = 0 ";
 		
 		hql += "  order by collegeid asc";

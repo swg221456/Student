@@ -53,7 +53,7 @@ public class CollegeController {
 	 * @param model
 	 */
 	@RequestMapping(value = "getcollege")
-	public void getAdminUserList(HttpServletRequest request, int page,
+	public void getCollegeList(HttpServletRequest request, int page,
 			int limit, String noticename,
 			HttpServletResponse response, Model model) {
 
@@ -70,9 +70,9 @@ public class CollegeController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getCollegeList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getCollegeList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -104,7 +104,7 @@ public class CollegeController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addcollege")
-	public void addAdminUser( String collegeName, String userid,
+	public void addCollege( String collegeName, String userid,
 			  HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
@@ -120,7 +120,7 @@ public class CollegeController {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addCollege(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "学院添加成功";
 		} else {
@@ -147,7 +147,7 @@ public class CollegeController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/upcollege")
-	public void upAdminUser(Integer collegeid, String collegeName, String userid,
+	public void upCollege(Integer collegeid, String collegeName, String userid,
 			  HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
@@ -163,7 +163,7 @@ public class CollegeController {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.update(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "修改成功";
 		} else {
@@ -190,7 +190,7 @@ public class CollegeController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/loacduser")
-	public void GetLoacdLine( HttpServletRequest request,Integer roleID,
+	public void GetLoacduser( HttpServletRequest request,Integer roleID,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
@@ -249,9 +249,9 @@ public class CollegeController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getVmajorList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getVmajorList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -300,7 +300,7 @@ public class CollegeController {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addMajor(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "专业添加成功";
 		} else {
@@ -332,7 +332,7 @@ public class CollegeController {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
 		CollegeDAO ardao = new CollegeDaoImpl();
-		List list = ardao.getNoticeList();
+		List list = ardao.getCollegeList();
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -377,7 +377,7 @@ public class CollegeController {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
 		MajorDAO ardao = new MajorDaoImpl();
-		List list = ardao.getNoticeList(collegeid);
+		List list = ardao.getVmajorList(collegeid);
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -414,7 +414,7 @@ public class CollegeController {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
 		ClassDAO ardao = new ClassDaoImpl();
-		List list = ardao.getNoticeList(majorid);
+		List list = ardao.getClassList(majorid);
 
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
@@ -468,9 +468,9 @@ public class CollegeController {
 		
 		
 		// System.out.println(opreation);
-		int allcount = audao.getNoticeList(opreation);
+		int allcount = audao.getClassList(opreation);
 
-		List list = audao.getNoticeList(opreation, page, limit);
+		List list = audao.getClassList(opreation, page, limit);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -519,7 +519,7 @@ public class CollegeController {
 		
 		
 
-		if (audao.addNotice(user)) {
+		if (audao.addClass(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "班级添加成功";
 		} else {

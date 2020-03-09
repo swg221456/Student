@@ -20,49 +20,49 @@ import model.Vmajor;
 public interface ClassDAO {
 
 	/**
-	 * 根据条件获取新闻列表
+	 * 根据条件获取班级列表
 	 * 
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<Vclass> getNoticeList(String wherecondition, int page,
+	public List<Vclass> getClassList(String wherecondition, int page,
 			int pageSize);
 
 	/**
-	 * 根据条件获取符合条件的新闻
+	 * 根据条件获取符合条件的班级
 	 * 
 	 * @param wherecondition
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getClassList(String wherecondition);
 	
-	public List<Vclass> getNoticeList(int id);
+	public List<Vclass> getClassList(int id);
 
 	/**
-	 * 实现一个新闻的添加
+	 * 实现一个班级的添加
 	 * 
 	 * @param user
 	 */
 
-	public boolean addNotice(TClass user);
+	public boolean addClass(TClass user);
 
 	
 
 	/**
-	 * 实现一个新闻的修改
+	 * 实现一个班级的删除
 	 * 
 	 * @param user
 	 */
 
-	public boolean delAdminUser(TClass user);
+	public boolean delClass(TClass user);
 
 	
 
 	
 
 	/**
-	 * 更新管理员用户
+	 * 更新班级
 	 * 
 	 * @param user
 	 * @return

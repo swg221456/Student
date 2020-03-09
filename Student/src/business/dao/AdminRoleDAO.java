@@ -11,7 +11,7 @@ public interface AdminRoleDAO {
 	 * 
 	 * @return List
 	 */
-	public List<TroleB> getaAdminUserList(String opreation);
+	public List<TroleB> getRolelist(String opreation);
 
 	/**
 	 * 根据管理员角色id 删除角色

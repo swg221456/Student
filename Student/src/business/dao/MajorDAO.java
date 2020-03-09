@@ -18,49 +18,49 @@ import model.Vmajor;
 public interface MajorDAO {
 
 	/**
-	 * 根据条件获取新闻列表
+	 * 根据条件获取专业列表
 	 * 
 	 * @param wherecondition
 	 * @return List
 	 */
-	public List<Vmajor> getNoticeList(String wherecondition, int page,
+	public List<Vmajor> getVmajorList(String wherecondition, int page,
 			int pageSize);
 
 	/**
-	 * 根据条件获取符合条件的新闻
+	 * 根据条件获取符合条件的专业
 	 * 
 	 * @param wherecondition
 	 *            如："userRole = '超级管理员' and userid = 'zhangjs'"
 	 * @return
 	 */
-	public int getNoticeList(String wherecondition);
+	public int getVmajorList(String wherecondition);
 	
-	public List<Vmajor> getNoticeList(int id);
+	public List<Vmajor> getVmajorList(int id);
 
 	/**
-	 * 实现一个新闻的添加
+	 * 实现一个专业的添加
 	 * 
 	 * @param user
 	 */
 
-	public boolean addNotice(Tmajor user);
+	public boolean addMajor(Tmajor user);
 
 	
 
 	/**
-	 * 实现一个新闻的修改
+	 * 实现一个专业的删除
 	 * 
 	 * @param user
 	 */
 
-	public boolean delAdminUser(Tmajor user);
+	public boolean delMajor(Tmajor user);
 
 	
 
 	
 
 	/**
-	 * 更新管理员用户
+	 * 更新专业
 	 * 
 	 * @param user
 	 * @return
