@@ -227,7 +227,7 @@ public class CollegeController {
 	}
 	
 	@RequestMapping(value = "getmajor")
-	public void getAdminList(HttpServletRequest request, int page,
+	public void getMajorList(HttpServletRequest request, int page,
 			int limit, String noticename,Integer college,
 			HttpServletResponse response, Model model) {
 
@@ -283,7 +283,7 @@ public class CollegeController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addmajor")
-	public void addUser( String majorName, String userid,Integer collegeid,
+	public void addMajor( String majorName, String userid,Integer collegeid,
 			  HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);

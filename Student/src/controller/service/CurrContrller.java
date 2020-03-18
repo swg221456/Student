@@ -60,7 +60,7 @@ public class CurrContrller {
 	 * @param model
 	 */
 	@RequestMapping(value = "getsemester")
-	public void getAdminUserList(HttpServletRequest request, int page,
+	public void getSemesterList(HttpServletRequest request, int page,
 			int limit, String noticename,
 			HttpServletResponse response, Model model) {
 
@@ -159,7 +159,7 @@ public class CurrContrller {
 	 * 
 	 */
 	@RequestMapping(value = "/loacdseme")
-	public void GetLoacdLine( HttpServletRequest request,Integer roleID,
+	public void GetLoacdsemester( HttpServletRequest request,Integer roleID,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
 
