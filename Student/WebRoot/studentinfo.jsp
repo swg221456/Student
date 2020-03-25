@@ -105,7 +105,7 @@
             	
             	
                 <button type="button" class="layui-btn upselfhead-btn" style="background:#3AACDA;"
-                    id="grzpup">个人头像</button>
+                    id="grzpup">上传头像</button>
                 <div class="layui-upload-list">
                     <img class="layui-upload-img upselfhead" id="demo1">
                 </div>

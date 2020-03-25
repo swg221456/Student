@@ -18,13 +18,14 @@ import javax.servlet.http.HttpSession;
 
 import model.TStuinfo;
 import model.TphotoInfo;
+import model.VAdminUser;
 import model.Vstudent;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
 
 import business.dao.PhotoDAO;
 import business.dao.StudentDAO;
@@ -54,6 +55,7 @@ public class FileUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
     	//定义一个用于返回值的json类型对象
     	ResponseJSON respjson = new ResponseJSON();
+    	HttpSession session = request.getSession();
     	
         String fileName = null;//上传到servlet的文件名
         
@@ -64,15 +66,13 @@ public class FileUploadServlet extends HttpServlet {
         //因此realaPath通常接受的参数就是博主的userid
         String relaPath = request.getParameter("path");
         
-        //如果上传的是博文的图片文件，则该titleid作为在博主目录下的子目录名称
-        String titleid = request.getParameter("titleid");
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
+		relaPath = modle.getUserid();
         
-        //将path和titleid组成一个相对路径
-        //如果titleid不为空，则上传的是博文图片，路径为<用户名>\<博文id>
-        //如果titleid为空，则上传的是博主图片，路径仅为<用户名>\
-        if(titleid!=null && !titleid.equals("")){
-        	relaPath = relaPath +"\\" + titleid;
-        }
+
+        
+        
         
         //如果网页还有其它参数，则以下的循环将把其它参数一并的取出来
         Enumeration em = request.getParameterNames();
@@ -105,7 +105,7 @@ public class FileUploadServlet extends HttpServlet {
 					if(relaPath==null || relaPath.equals("")){
 						path =  "E:\\TravelPhoto\\bbs" ;
 					}else{
-						path = "E:\\TravelPhoto\\bbs" + relaPath +"\\";
+						path = "E:\\TravelPhoto\\bbs\\" + relaPath +"\\";
 					}
 
 	               
@@ -129,19 +129,28 @@ public class FileUploadServlet extends HttpServlet {
 					TphotoInfo photo = new TphotoInfo();
 					photo.setPhotopath(relaPath+"\\"+fileName);
 					photo.setIsDel(0);
-					int photoid =(int) daos.addPhoto(photo);
+					Object obj = daos.addPhoto(photo);
+					int photoid = Integer.parseInt(obj.toString());
 					
 					respjson.code = ResponseJSON.FLAG_SUCC; //获取数据成功
 					respjson.msg = "文件上传成功"; 
 					respjson.resultString = ""+photoid; //返回图片资源id
 					respjson.resultObject = relaPath+"\\"+fileName;
-					HttpSession session = request.getSession();
+					
 					Vstudent model = (Vstudent) session.getAttribute("stuinfo");
 					StudentDAO audao = new StudentDaoImpl();
 					TStuinfo user = new TStuinfo();
 					user = audao.getstu(model.getStuinfoid());
 					user.setPhotoid(photoid);
 					audao.update(user);
+					
+					List<Vstudent> vstu = audao.getstubyuserid(user.getUserid());
+					for (Vstudent vv:vstu){
+						Vstudent vter = vv;
+						
+						session.setAttribute("stuinfo", vter);
+					}
+					
 				}
 			}
 	    }  catch (Exception e) {  

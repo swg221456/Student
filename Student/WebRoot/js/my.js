@@ -31,8 +31,11 @@ layui.use('upload', function () {
       before: function (obj) {
           //预读本地文件示例，不支持ie8
           obj.preview(function (index, file, result) {
-              $('#demo1').attr('src', result); //图片链接（base64）
+              $('#demo1').attr('src', result);
+              return layer.msg('上传成功');
+              //图片链接（base64）
           });
+          
       },
       done: function (res) {
           //如果上传失败
@@ -50,6 +53,7 @@ layui.use('upload', function () {
               uploadInst.upload();
           });
       }
+      
   });
 
   //多图片上传
@@ -218,6 +222,7 @@ layui.use('upload', function () {
           console.log(res)
       }
   });
+  
 
 });
 

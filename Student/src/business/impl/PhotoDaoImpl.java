@@ -31,7 +31,7 @@ public class PhotoDaoImpl implements PhotoDAO {
 		Object id =  bdao.insert(model);
 		if (id != null && !id.equals("")) {
 
-			return true;
+			return id;
 		}
 		return false;
 	}

@@ -85,6 +85,12 @@ layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function
    
     			}]
 			 ],
+			 done : function(res, curr, count){
+			        
+			        tableList=res.data;
+			       	$('th').css({'background-color': '#5792c6', 'color': '#fff','font-weight':'bold','font-size':'20px'})
+	      
+	    	},
 			 page: {
 					layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
 					groups: 5,

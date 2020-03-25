@@ -8,7 +8,7 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="layui/css/layui.css" media="all">
 	<style>
 		.blogUser-con .layui-table-view {
 			border: none;
@@ -81,6 +81,12 @@
 			background: #f2f2f2;
 			width: 30%;
 		}
+		.layui-table-cell{
+	  		 height:100px;
+	  		 height: auto;
+		}
+		
+		
 	</style>
 </head>
 <body>
@@ -333,18 +339,18 @@
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
 
 		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
-			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up">修改</a>
-			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+			<a class="layui-btn layui-btn-sm layui-btn " lay-event="seluser" >查看</a>
+			<a class="layui-btn layui-btn-danger layui-btn  layui-btn-sm" lay-event="up" style: 'font-size:20px;'>修改</a>
+			<a class="layui-btn layui-btn-danger layui-btn layui-btn-sm" lay-event="del" style: 'font-size:20px;'>删除</a>
 			
 		</script>
 
 		
 		
 	</div>
-	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
-	<script src="../js/loadselect.js" charset="utf-8"></script>
-	<script src="../layui/layui.js" charset="utf-8"></script>
+	<script src="js/jquery-3.3.1.js" charset="utf-8"></script>
+	<script src="js/loadselect.js" charset="utf-8"></script>
+	<script src="layui/layui.js" charset="utf-8"></script>
 	<script type="text/html" id="titleTpl">
     {{d.date.substr(0,10)}}
 </script>
@@ -355,73 +361,73 @@
 			laydate = layui.laydate, laytpl = layui.laytpl,
 			element = layui.element;
 		//调用方法加载select管理员角色
-		loaduserby("adduserid",form,"../college/loacduser?roleID=1");
+		loaduserby("adduserid",form,"college/loacduser?roleID=1");
 		
 		
 		
-		loadcollege("slcollege",form,"../college/loadcollege");
+		loadcollege("slcollege",form,"college/loadcollege");
 		
 		form.on('select(slcollege)', function(data)
 				{
 				var paretid = $("#slcollege").val();
 			 	//调用方法加载select管理员角色
-				loadmajor("slmajor", form, "../college/loadmajor?collegeid="+paretid);
+				loadmajor("slmajor", form, "college/loadmajor?collegeid="+paretid);
 				});
 				
 		form.on('select(slmajor)', function(data)
 				{
 				var paretid = $("#slmajor").val();
 			 	//调用方法加载select管理员角色
-				loadclass("slclass", form, "../college/loadclass?majorid="+paretid);
+				loadclass("slclass", form, "college/loadclass?majorid="+paretid);
 				});
 				
-		loadcollege("addcollege",form,"../college/loadcollege");
+		loadcollege("addcollege",form,"college/loadcollege");
 		
 			form.on('select(slcollege)', function(data)
 					{
 					var paretid = $("#addcollege").val();
 				 	//调用方法加载select管理员角色
-					loadmajor("addmajor", form, "../college/loadmajor?collegeid="+paretid);
+					loadmajor("addmajor", form, "college/loadmajor?collegeid="+paretid);
 					});
 					
 			form.on('select(slmajor)', function(data)
 					{
 					var paretid = $("#addmajor").val();
 				 	//调用方法加载select管理员角色
-					loadclass("addclass", form, "../college/loadclass?majorid="+paretid);
+					loadclass("addclass", form, "college/loadclass?majorid="+paretid);
 					});
 				
 		
-		loadcollege("addcollege",form,"../college/loadcollege");
+		loadcollege("addcollege",form,"college/loadcollege");
 		
 		form.on('select(addcollege)', function(data)
 				{
 				var paretid = $("#addcollege").val();
 			 	//调用方法加载select管理员角色
-				loadmajor("addmajor", form, "../college/loadmajor?collegeid="+paretid);
+				loadmajor("addmajor", form, "college/loadmajor?collegeid="+paretid);
 				});
 				
 		form.on('select(addmajor)', function(data)
 				{
 				var paretid = $("#addmajor").val();
 			 	//调用方法加载select管理员角色
-				loadclass("addclass", form, "../college/loadclass?majorid="+paretid);
+				loadclass("addclass", form, "college/loadclass?majorid="+paretid);
 				});
 				
-		loadcollege("upcollege",form,"../college/loadcollege");
+		loadcollege("upcollege",form,"college/loadcollege");
 		
 		form.on('select(upcollege)', function(data)
 				{
 				var paretid = $("#upcollege").val();
 			 	//调用方法加载select管理员角色
-				loadmajor("upmajor", form, "../college/loadmajor?collegeid="+paretid);
+				loadmajor("upmajor", form, "college/loadmajor?collegeid="+paretid);
 				});
 				
 		form.on('select(upmajor)', function(data)
 				{
 				var paretid = $("#upmajor").val();
 			 	//调用方法加载select管理员角色
-				loadclass("upclass", form, "../college/loadclass?majorid="+paretid);
+				loadclass("upclass", form, "college/loadclass?majorid="+paretid);
 				});
 		//日期选择器
 			laydate.render({ 
@@ -439,7 +445,7 @@
 		table.render({
 			elem : '#blogUser',
 			id:'adminUserid',
-			url : '../student/getstudent',
+			url : 'student/getstudent',
 			title : '管理员用户数据表',
 			height: "full-160",
 			skin : 'line',
@@ -449,54 +455,80 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					style:'font-size:20px;',
+					width : '4%',
+					height:'100px',
 					
 				}, {
 					field:'photopath',
-					minWidth:50,
-					title: '图片',
-					templet:'<div><img class="blogerphoto" src="../upload1/{{ d.photopath }}"></div>',
+					width : '6%',
+					title: '头像',
+					align : 'center',
+					templet:'<div><img class="photo" src="../upload1/{{ d.photopath }}"></div>',
 				},{
      				field : 'stuname',
      				align : 'center',
+     				width : '8%',
      				title : '姓名',
+     				style:'font-size:20px;',
    
     			},{
      				field : 'stunum',
+     				width : '9%',
      				align : 'center',
      				title : '学号',
+     				style:'font-size:20px',
    
     			},{
      				field : 'agend',
+     				width : '5%',
      				align : 'center',
      				title : '性别',
+     				style:'font-size:20px',
    
     			},{
      				field : 'birthday',
      				align : 'center',
+     				width : '11%',
      				title : '出生日期',
      				pattern:'yyyy/MM/dd',
+     				style:'font-size:20px',
    
     			},{
      				field : 'phone',
      				align : 'center',
+     				width : '13%',
      				title : '电话',
+     				style:'font-size:20px',
    
     			},{
      				field : 'email',
      				align : 'center',
+     				width : '15%',
      				title : '邮箱',
+     				style:'font-size:20px',
    
     			},{
      				field : 'stucard',
      				align : 'center',
+     				width : '15%',
      				title : '身份证号',
+     				style:'font-size:20px',
    
     			},{
 					title : '操作',
+					width : '14%',
 					toolbar : '#barDemo',
 					align : 'center'
 				}]
 			 ],
+			 done : function(res, curr, count){
+	        
+			        tableList=res.data;
+			       	$('th').css({'background-color': '#5792c6', 'color': '#fff','font-weight':'bold','font-size':'20px'})
+	      
+	    	},
+
 			 page: {
 					layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
 					groups: 5,
@@ -582,7 +614,7 @@
 											
 				$.ajax({
 					type : 'get',
-					url : '../admin/addstu?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&classid='+classid,
+					url : 'admin/addstu?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&classid='+classid,
 					datatype : 'json',
 					success : function(data) {
 					if (data.code == "0") {
@@ -637,9 +669,9 @@
 			$("#upstucard").val(data.stucard);
 
 			set_select_checked("upcollege",data.collegeid);
-			loadmajor("upmajor", form, "../college/loadmajor?collegeid="+data.collegeid);
+			loadmajor("upmajor", form, "college/loadmajor?collegeid="+data.collegeid);
 			set_select_checked("upmajor",data.majorid);
-			loadclass("upclass", form, "../college/loadclass?majorid="+data.majorid);
+			loadclass("upclass", form, "college/loadclass?majorid="+data.majorid);
 			set_select_checked("upclass",data.classid);
 			form.render("select");
 			var id = data.stuinfoid;
@@ -650,7 +682,7 @@
 					layer.open({
 				        type: 1, 
 				        title: '管理员信息详情',
-				        area: ['600px', '430px'],
+				        area: ['540px', '530px'],
 				        shade: 0.8,
 				        content: $('#adminuserdetail'),
 				        btn: ['返回'], 
@@ -713,7 +745,7 @@
 					
 					$.ajax({
 						type : 'get',
-						url : '../student/upstudent?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&id='+id+'&classid='+upclass,
+						url : 'student/upstudent?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&id='+id+'&classid='+upclass,
 						datatype : 'json',
 						success : function(data) {
 							if (data.code == "0") {
@@ -755,7 +787,7 @@
 					}, function(){
 						$.ajax({
 			        		type: 'get',
-			        		url: "../del/delstu?id="+data.stuinfoid,
+			        		url: "del/delstu?id="+data.stuinfoid,
 			        		dataType: 'json',
 			        		success:function(data){
 			        			if(data.code == 0){

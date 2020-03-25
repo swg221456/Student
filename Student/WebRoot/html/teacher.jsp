@@ -81,6 +81,10 @@
 			background: #f2f2f2;
 			width: 30%;
 		}
+		.layui-table-cell{
+	  		font-size:20px;
+	  		 height: auto;
+		}
 	</style>
 </head>
 <body>
@@ -272,6 +276,12 @@
 					align : 'center'
 				} ] 
 			 ],
+			 done : function(res, curr, count){
+	        
+			        tableList=res.data;
+			       	$('th').css({'background-color': '#5792c6', 'color': '#fff','font-weight':'bold','font-size':'20px'})
+	      
+	    	},
 			 page: {
 					layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
 					groups: 5,

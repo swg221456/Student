@@ -81,6 +81,10 @@
 			background: #f2f2f2;
 			width: 30%;
 		}
+		.layui-table-cell{
+	  		font-size:20px;
+	  		 height: auto;
+		}
 	</style>
 </head>
 <body>
