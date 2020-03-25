@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="../layui/css/layui.css" media="all">
 
-   <link rel="stylesheet" href="../layui/css/login.css" media="all">
+  <link rel="stylesheet" href="../layui/css/login.css" media="all">
 
    
 </head>
@@ -26,7 +26,7 @@
     <div class="layadmin-user-login-main">
       <div class="layadmin-user-login-box layadmin-user-login-header">
         <h2>学生信息管理系统</h2>
-        <p>后台登录页面</p>
+       
       </div>
       <div class="layadmin-user-login-box layadmin-user-login-body layui-form" style="border: 1px solid white;border-radius: 10px;">
         <div class="layui-form-item">
@@ -53,10 +53,7 @@
         <div class="layui-form-item">
           <button class="layui-btn layui-btn-fluid" id ="login-button" type="button" >登 入</button>
         </div>
-        <div class="layui-form-item">
-          <button class="layui-btn layui-btn-fluid" id="adduser" lay-event="adduser" lay-filter="adduser"  type="button" >用户注册</button>
-        </div>
-      </div>
+        
     </div>
  </div>
     <div class="layui-trans layadmin-user-login-footer">
@@ -70,161 +67,7 @@
     </div>
     
     
-    <!-- 用户信息添加Start -->
-		<div id="add-blogUser" style="display:none;">
-			<div class="artTypeLayer">
-				<form class="layui-form" action="">
-				<div class="layui-form-item">
-				      <label class="layui-form-label">用户类型:</label>
-				      <div class="layui-input-block">
-				       	<select id="addusertype">
-						  <option value="">请选择用户类型</option> 
-						</select> 
-				      </div>
-				    </div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">用户名:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addUserName" id="addUserName"
-								lay-verify="addUserName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">用户密码:</label>
-						<div class="layui-input-block">
-							<input type="password" name="addpwd" id="addpwd"  autocomplete="off" placeholder="请输入用户密码" class="layui-input">
-						</div>
-					</div> 
-					<div class="layui-form-item">
-						<label class="layui-form-label">真实姓名:</label>
-						<div class="layui-input-block">
-							<input type="text" name="realname" id="realname" lay-verify="realname" autocomplete="off" placeholder="请输入真实姓名" class="layui-input">
-						</div>
-					</div>
-					
-				</form>
-			</div>
-		</div>
-		<!-- 用户信息添加End -->
-		
-		
-		<!-- 教师添加Start -->
-		<div id="add-teacher"  style="display:none;">
-			<div class="artTypeLayer">
-				<form class="layui-form" action="">
-				
-					<div class="layui-form-item">
-						<label class="layui-form-label">教师名称:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addteaName" id="addteaName"
-								lay-verify="addteaName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
-						</div>
-					</div>
-					
-					<div class="layui-form-item">
-						<label class="layui-form-label">电话号码:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addteaphone" id="addteaphone"  autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div> 
-					<div class="layui-form-item">
-					<label class="layui-form-label">选择性别:</label>
-						<div class="layui-inline">
-							<select id="addteasex" name="addteasex" lay-filter="addmajor">							
-							<option value="男">男</option>
-						  <option value="女">女</option>
-							</select>
-						</div>
-						  						
-					</div>
-					
-				</form>
-			</div>
-		</div>
-		<!-- 用户信息添加End -->
-		
-		<!-- 学生添加Start -->
-		<div id="add-stu" style="display:none;">
-			<div class="artTypeLayer">   
-				<form class="layui-form" action="">
-				<div class="layui-form-item">
-						<label class="layui-form-label">选择院系:</label>
-						<div class="layui-inline">
-							<select id="slcollege" name="slcollege" lay-filter="slcollege">							
-							
-							</select>
-						</div>
-					</div>
-					<div class="layui-form-item">
-						 <label class="layui-form-label">选择专业:</label>
-						<div class="layui-inline">
-							<select id="slmajor" name="slmajor" lay-filter="slmajor">							
-							
-							</select>
-						</div>
-					</div>
-					<div class="layui-form-item">
-						 <label class="layui-form-label">选择班级:</label>
-						<div class="layui-inline">
-							<select id="slclass" name="slclass" lay-filter="slclass">							
-							
-							</select>
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">姓名:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addstuname" id="addstuname"
-								lay-verify="addstuname" autocomplete="off"  class="layui-input">
-						</div>
-					</div>
-					
-					<div class="layui-form-item">
-					<label class="layui-form-label">选择性别:</label>
-						<div class="layui-inline">
-							<select id="addagend" name="addagend" >							
-							<option value="男">男</option>
-						  <option value="女">女</option>
-							</select>
-						</div>
-						  						
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">生日:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addbirthday" id="addbirthday" autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">学号:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addstunum" id="addstunum" autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">身份证号:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addstucard" id="addstucard" autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">电话:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addphone" id="addphone" autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">邮箱:</label>
-						<div class="layui-input-block">
-							<input type="text" name="addemail" id="addemail" autocomplete="off" placeholder="" class="layui-input">
-						</div>
-					</div>
-					
-					
-				</form>
-			 </div>
-		</div>
-		<!-- 用户信息修改End -->
+    
    
 
 	

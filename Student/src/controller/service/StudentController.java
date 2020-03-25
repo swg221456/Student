@@ -257,10 +257,7 @@ public class StudentController {
 			
 			opreation += "and  curriculumid like '%"+curriculumid+"%'  ";
 		}
-		if (modle != null ) {
-			
-			opreation += "and  userid like '%"+modle.getUserid()+"%'  ";
-		}
+		
 		
 		
 		// System.out.println(opreation);
@@ -407,7 +404,8 @@ public class StudentController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/upstudent")
-	public void upAdminUser( String stuname, String stunum,String agend,String birthday,String phone,String email,Integer id, String stucard,
+	public void upAdminUser( String stuname, String stunum,String agend,Integer classid,
+			String birthday,String phone,String email,Integer id, String stucard,
 			  HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
@@ -426,12 +424,21 @@ public class StudentController {
 		user.setStucard(stucard);
 		user.setStuname(stuname);
 		user.setStunum(stunum);
-		
-		
+		if(classid != 0){
+		user.setClassid(classid);
+		}
+		HttpSession session = request.getSession();
+		session.removeAttribute("stuinfo");
 		
 		
 
 		if (audao.update(user)) {
+			List<Vstudent> vstu = audao.getstubyuserid(user.getUserid());
+			for (Vstudent vv:vstu){
+				Vstudent vter = vv;
+				
+				session.setAttribute("stuinfo", vter);
+			}
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "信息修改成功";
 		} else {

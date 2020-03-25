@@ -737,4 +737,44 @@ public class iHibBaseDAOImpl implements iHibBaseDAO {
 		return false;
 	}
 
+	@Override
+	public Object selectbyhq(String hql) {
+		Session session = HibSessionFactory.getSession();
+		try {
+			Query query = session.createQuery(hql);
+			Object obj = query.uniqueResult();
+
+			session.close();
+			return obj;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			if (session != null)
+				session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public Object selectby(String hql, Object[] para) {
+		Session session = HibSessionFactory.getSession();
+		try {
+			Query query = session.createQuery(hql);
+			// 根据para设置参数
+			for (int i = 0; i < para.length; i++) {
+				query.setParameter(i, para[i]);
+			}
+			Object obj = query.uniqueResult();
+
+			session.close();
+			return obj;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			if (session != null)
+				session.close();
+		}
+		return null;
+	}
+
 }

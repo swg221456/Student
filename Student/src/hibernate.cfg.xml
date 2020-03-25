@@ -43,6 +43,7 @@
 		<mapping resource="model/Vstudent.hbm.xml" />
 		<mapping resource="model/Vsheet.hbm.xml" />
 		<mapping resource="model/TSheet.hbm.xml" />
+		<mapping resource="model/TphotoInfo.hbm.xml" />
 
 	</session-factory>
 

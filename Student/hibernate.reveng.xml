@@ -134,7 +134,13 @@
 			<generator class="identity"></generator>
 		</primary-key>
 	</table>
-<table name="T_ Sheet" catalog="StudentDB" class="model.TSheet">
+	<table name="T_ Sheet" catalog="StudentDB" class="model.TSheet">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+<table name="T_photoInfo" catalog="StudentDB"
+	class="model.TphotoInfo">
 	<primary-key>
 		<generator class="identity"></generator>
 	</primary-key>

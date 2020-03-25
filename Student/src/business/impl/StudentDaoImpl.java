@@ -14,6 +14,7 @@ import model.Vsheet;
 import model.Vstudent;
 import business.basic.iHibBaseDAO;
 import business.basic.iHibBaseDAOImpl;
+import business.dao.AdminUserDAO;
 import business.dao.StudentDAO;
 
 @Component("studentdao")
@@ -56,10 +57,23 @@ public class StudentDaoImpl implements StudentDAO {
 
 	@Override
 	public boolean addStu(TStuinfo user) {
+		AdminUserDAO userDAO = new AdminUserDaoImpl();
+		Tuser model = new Tuser();
+		model.setAccount(user.getStuname());
+		model.setIsDel(0);
+		model.setPwd("123456");
+		model.setRoleId(12);
+		model.setUsertype(true);
+		model.setUserid(user.getStunum());
+		
+		Object userid = userDAO.addAdminUser(model);
+		if(userid != null && !userid.equals("")){
+			user.setUserid(userid.toString());
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 
 			return true;
+		}
 		}
 		return false;
 	}
@@ -144,6 +158,14 @@ public class StudentDaoImpl implements StudentDAO {
 	public TSheet getSheet(int id) {
 		TSheet adminuser = (TSheet) hdao.findById(TSheet.class,id);
 		return adminuser;
+	}
+
+	@Override
+	public List<Vstudent> getstubyuserid(String userid) {
+		String hql = "from Vstudent where  userid like '%"+userid+"%'  ";
+		
+		List<Vstudent> list =  hdao.select(hql);
+		return list;
 	}
 
 }

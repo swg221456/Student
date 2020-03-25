@@ -40,5 +40,8 @@
         <property name="stucard" type="java.lang.String">
             <column name="stucard" length="50" />
         </property>
+        <property name="photoid" type="java.lang.Integer">
+            <column name="photoid" />
+        </property>
     </class>
 </hibernate-mapping>

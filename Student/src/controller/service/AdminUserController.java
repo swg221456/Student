@@ -15,6 +15,7 @@ import model.TStuinfo;
 import model.Tteacher;
 import model.Tuser;
 import model.VAdminUser;
+import model.Vstudent;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -271,20 +272,11 @@ public class AdminUserController {
 		HttpSession session = request.getSession();
 		AdminUserDAO dao = new AdminUserDaoImpl();
 		
-		String userid = session.getAttribute("userid").toString();
-		String realname = session.getAttribute("realname").toString();
-		String pwd = session.getAttribute("pwd").toString();
-		String roleid = session.getAttribute("roleid").toString();
+	
 		
 		StudentDAO audao = new StudentDaoImpl();
 		
-		Tuser u1 = new Tuser();
-		u1.setAccount(realname);
-		u1.setIsDel(0);
-		u1.setPwd(pwd);
-		u1.setRoleId(Integer.parseInt(roleid));
-		u1.setUsertype(true);
-		u1.setUserid(userid);
+
 		
 		
 
@@ -292,7 +284,6 @@ public class AdminUserController {
 		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
 		TStuinfo user = new TStuinfo();
 		birthday += " 01:01:00";
-		user.setUserid(userid);
 		user.setAgend(agend);
 		user.setBirthday(birthday);
 		user.setEmail(email);
@@ -302,12 +293,13 @@ public class AdminUserController {
 		user.setStunum(stunum);
 		user.setClassid(classid);
 		user.setIsdelete(0);
+		user.setPhotoid(1);
 		
 		LayuiData laydata = new LayuiData();
 		// String md5Str = EnCriptUtil.fix(userid, pwd);
 		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
 		
-		if(dao.addAdminUser(u1)){
+
 		if (audao.addStu(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "学生用户注册成功";
@@ -315,7 +307,7 @@ public class AdminUserController {
 			laydata.code = LayuiData.ERRR;
 			laydata.msg = "学生用户注册失败";
 		}
-		}
+		
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
@@ -452,6 +444,15 @@ public class AdminUserController {
 		user.setPwd(pwd);
 		HttpSession session = request.getSession();
 		VAdminUser loginuser = audao.login(user);
+		
+		if(loginuser.getRoleId() == 12){
+			StudentDAO dao = new StudentDaoImpl();
+			List<Vstudent> vstu = dao.getstubyuserid(loginuser.getUserid());
+			for (Vstudent vv:vstu){
+				Vstudent vter = vv;
+				session.setAttribute("stuinfo", vter);
+			}
+		}
 		if (loginuser != null && loginuser.getUsertype()==true) {
 			session.setAttribute("loginuser", loginuser);
 			laydata.code = LayuiData.SUCCESS;

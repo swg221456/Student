@@ -160,12 +160,13 @@ public class CollegeController {
 		user.setCollegeName(collegeName);
 		user.setUserid(userid);
 		user.setIsdelete(0);
+		user.setCollegeid(collegeid);
 		
 		
 
 		if (audao.update(user)) {
 			laydata.code = LayuiData.SUCCESS;
-			laydata.msg = "修改成功";
+			laydata.msg = "学院修改成功";
 		} else {
 			laydata.code = LayuiData.ERRR;
 			laydata.msg = "修改失败";
@@ -303,6 +304,51 @@ public class CollegeController {
 		if (audao.addMajor(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "专业添加成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "添加失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
+	/**
+	 * 实现一个管理员用户的添加
+	 * 
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upmajor")
+	public void upMajor( String majorName, String userid,Integer collegeid,Integer majorid,
+			  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		
+		MajorDAO audao = new MajorDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		Tmajor user = new Tmajor();
+		user.setMajorName(majorName);
+		user.setCollegeid(collegeid);
+		user.setUserid(userid);
+		user.setIsdelete(0);
+		user.setMajorid(majorid);
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "专业修改成功";
 		} else {
 			laydata.code = LayuiData.ERRR;
 			laydata.msg = "添加失败";
@@ -536,4 +582,50 @@ public class CollegeController {
 		out.close();
 
 	}
+	
+	/**
+	 * 实现一个管理员用户的添加
+	 * 
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upclass")
+	public void upcalss( String className, String userid,Integer majorid,Integer classid,
+			  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		
+		ClassDAO audao = new ClassDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		TClass user = new TClass();
+		user.setClassName(className);
+		user.setMajorid(majorid);
+		user.setUserid(userid);
+		user.setIsdelete(0);
+		user.setClassid(classid);
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "班级修改成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "添加失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
 }

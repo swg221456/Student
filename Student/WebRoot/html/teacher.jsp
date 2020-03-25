@@ -132,7 +132,7 @@
 		</script>
 		
 		<script type="text/html" id="barDemo">
-			
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -177,6 +177,43 @@
 			</div>
 		</div>
 		<!-- 用户信息添加End -->
+		
+		<!-- 用户信息修改Start -->
+		<div id="up-blogUser" style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label">教师名称:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upteaName" id="upteaName"
+								lay-verify="upteaName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+						</div>
+					</div>
+					
+					<div class="layui-form-item">
+						<label class="layui-form-label">电话号码:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upteaphone" id="upteaphone"  autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div> 
+					<div class="layui-form-item">
+					<label class="layui-form-label">选择性别:</label>
+						<div class="layui-inline">
+							<select id="upteasex" name="upteasex" lay-filter="upteasex">							
+							<option value="男">男</option>
+						  <option value="女">女</option>
+							</select>
+						</div>
+						  						
+					</div>
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息修改End -->
+		
 		
 	</div>
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
@@ -371,11 +408,14 @@
 		//表格工具栏事件 
 		table.on('tool(blogUser)', function(obj) {
 			var data = obj.data;
-			$("#txtclaid").text(data.userid);
-			$("#txtadminuserrealname").text(data.account);
-			$("#txtadminuserusertype").text(data.roleName);
-			$("#txtadminuserdesc").text(data.signed);
-			$("#txtadmincreatetime").text(data.createtime);
+			loaduserby("upuserid",form,"../admin2/loacduser");
+			
+			
+			$("#upteaName").val(data.teaName);
+			$("#upteaphone").val(data.teaphone);
+			
+			$("#upteasex").val(data.signed);
+			var teacherid = data.teacherid;
 			
 			switch (obj.event) {
 				case 'seluser':
@@ -395,6 +435,75 @@
 						}
 				    });
 				break;
+				
+				//修改操作
+				case 'up':
+					layer.open({
+				        type: 1, 
+				        title : '教师信息修改',
+				area : [ '460px', '425px' ],
+				shade : 0.4,
+				content : $('#up-blogUser'),
+				btn : [ '保存', '返回' ],
+				yes : function() {
+					var teaName = $("#upteaName").val().trim();
+					var teaphone = $("#upteaphone").val().trim();
+					
+					var teasex = $("#upteasex").val();
+					
+					
+					
+					
+
+					if(teaName == "") {
+						layer.tips('不能为空', '#noticeName');
+						return;
+					} 
+					if(teaphone == "") {
+						layer.tips('不能为空', '#noticecontent');
+						return;
+					} 
+					if(teasex == "") {
+						layer.tips('不能为空', '#teasex');
+						return;
+					} 
+					
+					$.ajax({
+						type : 'get',
+						url : '../admin2/upteacher?teaName='+teaName+'&teaphone='+teaphone+'&teasex='+teasex+'&teacherid='+teacherid,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('修改失败', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
+				    });
+				break;
+				
 				
 				//删除按钮操作
 				case 'del':

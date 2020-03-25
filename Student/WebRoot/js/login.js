@@ -5,27 +5,7 @@
 			laydate = layui.laydate, laytpl = layui.laytpl,
 			element = layui.element;
 			
-			loadcollege("slcollege",form,"../college/loadcollege");
-		
-			form.on('select(slcollege)', function(data)
-					{
-					var paretid = $("#slcollege").val();
-				 	//调用方法加载select管理员角色
-					loadmajor("slmajor", form, "../college/loadmajor?collegeid="+paretid);
-					});
-					
-			form.on('select(slmajor)', function(data)
-					{
-					var paretid = $("#slmajor").val();
-				 	//调用方法加载select管理员角色
-					loadclass("slclass", form, "../college/loadclass?majorid="+paretid);
-					});
 			
-			//日期选择器
-			laydate.render({ 
-			  elem: '#addbirthday'
-			  //,type: 'date' //默认，可不填
-			});
 			/* 点击登录 */
 			$("#login-button").click(function(){
 				var username=$("#user_name").val().trim();
@@ -99,7 +79,7 @@
 			});
 			
 			
-			/* 添加一个用户 */
+			/* 添加一个用户 
 		$("#adduser").click(function(){
 			//加载角色类型
 			loadRoleType('addusertype',form);
@@ -250,36 +230,7 @@
 														  
 														  icon:1
 														}, function(){
-															$.ajax({
-																	type : 'get',
-																	url : '../admin/adminlogin?userid='+addUserName+'&pwd='+pwd,
-																	datatype : 'json',
-																	beforeSend:function(){
-																	//layer.load(0, {shade: false});
-																	},
-																	success : function(data) {
-																		if (data.code == 0) {
-																		layer.msg(data.msg);
-																		//layer.alert(data.msg, {icon: 1});
-																		if (top.location !== self.location) {
-												   							 top.location = "index.jsp";//跳出框架，并回到首页
-															         	}else{
-															         		window.location.href = "../html/index.jsp";
-															         	}
-																		
-																		} else {
-																			layer.alert(data.msg, {icon: 2});
-																			$("input").val("");
-																		}
-																	},
-																	error:function(){
-																	
-													    	        	layer.alert("后台报错", {icon: 2});
-													    	        },
-													    	       /* complete:function(){
-													    	        layer.alert("操作完成");
-													    	        }*/
-																});
+															
 														});
 													}else{
 														layer.confirm(data.msg, {
@@ -320,7 +271,7 @@
 				},
 				btn2 : function() {layer.closeAll();}
 			});
-		});
+		});*/
 			
 			
 		

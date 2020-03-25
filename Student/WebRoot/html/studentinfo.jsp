@@ -13,6 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="../css/mystyle.css">
 	<style>
 		.blogUser-con .layui-table-view {
 			border: none;
@@ -94,54 +95,67 @@
 <body>
 	
 
-	<div class="blogUser-con">
-		<div class="layui-col-md12 layui-col-lg12 my-bloger">
+	<div >
+	<div class="layui-row layui-col-space30">
+		<div class="layui-col-md3 layui-col-lg3">
+                <div class="bloger">
+                    <img src="../upload1/${stuinfo.photopath}" class="blogerphoto">
+                </div>
+                <button id="btnselfrontinfo" type="button" class="layui-btn layui-bg-blue">上传头像</button>
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                    <div class="stu_name">
+                                <p>姓名：${stuinfo.stuname }
+                               
+                                </p>
+                     </div>
+                     <p><span class="yinh_left">性别：“</span> ${stuinfo.agend}<span class="yinh_left">”</span></p>
+                     
+                </div>
+                </div>
+              
+            </div>
+		<div class="layui-col-md8 layui-col-lg8 my-bloger">
                 <div class="blogerArti layui-card">
                     <div class="blogeraerticle layui-card-header">
                         <span class="blueline"></span>
                          <p class="header_title">基本信息</p>
-                         
+                          
                        
                     </div>
+                    <button class="layui-btn  layui-btn layui-btn-sm myinfoedit" style="background:#3AACDA;"
+                        id="up"    data-method="myjiben">编辑</button>
                     <div class="layui-card-body" >
                    
-                        <table  class="layui-table" width="100%"  lay-even lay-skin="nob" lay-size="lg">
-						    <tbody>
-						      <tr>
-						        <td width="10%"><i class="layui-icon layui-icon-username"></i><span class="user_txt"> &nbsp&nbsp姓名：&nbsp</span></td>
-						        <td ><span id="stuname"></span></td>
-						        <td width="10%"><i class="layui-icon layui-icon-list"></i><span class="user_txt">&nbsp&nbsp学院：&nbsp</span></td>
-						        <td ><span id="collegeName"></span></td>
-						      </tr>
-						      <tr>
-						        <td ><i class="layui-icon layui-icon-male"></i><span class="user_txt">&nbsp&nbsp性别：&nbsp</span></td>
-						        <td ><span id="agend"></span></td>
-						        <td ><i class="layui-icon layui-icon-tabs"></i><span class="user_txt">&nbsp&nbsp专业：&nbsp</span></td>
-						        <td ><span id="majorName"></span></td>
-						      </tr>
-						       <tr>
-						         <td ><i class="layui-icon layui-icon-log"></i><span class="user_txt">&nbsp&nbsp生日：&nbsp</span></td>
-						        <td ><span id="birthday"></span></td>
-						        <td ><i class="layui-icon layui-icon-release"></i><span class="user_txt">&nbsp&nbsp班级：&nbsp</span></td>
-						        <td ><span id="className"></span></td>
-						      </tr>
-						      <tr>
-						         <td ><i class="layui-icon layui-icon-cellphone"></i><span class="user_txt">&nbsp&nbsp电话：&nbsp</span></td>
-						        <td ><span id="phone"></span></td>
-						        <td ><i class="layui-icon layui-icon-cols"></i><span class="user_txt">&nbsp&nbsp学号：&nbsp</span></td>
-						        <td ><span id="stunum"></span></td>
-						      </tr>
-						      <tr>
-						        <td ><i class="layui-icon layui-icon-website"></i><span class="user_txt">&nbsp&nbsp邮箱：&nbsp</span></td>
-						        <td ><span id="email"></span></td>
-						        <td ><i class="layui-icon layui-icon-tips"></i><span class="user_txt">&nbsp&nbsp身份证号：&nbsp</span></td>
-						        <td  ><span id="stucard"></span></td>
-						      </tr>
-						    </tbody>
-						  </table>
+                       <div class="blogerArti layui-card">
+                    
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space30">
+                            <div class="layui-col-lg6 layui-col-md6">
+                            	 <p class="user_info"><i class="layui-icon layui-icon-username"></i><span class="user_txt">姓名：${stuinfo.stuname }</span></p>
+                                 <p class="user_info"><i class="layui-icon layui-icon-male"></i><span class="user_txt">性别：${stuinfo.agend }</span></p>
+                                 <p class="user_info"><i class="layui-icon layui-icon-cellphone"></i><span class="user_txt">电话：${stuinfo.phone }</span></p>
+                                 
+                                 
+                                 <p class="user_info"><i class="layui-icon layui-icon-notice"></i><span class="user_txt">生日：${stuinfo.birthday }</span></p>
+                                 <p class="user_info"><i class="layui-icon layui-icon-date"></i><span class="user_txt">学号：${stuinfo.stunum }</span></p>
+                              
+                            </div>
+                            <div class="layui-col-lg6 layui-col-md6">
+                              		<p class="user_info"><i class="layui-icon layui-icon-home"></i><span class="user_txt">学院：${stuinfo.collegeName }</span></p>
+                                    <p class="user_info"><i class="layui-icon layui-icon-list"></i><span class="user_txt">专业：${stuinfo.majorName }</span></p>
+                                    
+                                    <p class="user_info"><i class="layui-icon layui-icon-tabs"></i><span class="user_txt">班级：${stuinfo.className }</span></p>
+                                    <p class="user_info"><i class="layui-icon layui-icon-website"></i><span class="user_txt">邮箱：${stuinfo.email }</span></p>
+                                    <p class="user_info"><i class="layui-icon layui-icon-slider"></i><span class="user_txt">身份证：${stuinfo.stucard }</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 						
                     </div>
                     
+                </div>
                 </div>
                
             
@@ -201,12 +215,7 @@
 			</div>
 		</div>
 		<!-- 用户信息修改End -->
-		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
 		
-		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-xs" lay-event="seluser">编辑</a>
-			
-		</script>
 		
 		
 	</div>
@@ -268,49 +277,9 @@
 			even : true,
 			cols : [ 
 			     [ {
-					field : 'collegeName',
-					align : 'center',
-					title : '学院'
-				},{
-					field : 'majorName',
-					align : 'center',
-					title : '专业'
-				},{
-					field : 'className',
-					align : 'center',
-					title : '班级'
-				},{
-					field : 'stuname',
-					title : '姓名',
-					align : 'center'
-				},{
-					field : 'agend',
-					align : 'center',
-					title : '性别'
-				},{
-					field : 'birthday',
-					align : 'center',
-					title : '生日'
-				},{
-					field : 'phone',
-					align : 'center',
-					title : '电话'
-				},{
-					field : 'stunum',
-					align : 'center',
-					title : '学号'
-				},{
-					field : 'email',
-					align : 'center',
-					title : '邮箱'
-				},{
-					field : 'stucard',
-					align : 'center',
-					title : '身份证'
-				},{
-					title : '操作',
+					title : '',
 					toolbar : '#barDemo',
-					align : 'center'
+					align : 'left'
 				} ] 
 			 ],
 			 page: {
@@ -320,6 +289,78 @@
 					limits: [10, 20, 30, 40, 50],
 					theme: '#1E9FFF',						
 			 },
+		});
+		
+		/* 添加一个网站用户 */
+		$("#up").click(function(){
+			//加载角色类型
+			$("#addstuname").val(${stuinfo.stuname });
+			
+			$("#addagend").val(${stuinfo.stuname });
+			
+			$("#addbirthday").val(${stuinfo.stuname });
+			
+			$("#addphone").val(${stuinfo.stuname });
+			$("#addstunum").val(${stuinfo.stuname });
+			$("#addemail").val(${stuinfo.stuname });
+			$("#addstucard").val(${stuinfo.stuname });
+			var id = data.stuinfoid;
+			
+			layer.open({
+				type : 1,
+				title : '公告添加',
+				area : [ '460px', '335px' ],
+				shade : 0.4,
+				content : $('#add-blogUser'),
+				btn : [ '保存', '返回' ],
+				yes : function() {
+					var addcollegeName = $("#addcollegeName").val().trim();
+					var adduserid = $("#adduserid").val();
+					
+					if(addcollegeName == "") {
+						layer.tips('不能为空', '#addcollegeName');
+						return;
+					} 
+
+					if(adduserid == "") {
+						layer.tips('不能为空', '#adduserid');
+						return;
+					} 
+					
+					$.ajax({
+						type : 'get',
+						url : '../college/addcollege?collegeName=' + addcollegeName +'&userid='+adduserid,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('添加成功', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
+			});
 		});
 		
 		//表格工具栏事件 
@@ -387,7 +428,7 @@
 					
 					$.ajax({
 						type : 'get',
-						url : '../student/upstudent?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&id='+id,
+						url : '../student/upstudent?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&id='+id+'&classid='+id,
 						datatype : 'json',
 						success : function(data) {
 							if (data.code == "0") {

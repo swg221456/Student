@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+	<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>网站用户管理</title>
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>公告管理</title>
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
 	<style>
 		.blogUser-con .layui-table-view {
@@ -124,7 +124,9 @@
 			    <div class="layui-inline">
 	     	   		<button id="btnselfrontinfo" type="button" class="layui-btn layui-bg-blue">查询</button>
 			    </div>
+			    
 				<button type="button" class="layui-btn layui-bg-blue" id="addartType" lay-event="addartType" lay-filter="addartType" style="margin-left: 10px;">新增公告</button>
+				
 			</form>
 		</blockquote>
 		<!-- 条件筛选框End -->
@@ -133,7 +135,9 @@
 
 		<script type="text/html" id="barDemo">
 			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
+			<a class="layui-btn layui-btn-danger  layui-btn-xs" lay-event="up">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	
 		</script>
 
 		<!-- 用户信息添加Start -->
@@ -165,6 +169,37 @@
 			</div>
 		</div>
 		<!-- 用户信息添加End -->
+		
+		<!-- 用户信息修改Start -->
+		<div id="up-blogUser" style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label">标题:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upnoticeName" id="upnoticeName"
+								lay-verify="upnoticeName" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">内容:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upnoticecontent" id="upnoticecontent"  autocomplete="off"  class="layui-input">
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upremarks" id="upremarks" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息修改End -->
 		
 	</div>
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
@@ -293,7 +328,7 @@
 							}
 						},
 						error : function() {
-							layer.confirm('添加成功', {
+							layer.confirm('修改失败', {
 			        				icon: 6,
 									  btn: ['确定']
 								});
@@ -314,6 +349,11 @@
 			$("#txtcreatedate").text(data.createdate);
 			$("#txtadmincreatetime").text(data.createtime);
 			
+			$("#upnoticeName").val(data.noticeName);
+			$("#upnoticecontent").val(data.noticecontent);
+			$("#upremarks").val(data.remarks);
+			var noticeid = data.noticeid;
+			
 			switch (obj.event) {
 				case 'seluser':
 					layer.open({
@@ -330,6 +370,68 @@
 				        cancel: function(){ 
 						  $(".adminuserdetail").css("display","none");
 						}
+				    });
+				break;
+				//修改操作
+				case 'up':
+					layer.open({
+				        type: 1, 
+				        title : '个人信息修改',
+				area : [ '460px', '425px' ],
+				shade : 0.4,
+				content : $('#up-blogUser'),
+				btn : [ '保存', '返回' ],
+				yes : function() {
+					var noticeName = $("#upnoticeName").val().trim();
+					var noticecontent = $("#upnoticecontent").val().trim();
+					var remarks = $("#upremarks").val().trim();
+					
+					
+					
+					
+
+					if(noticeName == "") {
+						layer.tips('不能为空', '#noticeName');
+						return;
+					} 
+					if(noticecontent == "") {
+						layer.tips('不能为空', '#noticecontent');
+						return;
+					} 
+					
+					$.ajax({
+						type : 'get',
+						url : '../admin2/upnotice?noticeid='+noticeid+'&noticeName='+noticeName+'&noticecontent='+noticecontent+'&remarks='+remarks,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('修改失败', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
 				    });
 				break;
 				

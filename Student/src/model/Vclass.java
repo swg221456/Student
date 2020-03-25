@@ -15,6 +15,7 @@ public class Vclass implements java.io.Serializable {
 		private Integer isdelete;
 		private String majorName;
 		private String collegeName;
+		private Integer collegeid;
 
 		// Constructors
 
@@ -24,18 +25,19 @@ public class Vclass implements java.io.Serializable {
 
 		/** minimal constructor */
 		public Vclass(Integer classid, String className, Integer isdelete,
-				String majorName, String collegeName) {
+				String majorName, String collegeName, Integer collegeid) {
 			this.classid = classid;
 			this.className = className;
 			this.isdelete = isdelete;
 			this.majorName = majorName;
 			this.collegeName = collegeName;
+			this.collegeid = collegeid;
 		}
 
 		/** full constructor */
 		public Vclass(Integer classid, String className, Integer majorid,
 				String userid, Integer isdelete, String majorName,
-				String collegeName) {
+				String collegeName, Integer collegeid) {
 			this.classid = classid;
 			this.className = className;
 			this.majorid = majorid;
@@ -43,6 +45,7 @@ public class Vclass implements java.io.Serializable {
 			this.isdelete = isdelete;
 			this.majorName = majorName;
 			this.collegeName = collegeName;
+			this.collegeid = collegeid;
 		}
 
 		// Property accessors
@@ -101,6 +104,14 @@ public class Vclass implements java.io.Serializable {
 
 		public void setCollegeName(String collegeName) {
 			this.collegeName = collegeName;
+		}
+
+		public Integer getCollegeid() {
+			return this.collegeid;
+		}
+
+		public void setCollegeid(Integer collegeid) {
+			this.collegeid = collegeid;
 		}
 
 }

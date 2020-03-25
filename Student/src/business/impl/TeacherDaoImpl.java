@@ -96,4 +96,11 @@ public class TeacherDaoImpl implements TeacherDAO {
 		return list;
 	}
 
+	@Override
+	public Tteacher getteacher(int teacherid) {
+		Tteacher adminuser = (Tteacher) hdao.findById(Tteacher.class,
+				teacherid);
+		return adminuser;
+	}
+
 }

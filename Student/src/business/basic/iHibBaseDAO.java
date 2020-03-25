@@ -27,6 +27,22 @@ public interface iHibBaseDAO {
 	 * @return boolean true成功，false失败
 	 */
 	public boolean insert(List<Object> list);
+	
+	/**
+	 * 使用无参数的hql实现查询的，他将返回基于hql中查询对象的List数组对象
+	 * @param String 符合hql结构的无参数查询语句
+	 * @return object  失败返回null
+	 */
+	public Object selectbyhq(String hql) ;
+	
+	
+	/**
+	 * 使用带有参数的hql实现查询的，他将返回基于hql中查询对象的List数组对象
+	 * @param String 符合hql结构的有参数查询语句
+	 * @param Object[] 参数值数组
+	 * @return List  失败返回null
+	 */
+	public Object selectby(String hql,Object[] para) ;
 
 	/**
 	 * 执行表数据删除操作 该hibernate删除方法仅用于对单个的瞬时对象使用其id属性进行持久化操作

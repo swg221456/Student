@@ -55,6 +55,12 @@
             <property name="className" type="java.lang.String">
                 <column name="className" />
             </property>
-        
+            <property name="photoid" type="java.lang.Integer">
+                <column name="photoid" />
+            </property>
+            <property name="photopath" type="java.lang.String">
+                <column name="photopath" length="100" />
+            </property>
+       
     </class>
 </hibernate-mapping>

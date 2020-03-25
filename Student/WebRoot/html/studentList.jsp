@@ -160,15 +160,182 @@
 			    <div class="layui-inline">
 	     	   		<button id="btnselfrontinfo" type="button" class="layui-btn layui-bg-blue">查询</button>
 			    </div>
+			     <div class="layui-inline">
+	     	   		<button id="addstu" type="button" class="layui-btn layui-bg-blue">添加</button>
+			    </div>
 				
 			</form>
 		</blockquote>
 		<!-- 条件筛选框End -->
+		
+		<!-- 学生添加Start -->
+		<div id="add-stu" style="display:none;">
+			<div class="artTypeLayer">   
+				<form class="layui-form" action="">
+				<div class="layui-form-item">
+						<label class="layui-form-label">选择院系:</label>
+						<div class="layui-inline">
+							<select id="addcollege" name="addcollege" lay-filter="addcollege">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						 <label class="layui-form-label">选择专业:</label>
+						<div class="layui-inline">
+							<select id="addmajor" name="addmajor" lay-filter="addmajor">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						 <label class="layui-form-label">选择班级:</label>
+						<div class="layui-inline">
+							<select id="addclass" name="addclass" lay-filter="addclass">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">姓名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addstuname" id="addstuname"
+								lay-verify="addstuname" autocomplete="off"  class="layui-input">
+						</div>
+					</div>
+					
+					<div class="layui-form-item">
+					<label class="layui-form-label">选择性别:</label>
+						<div class="layui-inline">
+							<select id="addagend" name="addagend" >							
+							<option value="男">男</option>
+						  <option value="女">女</option>
+							</select>
+						</div>
+						  						
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">生日:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addbirthday" id="addbirthday" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">学号:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addstunum" id="addstunum" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">身份证号:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addstucard" id="addstucard" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">电话:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addphone" id="addphone" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">邮箱:</label>
+						<div class="layui-input-block">
+							<input type="text" name="addemail" id="addemail" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					
+					
+				</form>
+			 </div>
+		</div>
+		<!-- 用户信息修改End -->
+		
+		<!-- 用户信息修改Start -->
+		<div id="add-blogUser">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<label class="layui-form-label">选择院系:</label>
+						<div class="layui-inline">
+							<select id="upcollege" name="upcollege" lay-filter="upcollege">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						 <label class="layui-form-label">选择专业:</label>
+						<div class="layui-inline">
+							<select id="upmajor" name="upmajor" lay-filter="upmajor">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						 <label class="layui-form-label">选择班级:</label>
+						<div class="layui-inline">
+							<select id="upclass" name="upclass" lay-filter="upclass">							
+							
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">姓名:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upstuname" id="upstuname"
+								lay-verify="upstuname" autocomplete="off"  class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">性别:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upagend" id="upagend"  autocomplete="off"  class="layui-input">
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">生日:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upbirthday" id="upbirthday" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">学号:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upstunum" id="upstunum" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">身份证号:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upstucard" id="upstucard" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">电话:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upphone" id="upphone" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">邮箱:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upemail" id="upemail" autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div>
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息修改End -->
+		
 
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
 
 		<script type="text/html" id="barDemo">
 			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up">修改</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 			
 		</script>
 
@@ -208,6 +375,21 @@
 				loadclass("slclass", form, "../college/loadclass?majorid="+paretid);
 				});
 				
+		loadcollege("addcollege",form,"../college/loadcollege");
+		
+			form.on('select(slcollege)', function(data)
+					{
+					var paretid = $("#addcollege").val();
+				 	//调用方法加载select管理员角色
+					loadmajor("addmajor", form, "../college/loadmajor?collegeid="+paretid);
+					});
+					
+			form.on('select(slmajor)', function(data)
+					{
+					var paretid = $("#addmajor").val();
+				 	//调用方法加载select管理员角色
+					loadclass("addclass", form, "../college/loadclass?majorid="+paretid);
+					});
 				
 		
 		loadcollege("addcollege",form,"../college/loadcollege");
@@ -225,7 +407,33 @@
 			 	//调用方法加载select管理员角色
 				loadclass("addclass", form, "../college/loadclass?majorid="+paretid);
 				});
+				
+		loadcollege("upcollege",form,"../college/loadcollege");
 		
+		form.on('select(upcollege)', function(data)
+				{
+				var paretid = $("#upcollege").val();
+			 	//调用方法加载select管理员角色
+				loadmajor("upmajor", form, "../college/loadmajor?collegeid="+paretid);
+				});
+				
+		form.on('select(upmajor)', function(data)
+				{
+				var paretid = $("#upmajor").val();
+			 	//调用方法加载select管理员角色
+				loadclass("upclass", form, "../college/loadclass?majorid="+paretid);
+				});
+		//日期选择器
+			laydate.render({ 
+			  elem: '#addbirthday'
+			  //,type: 'date' //默认，可不填
+			});
+			
+			//日期选择器
+			laydate.render({ 
+			  elem: '#upbirthday'
+			  //,type: 'date' //默认，可不填
+			});
 		
 		/*加载表格*/
 		table.render({
@@ -316,7 +524,7 @@
 		});
 		
 		/* 添加一个网站用户 */
-		$("#addartType").click(function(){
+		$("#addstu").click(function(){
 			//加载角色类型
 			loadRoleType('addusertype',form);
 			$("#addclassName").val("");
@@ -326,33 +534,181 @@
 			
 			layer.open({
 				type : 1,
-				title : '公告添加',
-				area : [ '560px', '500px' ],
+				title : '学生用户添加',
+				area :  [ '560px', '665px' ],
+				shade : 0.4,
+				content : $('#add-stu'),
+				btn : [ '保存'],
+				yes: function(){
+				var stuname = $("#addstuname").val();
+				var agend = $("#addagend").val();
+				var birthday = $("#addbirthday").val().trim();
+				var phone = $("#addphone").val().trim();
+				var stunum = $("#addstunum").val().trim();
+				var email = $("#addemail").val().trim();
+				var stucard = $("#addstucard").val().trim();
+				var classid = $("#addclass").val().trim();
+						
+				if(stuname == "") {
+					layer.tips('不能为空', '#stuname');
+					return;
+				} 
+				if(agend == "") {
+					layer.tips('不能为空', '#agend');
+					return;
+				} 
+				if(phone == "") {
+					layer.tips('不能为空', '#phone');
+					return;
+				} 
+				if(birthday == "") {
+					layer.tips('不能为空', '#birthday');
+					return;
+				} 
+											
+				if(email == "") {
+					layer.tips('不能为空', '#email');
+					return;
+				} 
+				if(stucard == "") {
+					layer.tips('不能为空', '#stucard');
+					return;
+				} 
+											
+				$.ajax({
+					type : 'get',
+					url : '../admin/addstu?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&classid='+classid,
+					datatype : 'json',
+					success : function(data) {
+					if (data.code == "0") {
+					layer.confirm(data.msg, {
+						 btn: ['确定'],
+														  
+						 icon:1
+						}, function(){
+						table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+															
+						});
+					}else{
+						layer.confirm(data.msg, {
+							 btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+					error : function() {
+						layer.confirm('添加成功', {
+									icon: 6,
+									  btn: ['确定']
+							});
+						}
+					});	
+		  		},
+			});
+		});
+	
+		//表格工具栏事件 
+		table.on('tool(blogUser)', function(obj) {
+			var data = obj.data;
+			$("#txtstuname").text(data.stuname);
+			$("#txtstunum").text(data.stunum);
+			$("#txtagend").text(data.agend);
+			$("#txtbirthday").text(data.birthday);
+			$("#txtphone").text(data.phone);
+			$("#txtemail").text(data.email);
+			$("#txtstucard").text(data.stucard);
+			
+			$("#upstuname").val(data.stuname);			
+			$("#upagend").val(data.agend);			
+			$("#upbirthday").val(data.birthday);			
+			$("#upphone").val(data.phone);
+			$("#upstunum").val(data.stunum);
+			$("#upemail").val(data.email);
+			$("#upstucard").val(data.stucard);
+
+			set_select_checked("upcollege",data.collegeid);
+			loadmajor("upmajor", form, "../college/loadmajor?collegeid="+data.collegeid);
+			set_select_checked("upmajor",data.majorid);
+			loadclass("upclass", form, "../college/loadclass?majorid="+data.majorid);
+			set_select_checked("upclass",data.classid);
+			form.render("select");
+			var id = data.stuinfoid;
+			
+			
+			switch (obj.event) {
+				case 'seluser':
+					layer.open({
+				        type: 1, 
+				        title: '管理员信息详情',
+				        area: ['600px', '430px'],
+				        shade: 0.8,
+				        content: $('#adminuserdetail'),
+				        btn: ['返回'], 
+				        yes: function(){
+				          layer.closeAll();
+				          $(".adminuserdetail").css("display","none");
+				        },
+				        cancel: function(){ 
+						  $(".adminuserdetail").css("display","none");
+						}
+				    });
+				break;
+				//修改操作
+				case 'up':
+					layer.open({
+				        type: 1, 
+				        title : '个人信息修改',
+				area : [ '760px', '725px' ],
 				shade : 0.4,
 				content : $('#add-blogUser'),
 				btn : [ '保存', '返回' ],
 				yes : function() {
-					var addclassName = $("#addclassName").val().trim();
-					var adduserid = $("#adduserid").val();
-					var addmajor = $("#addmajor").val();
+					var stuname = $("#upstuname").val();
+					var agend = $("#upagend").val();
+					var birthday = $("#upbirthday").val().trim();
+					var phone = $("#upphone").val().trim();
+					var stunum = $("#upstunum").val().trim();
+					var email = $("#upemail").val().trim();
+					var stucard = $("#upstucard").val().trim();
+					var upclass = $("#upclass").val();
 					
-					if(addclassName == "") {
-						layer.tips('不能为空', '#addclassName');
-						return;
-					} 
-					if(addmajor == "") {
-						layer.tips('不能为空', '#addmajor');
-						return;
-					} 
+					
+					
 
-					if(adduserid == "") {
-						layer.tips('不能为空', '#adduserid');
+					if(stuname == "") {
+						layer.tips('不能为空', '#stuname');
+						return;
+					} 
+					if(agend == "") {
+						layer.tips('不能为空', '#agend');
+						return;
+					} 
+					if(phone == "") {
+						layer.tips('不能为空', '#phone');
+						return;
+					} 
+					if(birthday == "") {
+						layer.tips('不能为空', '#birthday');
+						return;
+					} 
+					
+					if(email == "") {
+						layer.tips('不能为空', '#email');
+						return;
+					} 
+					if(stucard == "") {
+						layer.tips('不能为空', '#stucard');
 						return;
 					} 
 					
 					$.ajax({
 						type : 'get',
-						url : '../college/addclass?calssName=' + addclassName +'&userid='+adduserid+'&majorid='+addmajor,
+						url : '../student/upstudent?stuname='+stuname+'&agend='+agend+'&birthday='+birthday+'&phone='+phone+'&stunum='+stunum+'&email='+email+'&stucard='+stucard+'&id='+id+'&classid='+upclass,
 						datatype : 'json',
 						success : function(data) {
 							if (data.code == "0") {
@@ -383,37 +739,6 @@
 					});						
 				},
 				btn2 : function() {layer.closeAll();}
-			});
-		});
-	
-		//表格工具栏事件 
-		table.on('tool(blogUser)', function(obj) {
-			var data = obj.data;
-			$("#txtstuname").text(data.stuname);
-			$("#txtstunum").text(data.stunum);
-			$("#txtagend").text(data.agend);
-			$("#txtbirthday").text(data.birthday);
-			$("#txtphone").text(data.phone);
-			$("#txtemail").text(data.email);
-			$("#txtstucard").text(data.stucard);
-			
-			
-			switch (obj.event) {
-				case 'seluser':
-					layer.open({
-				        type: 1, 
-				        title: '管理员信息详情',
-				        area: ['600px', '430px'],
-				        shade: 0.8,
-				        content: $('#adminuserdetail'),
-				        btn: ['返回'], 
-				        yes: function(){
-				          layer.closeAll();
-				          $(".adminuserdetail").css("display","none");
-				        },
-				        cancel: function(){ 
-						  $(".adminuserdetail").css("display","none");
-						}
 				    });
 				break;
 				
@@ -425,7 +750,7 @@
 					}, function(){
 						$.ajax({
 			        		type: 'get',
-			        		url: "../del/delcollege?collegeid="+data.collegeid,
+			        		url: "../del/delstu?id="+data.stuinfoid,
 			        		dataType: 'json',
 			        		success:function(data){
 			        			if(data.code == 0){

@@ -64,6 +64,8 @@ public interface StudentDAO {
 	public TSheet getSheet(int id);
 	
 	public TStuinfo getstu(int id);
+	
+	public List<Vstudent> getstubyuserid(String userid);
 
 	
 

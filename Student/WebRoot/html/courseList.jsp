@@ -152,6 +152,7 @@
 
 		<script type="text/html" id="barDemo">
 			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -197,6 +198,50 @@
 		</div>
 		<!-- 用户信息添加End -->
 		
+		<!-- 用户信息修改Start -->
+		<div id="up-blogUser" style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label">选择班级:</label>
+						<div class="layui-inline">
+							<select id="upclass" name="upclass" lay-filter="upclass">							
+							
+							</select>
+						</div>
+					</div>
+					
+					<div class="layui-form-item">
+						<label class="layui-form-label">选择教师:</label>
+						<div class="layui-inline">
+							<select id="upteacher" name="upteacher" lay-filter="upteacher">							
+							
+							</select>
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">选择课程:</label>
+						<div class="layui-inline">
+							<select id="upcurr" name="upcurr" lay-filter="upcurr">							
+							
+							</select>
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upremakes" id="upremakes"  autocomplete="off" placeholder="" class="layui-input">
+						</div>
+					</div> 
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息修改End -->
+		
+		
 	</div>
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
 	<script src="../js/loadselect.js" charset="utf-8"></script>
@@ -214,6 +259,10 @@
 		loadclass("addclass", form, "../college/loadclass?majorid=0");
 		loadteach("addteacher", form, "../admin2/loacdtea");
 		loadcurr("addcurr", form, "../curr/loacdcurr");
+		
+		loadclass("upclass", form, "../college/loadclass?majorid=0");
+		loadteach("upteacher", form, "../admin2/loacdtea");
+		loadcurr("upcurr", form, "../curr/loacdcurr");
 		
 		
 		
@@ -365,6 +414,13 @@
 			$("#txtremarks").text(data.remakes);
 			
 			
+			set_select_checked("upcurr",data.curriculumid);
+			set_select_checked("upclass",data.classid);
+			set_select_checked("upteacher",data.teacherid);
+			$("#upremakes").val(data.remakes);
+			form.render("select");
+			var courseid = data.courseid;
+			
 			switch (obj.event) {
 				case 'seluser':
 					layer.open({
@@ -381,6 +437,76 @@
 				        cancel: function(){ 
 						  $(".adminuserdetail").css("display","none");
 						}
+				    });
+				break;
+				
+				//修改操作
+				case 'up':
+					layer.open({
+				        type: 1, 
+				        title : '个人信息修改',
+				area : [ '460px', '425px' ],
+				shade : 0.4,
+				content : $('#up-blogUser'),
+				btn : [ '保存', '返回' ],
+				yes : function() {
+					
+					var upcurr = $("#upcurr").val();
+					var upclass = $("#upclass").val();
+					var upteacher = $("#upteacher").val();
+					var upremarks = $("#upremakes").val();
+					
+					
+					
+					
+					
+
+					if(upcurr == "") {
+						layer.tips('不能为空', '#upcurr');
+						return;
+					} 
+					if(upclass == "") {
+						layer.tips('不能为空', '#upclass');
+						return;
+					} 
+					if(upteacher == "") {
+						layer.tips('不能为空', '#upteacher');
+						return;
+					} 
+					
+					$.ajax({
+						type : 'get',
+						url : '../curr/upcourse?classid='+upclass+'&teacherid='+upteacher+'&curriculumid='+upcurr+'&remakes='+upremarks+'&courseid='+courseid,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('修改失败', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
 				    });
 				break;
 				

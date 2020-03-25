@@ -28,6 +28,9 @@
             <property name="collegeName" type="java.lang.String">
                 <column name="collegeName" />
             </property>
+            <property name="collegeid" type="java.lang.Integer">
+                <column name="collegeid" />
+            </property>
         
     </class>
 </hibernate-mapping>

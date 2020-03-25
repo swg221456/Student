@@ -139,6 +139,56 @@ public class AdminController {
 	}
 	
 	/**
+	 * 实现一个公告信息的添加
+	 * 
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upnotice")
+	public void upNotice(String noticeName,String noticecontent,Integer noticeid,
+			String remarks, HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		HttpSession session = request.getSession();
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
+		NoticeDAO audao = new NoticeDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		TNotice user = new TNotice();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String  createTime = df.format(new Date());
+		user.setNoticeid(noticeid);
+		user.setIsdelete(0);
+		user.setNoticecontent(noticecontent);
+		user.setNoticeName(noticeName);
+		user.setRemarks(remarks);
+		user.setUserid(modle.getUserid());
+		user.setCreatedate(createTime);
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "公告修改成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "添加失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
+	/**
 	 * 获取教师信息列表
 	 * 
 	 * @param request
@@ -265,6 +315,50 @@ public class AdminController {
 		if (audao.addTteacher(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "教师添加成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "添加失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+	}
+	
+	/**
+	 * 实现一个公告信息的添加
+	 * 
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upteacher")
+	public void upteacher( String teaName, String teaphone,
+			Integer teacherid,String teasex,  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		
+		TeacherDAO audao = new TeacherDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		Tteacher user = audao.getteacher(teacherid);
+
+		user.setTeaName(teaName);
+		user.setTeaphone(teaphone);
+		user.setTeasex(teasex);
+		user.setTeacherid(teacherid);
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "教师修改成功";
 		} else {
 			laydata.code = LayuiData.ERRR;
 			laydata.msg = "添加失败";

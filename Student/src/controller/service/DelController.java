@@ -17,6 +17,7 @@ import model.TCollege;
 import model.TCourse;
 import model.TCurriculum;
 import model.TNotice;
+import model.TStuinfo;
 import model.Tmajor;
 import model.Tsemester;
 import model.Tteacher;
@@ -37,6 +38,7 @@ import business.dao.CurriculumDAO;
 import business.dao.MajorDAO;
 import business.dao.NoticeDAO;
 import business.dao.SemesterDAO;
+import business.dao.StudentDAO;
 import business.dao.TeacherDAO;
 import business.impl.AdminUserDaoImpl;
 import business.impl.ClassDaoImpl;
@@ -46,6 +48,7 @@ import business.impl.CurriculumDaoImpl;
 import business.impl.MajorDaoImpl;
 import business.impl.NoticeDaoImpl;
 import business.impl.SemesterDaoImpl;
+import business.impl.StudentDaoImpl;
 import business.impl.TeacherDaoImpl;
 
 import com.alibaba.fastjson.JSON;
@@ -315,6 +318,41 @@ public class DelController {
 
 		LayuiData laydata = new LayuiData();
 		if (audao.delTCourse(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "编辑成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "编辑失败";
+		}
+		Writer out;
+		try {
+			out = response.getWriter();
+			out.write(JSON.toJSONString(laydata));
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// return "";
+	}
+	
+	/**
+	 * 删除任课信息
+	 */
+	@RequestMapping(value = "delstu")
+	public void delstu(HttpServletRequest request,  
+			  Integer id,
+			HttpServletResponse response, Model model) {
+		StudentDAO audao = new StudentDaoImpl();
+		TStuinfo user = new TStuinfo();
+		user.setStuinfoid(id);
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		LayuiData laydata = new LayuiData();
+		if (audao.delStu(user)) {
 			laydata.code = LayuiData.SUCCESS;
 			laydata.msg = "编辑成功";
 		} else {

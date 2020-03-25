@@ -23,6 +23,20 @@ function callAJAX(reqType, reqURL, reqPara) {
 	return returndata;
 }
 
+function set_select_checked(selectId, checkValue){  
+
+	var select = document.getElementById(selectId);  
+
+	for (var i = 0; i <= select.options.length; i++){  
+
+		if (select.options[i].value == checkValue){  
+
+		select.options[i].selected = true;  
+		$(selectId).val(checkValue);
+				
+		break;  }  
+		}  
+}
 
 
 /**
@@ -39,7 +53,7 @@ function loaduserby(selectId, form, reqURL){
 			$('#' + selectId).html(""); //获取id为selectId指定的控件内容
 			var str = "<option value='0'>请选择</option>";
 			for(var i = 0; i < stageData.data.length; i++) {
-				str += '<option value=' + stageData.data[i].userid + '>' + stageData.data[i].userid + '</option>';
+				str += '<option  value=' + stageData.data[i].userid + '>' + stageData.data[i].userid + '</option>';
 			}
 			$('#' + selectId).append(str);
 			form.render("select");
@@ -130,7 +144,7 @@ function loadcurr(selectId, form, reqURL){
 			$('#' + selectId).html(""); //获取id为selectId指定的控件内容
 			var str = "<option value='0'>请选择</option>";
 			for(var i = 0; i < stageData.data.length; i++) {
-				str += '<option value=' + stageData.data[i].curriculumid + '>' + stageData.data[i].curriculumName + '</option>';
+				str += '<option  value=' + stageData.data[i].curriculumid + '>' + stageData.data[i].curriculumName + '</option>';
 			}
 			$('#' + selectId).append(str);
 			form.render("select");
@@ -157,7 +171,7 @@ function loadcollege(selectId, form, reqURL){
 			$('#' + selectId).html(""); //获取id为selectId指定的控件内容
 			var str = "<option value='0'>请选择</option>";
 			for(var i = 0; i < stageData.data.length; i++) {
-				str += '<option value=' + stageData.data[i].collegeid + '>' + stageData.data[i].collegeName + '</option>';
+				str += '<option  value=' + stageData.data[i].collegeid + '>' + stageData.data[i].collegeName + '</option>';
 			}
 			$('#' + selectId).append(str);
 			form.render("select");
@@ -209,7 +223,7 @@ function loadclass(selectId, form, reqURL){
 			$('#' + selectId).html(""); //获取id为selectId指定的控件内容
 			var str = "<option value='0'>请选择</option>";
 			for(var i = 0; i < stageData.data.length; i++) {
-				str += '<option value=' + stageData.data[i].classid + '>' + stageData.data[i].className + '</option>';
+				str += '<option  value=' + stageData.data[i].classid + '>' + stageData.data[i].className + '</option>';
 			}
 			$('#' + selectId).append(str);
 			form.render("select");
@@ -237,7 +251,7 @@ function loaduser(selectId, form, reqURL){
 			$('#' + selectId).html(""); //获取id为selectId指定的控件内容
 			var str = "<option value='0'>请选择用户</option>";
 			for(var i = 0; i < stageData.data.length; i++) {
-				str += '<option value=' + stageData.data[i].userid + '>' + stageData.data[i].userName + '</option>';
+				str += '<option  value=' + stageData.data[i].userid + '>' + stageData.data[i].userName + '</option>';
 			}
 			$('#' + selectId).append(str);
 			form.render("select");
@@ -261,7 +275,7 @@ function loadseme(selectId, form, reqURL){
 			$('#' + selectId).html(""); //获取id为selectId指定的控件内容
 			var str = "<option value='0'>请选择</option>";
 			for(var i = 0; i < stageData.data.length; i++) {
-				str += '<option value=' + stageData.data[i].semesterid + '>' + stageData.data[i].semesterName + '</option>';
+				str += '<option  value=' + stageData.data[i].semesterid + '>' + stageData.data[i].semesterName + '</option>';
 			}
 			$('#' + selectId).append(str);
 			form.render("select");

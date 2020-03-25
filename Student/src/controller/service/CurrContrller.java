@@ -156,6 +156,62 @@ public class CurrContrller {
 	}
 	
 	/**
+	 * 实现一个学期的添加
+	 * 
+	 * @param semesterName
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upsemester")
+	public void upSemeter( String semesterName, String startdate,Integer semesterid,
+			  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		String str =startdate;
+		String enddate="";
+		String[] sArray= str.split("\\~"); 
+		for (int i = 0; i < sArray.length; ++i){
+	         startdate = sArray[0];
+	         enddate = sArray[1];
+	        }
+		startdate += "01:01:00";
+		enddate += " 01:01:00";
+
+		SemesterDAO audao = new SemesterDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		Tsemester user = new Tsemester();
+		user.setEnddate(enddate);
+		user.setSemesterName(semesterName);
+		user.setStartdate(startdate);
+		user.setIsdelete(0);
+		user.setSemesterid(semesterid);
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "学期修改成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "修改失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
+	
+	
+	/**
 	 * 
 	 */
 	@RequestMapping(value = "/loacdseme")
@@ -290,6 +346,53 @@ public class CurrContrller {
 		} else {
 			laydata.code = LayuiData.ERRR;
 			laydata.msg = "添加失败";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
+	/**
+	 * 实现一个课程信息的添加
+	 * 
+	 * @param semesterName
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upcurr")
+	public void upcurr( String curriName, Integer semesterid,String introduce, String remarks,Integer curriculumid,
+			  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		
+
+		CurriculumDAO audao = new CurriculumDaoImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		TCurriculum user = new TCurriculum();
+		user.setCurriculumName(curriName);
+		user.setIntroduce(introduce);
+		user.setIsdelete(0);
+		user.setRemarks(remarks);
+		user.setSemesterid(semesterid);
+		user.setCurriculumid(curriculumid);
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "课程修改成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "修改失败";
 		}
 
 		// 回传json字符串
@@ -488,6 +591,55 @@ public class CurrContrller {
 		} else {
 			laydata.code = LayuiData.ERRR;
 			laydata.msg = "添加失败或任课已存在";
+		}
+
+		// 回传json字符串
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(laydata));
+		out.flush();
+		out.close();
+
+	}
+	
+	/**
+	 * 实现一个课程信息的添加
+	 * 
+	 * @param semesterName
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/upcourse")
+	public void upcourseUser( Integer curriculumid, Integer teacherid,Integer classid, String remakes,Integer courseid,
+			  HttpServletRequest request,
+			HttpServletResponse response, Model model) throws IOException {
+		// System.out.println(userid + "," + realname + "," + roleid);
+		
+
+		CourseDAO audao = new CourseDAOImpl();
+		LayuiData laydata = new LayuiData();
+		// String md5Str = EnCriptUtil.fix(userid, pwd);
+		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+		TCourse user = new TCourse();
+		
+		user.setCurriculumid(curriculumid);
+		user.setClassid(classid);
+		user.setTeacherid(teacherid);
+		user.setIsdelete(0);
+		user.setRemakes(remakes);
+		user.setCourseid(courseid);
+		
+		
+		
+
+		if (audao.update(user)) {
+			laydata.code = LayuiData.SUCCESS;
+			laydata.msg = "任课修改成功";
+		} else {
+			laydata.code = LayuiData.ERRR;
+			laydata.msg = "修改失败";
 		}
 
 		// 回传json字符串

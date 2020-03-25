@@ -172,6 +172,7 @@
 		<script type="text/html" id="barDemo">
 			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
 			
+			
 		</script>
 
 		

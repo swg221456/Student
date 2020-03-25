@@ -72,6 +72,8 @@ public interface TeacherDAO {
 	 */
 	public boolean changeState(int teacherid);
 	
+	public Tteacher getteacher(int teacherid);
+	
 
 	/**
 	 * 更新管理员用户

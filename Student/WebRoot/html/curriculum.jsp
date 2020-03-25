@@ -147,6 +147,7 @@
 
 		<script type="text/html" id="barDemo">
 			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -190,6 +191,47 @@
 		</div>
 		<!-- 用户信息添加End -->
 		
+		<!-- 用户信息修改Start -->
+		<div id="up-blogUser" style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label">课程名称:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upcurriName" id="upcurriName"
+								lay-verify="upcurriName" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						</div>
+					</div>	
+					<div class="layui-form-item">
+						<label class="layui-form-label">选择学期:</label>
+						<div class="layui-inline">
+							<select id="upseme" name="upseme" lay-filter="adseme">							
+							
+							</select>
+						</div>
+					</div> 
+					<div class="layui-form-item">
+						<label class="layui-form-label">课程介绍:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upintroduce" id="upintroduce"
+								lay-verify="upintroduce" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upremarks" id="upremarks"
+								lay-verify="upremarks" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						</div>
+					</div>		
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息修改End -->
+		
 	</div>
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
 	<script src="../js/loadselect.js" charset="utf-8"></script>
@@ -203,6 +245,7 @@
 		//调用方法加载select管理员角色
 		loadseme("slseme",form,"../curr/loacdseme");
 		loadseme("adseme",form,"../curr/loacdseme");
+		loadseme("upseme",form,"../curr/loacdseme");
 		
 		/*加载表格*/
 		table.render({
@@ -354,6 +397,14 @@
 			$("#txtremarks").text(data.remarks);
 			
 			
+			set_select_checked("upseme",data.semesterid);
+			form.render("select");
+			$("#upcurriName").val(data.curriculumName);
+			$("#upintroduce").val(data.introduce);
+			$("#upremarks").val(data.remarks);
+			var curriculumid = data.curriculumid;
+			
+			
 			switch (obj.event) {
 				case 'seluser':
 					layer.open({
@@ -370,6 +421,72 @@
 				        cancel: function(){ 
 						  $(".adminuserdetail").css("display","none");
 						}
+				    });
+				break;
+				
+				//修改操作
+				case 'up':
+					layer.open({
+				        type: 1, 
+				        title : '个人信息修改',
+				area : [ '460px', '425px' ],
+				shade : 0.4,
+				content : $('#up-blogUser'),
+				btn : [ '保存', '返回' ],
+				yes : function() {
+					
+					var semesterid = $("#upseme").val();
+					var curriName = $("#upcurriName").val();
+					var introduce = $("#upintroduce").val();
+					var remarks = $("#upremarks").val();
+					
+					
+					
+					
+					
+
+					if(curriName == "") {
+						layer.tips('不能为空', '#curriName');
+						return;
+					} 
+					if(semesterid == "") {
+						layer.tips('不能为空', '#semesterid');
+						return;
+					} 
+					
+					$.ajax({
+						type : 'get',
+						url : '../curr/upcurr?curriculumid='+curriculumid+'&curriName='+curriName+'&introduce='+introduce+'&remarks='+remarks+'&semesterid='+semesterid,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('修改失败', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
 				    });
 				break;
 				

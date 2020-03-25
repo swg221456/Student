@@ -1,6 +1,7 @@
 package model;
 
 
+
 /**
  * Vstudent entity. @author MyEclipse Persistence Tools
  */
@@ -25,6 +26,8 @@ public class Vstudent implements java.io.Serializable {
 		private Integer majorid;
 		private String majorName;
 		private String className;
+		private Integer photoid;
+		private String photopath;
 
 		// Constructors
 
@@ -50,7 +53,8 @@ public class Vstudent implements java.io.Serializable {
 				String agend, String birthday, String phone, String email,
 				String userid, Integer classid, Integer isdelete, String stucard,
 				Integer collegeid, String collegeName, Integer majorid,
-				String majorName, String className) {
+				String majorName, String className, Integer photoid,
+				String photopath) {
 			this.stuinfoid = stuinfoid;
 			this.stuname = stuname;
 			this.stunum = stunum;
@@ -67,6 +71,8 @@ public class Vstudent implements java.io.Serializable {
 			this.majorid = majorid;
 			this.majorName = majorName;
 			this.className = className;
+			this.photoid = photoid;
+			this.photopath = photopath;
 		}
 
 		// Property accessors
@@ -104,7 +110,7 @@ public class Vstudent implements java.io.Serializable {
 		}
 
 		public String getBirthday() {
-			return util.ReturnDate.datetimeFormatnotime(this.birthday) ;
+			return util.ReturnDate.datetimeFormatnotime(this.birthday);
 		}
 
 		public void setBirthday(String birthday) {
@@ -197,6 +203,22 @@ public class Vstudent implements java.io.Serializable {
 
 		public void setClassName(String className) {
 			this.className = className;
+		}
+
+		public Integer getPhotoid() {
+			return this.photoid;
+		}
+
+		public void setPhotoid(Integer photoid) {
+			this.photoid = photoid;
+		}
+
+		public String getPhotopath() {
+			return this.photopath;
+		}
+
+		public void setPhotopath(String photopath) {
+			this.photopath = photopath;
 		}
 
 }

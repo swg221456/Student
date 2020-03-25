@@ -1,0 +1,10 @@
+INSERT INTO `T_SystemLog` VALUES (5, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-12 09:02:00', 'admin');
+INSERT INTO `T_SystemLog` VALUES (6, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-12 11:58:13', 'admin');
+INSERT INTO `T_SystemLog` VALUES (7, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-13 08:37:48', 'admin');
+INSERT INTO `T_SystemLog` VALUES (8, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-13 08:37:48', 'admin');
+INSERT INTO `T_SystemLog` VALUES (9, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-13 08:37:50', 'admin');
+INSERT INTO `T_SystemLog` VALUES (10, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-13 08:47:28', 'admin');
+INSERT INTO `T_SystemLog` VALUES (11, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-14 14:05:37', 'admin');
+INSERT INTO `T_SystemLog` VALUES (12, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-11-25 08:36:29', 'admin');
+INSERT INTO `T_SystemLog` VALUES (13, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-12-2 16:43:22', 'admin');
+INSERT INTO `T_SystemLog` VALUES (14, 'query', '登录', 'business.impl.AdminUserDaoImpl.login', NULL, NULL, NULL, '{\"userid\":\"admin\",\"pwd\":\"123456\"}', '2019-12-3 08:52:53', 'admin');

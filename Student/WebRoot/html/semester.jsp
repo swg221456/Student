@@ -84,27 +84,7 @@
 	</style>
 </head>
 <body>
-	<!--弹框调用内容Start-->
-	<div id="adminuserdetail" class="adminuserdetail">			
-		<table class="layui-table">
-		    <tbody>
-		      <tr>
-		        <td class="tdbck">学期名称</td>
-		        <td><span id="txtsemesterName"></span></td>
-		      </tr>
-		      <tr>
-		        <td class="tdbck">开始时间</td>
-		        <td><span id="txtstartdate"></span></td>
-		      </tr>
-		       <tr>
-		        <td class="tdbck">备注</td>
-		        <td><span id="txtenddate"></span></td>
-		      </tr>
-		      
-		    </tbody>
-		  </table>
-	</div>
-	<!--弹框调用内容END-->	
+	
 
 	<div class="blogUser-con">
 		<!-- 条件筛选框Start -->
@@ -125,7 +105,8 @@
 		<table class="layui-hide" name="blogUser" id="blogUser" lay-filter="blogUser"></table>
 
 		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-xs" lay-event="seluser">查看</a>
+			
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 
@@ -155,6 +136,32 @@
 		</div>
 		<!-- 用户信息添加End -->
 		
+		<!-- 用户信息修改Start -->
+		<div id="up-blogUser" style="display:none;">
+			<div class="artTypeLayer">
+				<form class="layui-form" action="">
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label">学期名称:</label>
+						<div class="layui-input-block">
+							<input type="text" name="upsemesterName" id="upsemesterName"
+								lay-verify="upsemesterName" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<span id="testView"></span>
+						<label class="layui-form-label">选择日期:</label>
+						<div class="layui-input-block">
+						<input type="text" class="layui-input" id="uptest">
+						</div>
+					</div> 
+					
+					
+				</form>
+			</div>
+		</div>
+		<!-- 用户信息修改End -->
+		
 	</div>
 	<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
 	<script src="../js/loadselect.js" charset="utf-8"></script>
@@ -168,6 +175,13 @@
 		//日期选择器
 		laydate.render({ 
 		  elem: '#test'
+		  ,range: '~'
+		  ,value: new Date(1534766888000) //或 range: '~' 来自定义分割字符
+		});
+		
+		//日期选择器
+		laydate.render({ 
+		  elem: '#uptest'
 		  ,range: '~'
 		  ,value: new Date(1534766888000) //或 range: '~' 来自定义分割字符
 		});
@@ -292,10 +306,14 @@
 		//表格工具栏事件 
 		table.on('tool(blogUser)', function(obj) {
 			var data = obj.data;
-			$("#txtsemesterName").text(data.semesterName);
-			$("#txtstartdate").text(data.startdate);
-			$("#txtenddate").text(data.enddate);
+			$("#upsemesterName").val(data.semesterName);
 			
+			$("#uptest").val(data.startdate+"~"+data.enddate);
+			laydate.render({
+				elem: '#uptest',
+				value:data.startdate+"~"+data.enddate
+				});
+			var semesterid = data.semesterid;
 			
 			switch (obj.event) {
 				case 'seluser':
@@ -313,6 +331,69 @@
 				        cancel: function(){ 
 						  $(".adminuserdetail").css("display","none");
 						}
+				    });
+				break;
+				
+				//修改操作
+				case 'up':
+					layer.open({
+				        type: 1, 
+				        title : '个人信息修改',
+				area : [ '460px', '425px' ],
+				shade : 0.4,
+				content : $('#up-blogUser'),
+				btn : [ '保存', '返回' ],
+				yes : function() {
+					var semesterName = $("#upsemesterName").val().trim();
+					var startdate = $("#uptest").val();
+					
+					
+					
+					
+					
+
+					if(semesterName == "") {
+						layer.tips('不能为空', '#semesterName');
+						return;
+					} 
+					if(startdate == "") {
+						layer.tips('不能为空', '#startdate');
+						return;
+					} 
+					
+					$.ajax({
+						type : 'get',
+						url : '../curr/upsemester?semesterid='+semesterid+'&semesterName='+semesterName+'&startdate='+startdate,
+						datatype : 'json',
+						success : function(data) {
+							if (data.code == "0") {
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:1
+								}, function(){
+									table.reload("adminUserid", { //此处是上文提到的 初始化标识id
+						                where: {
+						                	keyword:data.code=='10001'
+						                }
+						            });	
+									layer.closeAll();
+								});
+							}else{
+								layer.confirm(data.msg, {
+								  btn: ['确定'],
+								  icon:2
+								});
+							}
+						},
+						error : function() {
+							layer.confirm('修改失败', {
+			        				icon: 6,
+									  btn: ['确定']
+								});
+						}
+					});						
+				},
+				btn2 : function() {layer.closeAll();}
 				    });
 				break;
 				
