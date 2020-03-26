@@ -248,6 +248,7 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : 100,
 					
 				}, {
      				field : 'className',
@@ -277,7 +278,12 @@
     			},{
      				field : 'evaluate',
      				align : 'center',
-     				title : '评价',
+     				title : '教师评价',
+   
+    			},{
+     				field : 'remakes',
+     				align : 'center',
+     				title : '学生反馈',
    
     			},{
 					title : '操作',

@@ -265,6 +265,7 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : 100,
 					
 				},{
      				field : 'semesterName',

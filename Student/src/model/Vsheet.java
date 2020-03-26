@@ -32,6 +32,8 @@ public class Vsheet implements java.io.Serializable {
 		private String className;
 		private Integer semesterid;
 		private String userid;
+		private Integer photoid;
+		private String remakes;
 
 		// Constructors
 
@@ -62,7 +64,7 @@ public class Vsheet implements java.io.Serializable {
 				String stuname, String stunum, String agend, String phone,
 				Integer classid, Integer collegeid, String collegeName,
 				Integer majorid, String majorName, String className,
-				Integer semesterid, String userid) {
+				Integer semesterid, String userid, Integer photoid, String remakes) {
 			this.sheetid = sheetid;
 			this.courseid = courseid;
 			this.stuinfoid = stuinfoid;
@@ -87,6 +89,8 @@ public class Vsheet implements java.io.Serializable {
 			this.className = className;
 			this.semesterid = semesterid;
 			this.userid = userid;
+			this.photoid = photoid;
+			this.remakes = remakes;
 		}
 
 		// Property accessors
@@ -281,6 +285,22 @@ public class Vsheet implements java.io.Serializable {
 
 		public void setUserid(String userid) {
 			this.userid = userid;
+		}
+
+		public Integer getPhotoid() {
+			return this.photoid;
+		}
+
+		public void setPhotoid(Integer photoid) {
+			this.photoid = photoid;
+		}
+
+		public String getRemakes() {
+			return this.remakes;
+		}
+
+		public void setRemakes(String remakes) {
+			this.remakes = remakes;
 		}
 
 }

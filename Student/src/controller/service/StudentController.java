@@ -490,7 +490,8 @@ public class StudentController {
 				sheet.setIsdelete(0);
 				sheet.setStuinfoid(stuinfoid);
 				sheet.setEvaluate("");
-				sheet.setFraction(60.0);
+				sheet.setFraction(0.00);
+				sheet.setRemakes("");
 				 ad = audao.addsheet(sheet);
 			}else {
 				 up = true;
@@ -601,7 +602,7 @@ public class StudentController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/upsheet")
-	public void upsheet( Integer sheetid, String fraction,String evaluate,Integer courseid,Integer stuinfoid,
+	public void upsheet( Integer sheetid, String fraction,String evaluate,Integer courseid,Integer stuinfoid,String remakes,
 			  HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 		// System.out.println(userid + "," + realname + "," + roleid);
@@ -617,6 +618,7 @@ public class StudentController {
 		user.setIsdelete(0);
 		user.setStuinfoid(stuinfoid);
 		user.setSheetid(sheetid);
+		user.setRemakes(remakes);
 		
 		
 		

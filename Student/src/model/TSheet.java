@@ -14,6 +14,7 @@ public class TSheet implements java.io.Serializable {
 	private Double fraction;
 	private String evaluate;
 	private Integer isdelete;
+	private String remakes;
 
 	// Constructors
 
@@ -28,12 +29,13 @@ public class TSheet implements java.io.Serializable {
 
 	/** full constructor */
 	public TSheet(Integer courseid, Integer stuinfoid, Double fraction,
-			String evaluate, Integer isdelete) {
+			String evaluate, Integer isdelete, String remakes) {
 		this.courseid = courseid;
 		this.stuinfoid = stuinfoid;
 		this.fraction = fraction;
 		this.evaluate = evaluate;
 		this.isdelete = isdelete;
+		this.remakes = remakes;
 	}
 
 	// Property accessors
@@ -84,6 +86,14 @@ public class TSheet implements java.io.Serializable {
 
 	public void setIsdelete(Integer isdelete) {
 		this.isdelete = isdelete;
+	}
+
+	public String getRemakes() {
+		return this.remakes;
+	}
+
+	public void setRemakes(String remakes) {
+		this.remakes = remakes;
 	}
 
 }

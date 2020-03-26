@@ -375,8 +375,15 @@ public class AdminUserController {
 
 		LayuiData laydata = new LayuiData();
 		HttpSession session = request.getSession();
+		Object loginuser = session.getAttribute("loginuser");
+		VAdminUser modle = (VAdminUser) loginuser;
 		session.removeAttribute("loginuser");
-		laydata.code = LayuiData.SUCCESS;
+		if (modle.getRoleId() ==12) {
+			laydata.code = laydata.ERRR;
+		}else {
+			laydata.code = laydata.SUCCESS;
+		}
+		
 		laydata.msg = "退出成功";
 		// 回传json字符串
 		response.setCharacterEncoding("utf-8");

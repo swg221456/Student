@@ -202,21 +202,25 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : '20%',
 					
 				}, {
      				field : 'collegeName',
      				align : 'center',
      				title : '学院名称',
+     				width : '30%',
    
     			},{
      				field : 'userid',
      				align : 'center',
      				title : '院长',
+     				width : '30%',
    
     			},{
 					title : '操作',
 					toolbar : '#barDemo',
-					align : 'center'
+					align : 'center',
+					width : '20%',
 				}]
 			 ],
 			  done : function(res, curr, count){

@@ -248,26 +248,31 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : '15%',
 					
 				}, {
      				field : 'collegeName',
      				align : 'center',
      				title : '学院名称',
+     				width : '25%',
    
     			},{
      				field : 'majorName',
      				align : 'center',
      				title : '专业名称',
+     				width : '25%',
    
     			},{
      				field : 'userid',
      				align : 'center',
      				title : '科长',
+     				width : '20%',
    
     			},{
 					title : '操作',
 					toolbar : '#barDemo',
-					align : 'center'
+					align : 'center',
+					width : '15%',
 				}]
 			 ],
 			 done : function(res, curr, count){

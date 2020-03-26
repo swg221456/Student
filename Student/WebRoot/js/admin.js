@@ -109,10 +109,12 @@
 			url: '../admin/logoutsystem',
 			datatype: 'json',
 			success: function(data) {
-				if(data.code=="0"){
+				if(data.code =="0"){
 					window.location.href = "../html/login.html";
+				}else if(data.code =="0"){
+					window.location.href = "../html/login.jsp";
 				}else{
-					layer.msg(data.msg,{icon:2});
+					layer.msg(data.msg,{icon:2})
 				}
 			},
 			error: function() {}

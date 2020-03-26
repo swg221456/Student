@@ -25,5 +25,8 @@
         <property name="isdelete" type="java.lang.Integer">
             <column name="isdelete" not-null="true" />
         </property>
+        <property name="remakes" type="java.lang.String">
+            <column name="remakes" />
+        </property>
     </class>
 </hibernate-mapping>

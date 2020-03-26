@@ -50,38 +50,51 @@ layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : '10%',
 					
 				}, {
      				field : 'className',
      				align : 'center',
      				title : '班级名称',
+     				width : '15%',
    
     			},{
      				field : 'curriculumName',
      				align : 'center',
      				title : '课程名称',
+     				width : '15%',
    
     			},{
      				field : 'teaName',
      				align : 'center',
      				title : '教师名称',
+     				width : '15%',
    
     			},{
      				field : 'stuname',
      				align : 'center',
      				title : '学生名称',
+     				width : '15%',
+   
+    			},{
+     				field : 'remakes',
+     				align : 'center',
+     				title : '学生反馈',
+     				width : '10%',
    
     			},{
      				field : 'fraction',
      				align : 'center',
      				title : '成绩',
      				edit: 'text',
+     				width : '10%',
    
     			},{
      				field : 'evaluate',
      				align : 'center',
-     				title : '评价',
+     				title : '教师评价',
      				edit: 'text',
+     				width : '10%',
    
     			}]
 			 ],
@@ -131,7 +144,7 @@ layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function
 		  function upsheet(id,fraction,evaluate,courseid,stuinfoid) {
 				$.ajax({
 					type: 'get',
-					url: "../student/upsheet?sheetid="+id+"&fraction="+fraction+"&evaluate="+evaluate+"&courseid="+courseid+"&stuinfoid="+stuinfoid,
+					url: "../student/upsheet?sheetid="+id+"&fraction="+fraction+"&evaluate="+evaluate+"&courseid="+courseid+"&stuinfoid="+stuinfoid+"&remakes="+remakes,
 					datatype: 'json',
 					success: function(data) {
 						

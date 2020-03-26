@@ -204,7 +204,8 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
-					width : 80
+					width : 100,
+					
 				}, {
 					field : 'semesterName',
 					title : '学期名称',

@@ -183,41 +183,57 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : '6%',
+					
 					
 				}, {
      				field : 'className',
      				align : 'center',
      				title : '班级名称',
+     				width : '15%',
    
     			},{
      				field : 'curriculumName',
      				align : 'center',
      				title : '课程名称',
+     				width : '15%',
    
     			},{
      				field : 'teaName',
      				align : 'center',
      				title : '教师名称',
+     				width : '10%',
    
     			},{
      				field : 'stuname',
      				align : 'center',
      				title : '学生名称',
+     				width : '12%',
    
     			},{
      				field : 'fraction',
      				align : 'center',
      				title : '成绩',
+     				width : '10%',
    
     			},{
      				field : 'evaluate',
      				align : 'center',
-     				title : '评价',
+     				title : '教师评价',
+     				width : '12%',
+   
+    			},{
+     				field : 'remakes',
+     				align : 'center',
+     				title : '学生反馈',
+     				edit: 'text',
+     				width : '10%',
    
     			},{
 					title : '操作',
 					toolbar : '#barDemo',
-					align : 'center'
+					align : 'center',
+					width : '10%',
 				}]
 			 ],
 			 done : function(res, curr, count){
@@ -252,6 +268,29 @@
 			});
 		});
 		
+		//监听单元格编辑
+		  table.on('edit(blogUser)', function(obj){
+		    var value = obj.value //得到修改后的值
+		    ,data = obj.data //得到所在行所有键值
+		    ,field = obj.field; //得到字段
+		    
+		    upsheet(data.sheetid,data.fraction,data.evaluate,data.courseid,data.stuinfoid,data.remakes);
+		  });
+		  
+		  function upsheet(id,fraction,evaluate,courseid,stuinfoid,remakes) {
+				$.ajax({
+					type: 'get',
+					url: "../student/upsheet?sheetid="+id+"&fraction="+fraction+"&evaluate="+evaluate+"&courseid="+courseid+"&stuinfoid="+stuinfoid+"&remakes="+remakes,
+					datatype: 'json',
+					success: function(data) {
+						
+					},
+					error: function() {
+						layer.msg('修改失败！', function(){});
+					}
+				});
+				
+			}
 		
 	
 		//表格工具栏事件 

@@ -306,31 +306,37 @@
 					type : 'numbers',
 					title : '序号',
 					align : 'center',
+					width : '10%',
 					
 				}, {
      				field : 'collegeName',
      				align : 'center',
      				title : '学院名称',
+     				width : '20%',
    
     			},{
      				field : 'majorName',
      				align : 'center',
      				title : '专业名称',
+     				width : '20%',
    
     			},{
      				field : 'className',
      				align : 'center',
      				title : '班级名称',
+     				width : '20%',
    
     			},{
      				field : 'userid',
      				align : 'center',
      				title : '辅导员',
+     				width : '15%',
    
     			},{
 					title : '操作',
 					toolbar : '#barDemo',
-					align : 'center'
+					align : 'center',
+					width : '15%',
 				}]
 			 ],
 			  done : function(res, curr, count){
