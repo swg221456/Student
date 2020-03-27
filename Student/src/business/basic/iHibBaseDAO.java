@@ -5,9 +5,9 @@ import java.util.List;
 /**
  * 基于hibernate技术实现的BaseDAO基类
  * 
- * @author jock
- * @since 2014-12-19
- * @version 2017-4-20
+ * @author swg
+ * @since 2019-12-19
+ * @version 2019-4-20
  */
 public interface iHibBaseDAO {
 	/**

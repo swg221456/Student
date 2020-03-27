@@ -111,7 +111,7 @@
 			success: function(data) {
 				if(data.code =="0"){
 					window.location.href = "../html/login.html";
-				}else if(data.code =="0"){
+				}else if(data.code =="1"){
 					window.location.href = "../html/login.jsp";
 				}else{
 					layer.msg(data.msg,{icon:2})
