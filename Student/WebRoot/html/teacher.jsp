@@ -153,11 +153,9 @@
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">选择用户:</label>
+						<label class="layui-form-label">登录名：</label>
 						<div class="layui-inline">
-							<select id="userid" name="userid" lay-filter="addmajor">							
-							
-							</select>
+							<input type="text" name="adduserid" id="adduserid"  autocomplete="off" placeholder="" class="layui-input">
 						</div>
 					</div> 
 					<div class="layui-form-item">
@@ -191,7 +189,7 @@
 						<label class="layui-form-label">教师名称:</label>
 						<div class="layui-input-block">
 							<input type="text" name="upteaName" id="upteaName"
-								lay-verify="upteaName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+								lay-verify="upteaName" autocomplete="off" placeholder="请输入教师名" class="layui-input">
 						</div>
 					</div>
 					
@@ -230,7 +228,7 @@
 			laydate = layui.laydate, laytpl = layui.laytpl,
 			element = layui.element;
 		
-		loaduserby("userid",form,"../admin2/loacduser");
+		
 		
 		/*加载表格*/
 		table.render({
@@ -352,7 +350,7 @@
 			loadRoleType('addusertype',form);
 			$("#addteaName").val("");
 			$("#addteaphone").val("");
-			$("#userid").val("");
+			$("#adduserid").val("");
 			$("#addteasex").val("");
 			
 			layer.open({
@@ -365,7 +363,7 @@
 				yes : function() {
 					var addteaName = $("#addteaName").val().trim();
 					var addteaphone = $("#addteaphone").val().trim();
-					var userid = $("#userid").val();
+					var userid = $("#adduserid").val().trim();
 					var addteasex = $("#addteasex").val();
 
 					if(addteaName == "") {

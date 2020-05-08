@@ -284,7 +284,7 @@
 		
 		loadcollege("upcollege",form,"../college/loadcollege");
 		
-		form.on('select(addcollege)', function(data)
+		form.on('select(upcollege)', function(data)
 				{
 				var paretid = $("#upcollege").val();
 			 	//调用方法加载select管理员角色

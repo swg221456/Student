@@ -297,36 +297,47 @@ public class AdminController {
 		// System.out.println(userid + "," + realname + "," + roleid);
 		
 		TeacherDAO audao = new TeacherDaoImpl();
-		LayuiData laydata = new LayuiData();
-		// String md5Str = EnCriptUtil.fix(userid, pwd);
-		// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
-		Tteacher user = new Tteacher();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		String  createTime = df.format(new Date());
-		user.setIsdelete(0);
-		user.setAuditstatus(false);
-		user.setTeaName(teaName);
-		user.setTeaphone(teaphone);
-		user.setTeasex(teasex);
+		AdminUserDAO dao = new AdminUserDaoImpl();
+		Tuser user = new Tuser();
+		user.setAccount(teaName);
 		user.setUserid(userid);
-		
-		
+		user.setIsDel(0);
+		user.setUsertype(true);
+		user.setRoleId(11);
+		user.setPwd("123456");
+		if (dao.addAdminUser(user)) {
+			LayuiData laydata = new LayuiData();
+			// String md5Str = EnCriptUtil.fix(userid, pwd);
+			// String endPwd = EnCriptUtil.getEcriptStr(md5Str, "md5");
+			Tteacher tea = new Tteacher();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			String  createTime = df.format(new Date());
+			tea.setIsdelete(0);
+			tea.setAuditstatus(false);
+			tea.setTeaName(teaName);
+			tea.setTeaphone(teaphone);
+			tea.setTeasex(teasex);
+			tea.setUserid(userid);
+			
+			
 
-		if (audao.addTteacher(user)) {
-			laydata.code = LayuiData.SUCCESS;
-			laydata.msg = "教师添加成功";
-		} else {
-			laydata.code = LayuiData.ERRR;
-			laydata.msg = "添加失败";
+			if (audao.addTteacher(tea)) {
+				laydata.code = LayuiData.SUCCESS;
+				laydata.msg = "教师添加成功";
+			} else {
+				laydata.code = LayuiData.ERRR;
+				laydata.msg = "添加失败";
+			}
+
+			// 回传json字符串
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.write(JSON.toJSONString(laydata));
+			out.flush();
+			out.close();
 		}
-
-		// 回传json字符串
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		out.write(JSON.toJSONString(laydata));
-		out.flush();
-		out.close();
+		
 	}
 	
 	/**

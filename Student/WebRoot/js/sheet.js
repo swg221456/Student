@@ -30,7 +30,7 @@ layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function
 				});
 		form.on('select(slcouser)', function(data)
 				{
-				var courseid = $("#slclass").val();
+				var courseid = $("#slcouser").val();
 			 	//调用方法加载select管理员角色
 				addsheet(calssid,courseid);
 				select(calssid,courseid);
@@ -144,7 +144,7 @@ layui.use([ 'table', 'form', 'layer', 'laydate', 'laytpl', 'element' ], function
 		  function upsheet(id,fraction,evaluate,courseid,stuinfoid) {
 				$.ajax({
 					type: 'get',
-					url: "../student/upsheet?sheetid="+id+"&fraction="+fraction+"&evaluate="+evaluate+"&courseid="+courseid+"&stuinfoid="+stuinfoid+"&remakes="+remakes,
+					url: "../student/upsheet?sheetid="+id+"&fraction="+fraction+"&evaluate="+evaluate+"&courseid="+courseid+"&stuinfoid="+stuinfoid+"&remakes=",
 					datatype: 'json',
 					success: function(data) {
 						

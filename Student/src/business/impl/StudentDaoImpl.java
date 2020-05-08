@@ -68,7 +68,7 @@ public class StudentDaoImpl implements StudentDAO {
 		
 		Object userid = userDAO.addAdminUser(model);
 		if(userid != null && !userid.equals("")){
-			user.setUserid(userid.toString());
+			user.setUserid(user.getStunum());
 		Object id =  hdao.insert(user);
 		if (id != null && !id.equals("")) {
 

@@ -1,4 +1,3 @@
-/controller/
+/applicationContext.xml
 /business/
-/util/
-/model/
+/controller/

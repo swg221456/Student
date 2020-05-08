@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2020-03-26 17:47:59
+Date: 2020-05-08 17:21:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,15 +28,11 @@ CREATE TABLE `T_ Class` (
   PRIMARY KEY (`classid`),
   KEY `majorid` (`majorid`),
   CONSTRAINT `T_ Class_ibfk_1` FOREIGN KEY (`majorid`) REFERENCES `T_ major` (`majorid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_ Class
 -- ----------------------------
-INSERT INTO `T_ Class` VALUES ('1', '16级汉语言2班', '1', 'asd', '0');
-INSERT INTO `T_ Class` VALUES ('2', '17级电气一班', '2', 'asd', '0');
-INSERT INTO `T_ Class` VALUES ('3', '打算', '2', '0', '1');
-INSERT INTO `T_ Class` VALUES ('4', '测试', '1', 'null', '1');
 
 -- ----------------------------
 -- Table structure for T_ College
@@ -55,11 +51,6 @@ CREATE TABLE `T_ College` (
 -- ----------------------------
 -- Records of T_ College
 -- ----------------------------
-INSERT INTO `T_ College` VALUES ('1', '交通机电', 'lmm', '0');
-INSERT INTO `T_ College` VALUES ('2', '人文学院', 'zl', '0');
-INSERT INTO `T_ College` VALUES ('3', '信息工程', 'zl', '0');
-INSERT INTO `T_ College` VALUES ('4', '十多个', 'admin', '1');
-INSERT INTO `T_ College` VALUES ('5', '测', 'lmm', '1');
 
 -- ----------------------------
 -- Table structure for T_ Course
@@ -75,14 +66,11 @@ CREATE TABLE `T_ Course` (
   PRIMARY KEY (`courseid`),
   KEY `curriculumid` (`curriculumid`),
   CONSTRAINT `T_ Course_ibfk_1` FOREIGN KEY (`curriculumid`) REFERENCES `T_ Curriculum` (`curriculumid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_ Course
 -- ----------------------------
-INSERT INTO `T_ Course` VALUES ('1', '3', '2', '1', '11', '0');
-INSERT INTO `T_ Course` VALUES ('2', '3', '2', '2', '十大', '1');
-INSERT INTO `T_ Course` VALUES ('3', '4', '2', '2', '', '1');
 
 -- ----------------------------
 -- Table structure for T_ Curriculum
@@ -98,15 +86,11 @@ CREATE TABLE `T_ Curriculum` (
   PRIMARY KEY (`curriculumid`),
   KEY `semesterid` (`semesterid`),
   CONSTRAINT `T_ Curriculum_ibfk_1` FOREIGN KEY (`semesterid`) REFERENCES `T_ Semester` (`semesterid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_ Curriculum
 -- ----------------------------
-INSERT INTO `T_ Curriculum` VALUES ('3', '数学', '2', '简单高数', '挂科率1', '0');
-INSERT INTO `T_ Curriculum` VALUES ('4', '应用文写作', '2', '大学应用文', '无挂科', '0');
-INSERT INTO `T_ Curriculum` VALUES ('5', '的撒', '2', '阿斯顿', '阿斯顿', '1');
-INSERT INTO `T_ Curriculum` VALUES ('6', '测试', '2', '测试', '测试', '1');
 
 -- ----------------------------
 -- Table structure for T_ major
@@ -121,15 +105,11 @@ CREATE TABLE `T_ major` (
   PRIMARY KEY (`majorid`),
   KEY `collegeid` (`collegeid`),
   CONSTRAINT `T_ major_ibfk_1` FOREIGN KEY (`collegeid`) REFERENCES `T_ College` (`collegeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_ major
 -- ----------------------------
-INSERT INTO `T_ major` VALUES ('1', '汉语言文学', '2', 'hhj', '0');
-INSERT INTO `T_ major` VALUES ('2', '电气自动化', '1', 'qwe', '0');
-INSERT INTO `T_ major` VALUES ('3', '发生的', '1', '0', '1');
-INSERT INTO `T_ major` VALUES ('4', '测试', '1', 'null', '1');
 
 -- ----------------------------
 -- Table structure for T_ Notice
@@ -144,14 +124,12 @@ CREATE TABLE `T_ Notice` (
   `createdate` datetime NOT NULL,
   `isdelete` int(11) NOT NULL,
   PRIMARY KEY (`noticeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_ Notice
 -- ----------------------------
-INSERT INTO `T_ Notice` VALUES ('1', '擦拭', '人啊', '啊啊啊', 'lmm', '2020-03-21 00:00:00', '0');
-INSERT INTO `T_ Notice` VALUES ('10', '大苏打', '阿斯顿撒', '阿斯顿', 'admin', '2020-02-04 00:00:00', '1');
-INSERT INTO `T_ Notice` VALUES ('11', '测试', '测试', '测试', 'admin', '2020-03-09 00:00:00', '1');
+INSERT INTO `T_ Notice` VALUES ('12', '开学', '5月20开学', '无', 'admin', '2020-05-08 00:00:00', '0');
 
 -- ----------------------------
 -- Table structure for T_ Semester
@@ -171,7 +149,6 @@ CREATE TABLE `T_ Semester` (
 -- ----------------------------
 INSERT INTO `T_ Semester` VALUES ('2', '2016年度上学期', '2018-08-07 00:00:00', '2018-09-19 00:00:00', '0');
 INSERT INTO `T_ Semester` VALUES ('4', '2016年度下学期', '2016-09-20 00:00:00', '2017-02-21 00:00:00', '0');
-INSERT INTO `T_ Semester` VALUES ('6', '测', '2018-08-07 00:00:00', '2018-09-13 00:00:00', '1');
 
 -- ----------------------------
 -- Table structure for T_ Sheet
@@ -188,14 +165,11 @@ CREATE TABLE `T_ Sheet` (
   PRIMARY KEY (`sheetid`),
   KEY `courseid` (`courseid`),
   CONSTRAINT `T_ Sheet_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `T_ Course` (`courseid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_ Sheet
 -- ----------------------------
-INSERT INTO `T_ Sheet` VALUES ('1', '1', '1', '90', '表现良好', '0', null);
-INSERT INTO `T_ Sheet` VALUES ('2', '2', '3', '94', '可以', '0', null);
-INSERT INTO `T_ Sheet` VALUES ('3', '1', '2', '79', '休息', '0', '满意');
 
 -- ----------------------------
 -- Table structure for T_AdminRole
@@ -223,13 +197,14 @@ CREATE TABLE `T_photoInfo` (
   `photopath` varchar(100) DEFAULT NULL,
   `isDel` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_photoInfo
 -- ----------------------------
 INSERT INTO `T_photoInfo` VALUES ('1', 'user/defaultuser.jpg', '0');
 INSERT INTO `T_photoInfo` VALUES ('25', 'xjj\\shiyuan.jpeg', '0');
+INSERT INTO `T_photoInfo` VALUES ('26', '221\\shizi.jpg', '0');
 
 -- ----------------------------
 -- Table structure for T_RoleB
@@ -440,15 +415,11 @@ CREATE TABLE `T_Stuinfo` (
   KEY `photoid` (`photoid`),
   CONSTRAINT `T_Stuinfo_ibfk_1` FOREIGN KEY (`classid`) REFERENCES `T_ Class` (`classid`),
   CONSTRAINT `T_Stuinfo_ibfk_2` FOREIGN KEY (`photoid`) REFERENCES `T_photoInfo` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_Stuinfo
 -- ----------------------------
-INSERT INTO `T_Stuinfo` VALUES ('1', '李苗苗', '155342', '女', '1998-02-06 00:00:00', '18387629861', '145213', 'lmm', '1', '0', '5281236871236178312', '1');
-INSERT INTO `T_Stuinfo` VALUES ('2', '小鸡鸡', '213213', '男', '2020-02-27 00:00:00', '18459623658', '1252', 'xjj', '2', '0', '256483289451894', '25');
-INSERT INTO `T_Stuinfo` VALUES ('3', '周星驰', '21312', '男', '2020-02-03 00:00:00', '123123', '12312312', 'zxc', '2', '0', '12312', '1');
-INSERT INTO `T_Stuinfo` VALUES ('4', '邱逼逼', '111', '男', '2020-03-17 00:00:00', '11', '11', 'true', '2', '0', '111', '1');
 
 -- ----------------------------
 -- Table structure for T_SystemLog
@@ -540,13 +511,11 @@ CREATE TABLE `T_teacherinfo` (
   `auditstatus` bit(1) DEFAULT NULL,
   `isdelete` int(11) DEFAULT NULL,
   PRIMARY KEY (`teacherid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of T_teacherinfo
 -- ----------------------------
-INSERT INTO `T_teacherinfo` VALUES ('2', '李苗苗', '11123', 'lmm', '男', '\0', '0');
-INSERT INTO `T_teacherinfo` VALUES ('8', '测试', '1', 'zxc', 'null', '\0', '1');
 
 -- ----------------------------
 -- Table structure for T_User
@@ -565,17 +534,12 @@ CREATE TABLE `T_User` (
 -- ----------------------------
 -- Records of T_User
 -- ----------------------------
-INSERT INTO `T_User` VALUES ('111', '邱逼逼', '123456', '12', '0', '');
 INSERT INTO `T_User` VALUES ('admin', '管理员', '123456', '1', '0', '');
-INSERT INTO `T_User` VALUES ('asd', '阿什顿', '123456', '10', '0', '');
-INSERT INTO `T_User` VALUES ('fgh', '风格化', '123456', '11', '0', '');
-INSERT INTO `T_User` VALUES ('ggb', '钢格板', '123456', '10', '0', '');
-INSERT INTO `T_User` VALUES ('hhj', '喝红酒', '123456', '9', '0', '');
 INSERT INTO `T_User` VALUES ('lmm', '李苗苗', '123456', '8', '0', '');
-INSERT INTO `T_User` VALUES ('qwe', '全文', '123456', '9', '0', '');
-INSERT INTO `T_User` VALUES ('xjj', '晓剑姬', '123456', '12', '0', '');
-INSERT INTO `T_User` VALUES ('zl', '张龙', '123456', '8', '0', '');
-INSERT INTO `T_User` VALUES ('zxc', '周星驰', '123456', '12', '0', '');
+INSERT INTO `T_User` VALUES ('ml', '马力', '123456', '9', '0', '');
+INSERT INTO `T_User` VALUES ('wdl', '王大力', '123456', '10', '0', '');
+INSERT INTO `T_User` VALUES ('xjj', '晓剑姬', '123456', '11', '0', '');
+INSERT INTO `T_User` VALUES ('zl', '张龙', '123456', '12', '0', '');
 
 -- ----------------------------
 -- View structure for VAdminUser

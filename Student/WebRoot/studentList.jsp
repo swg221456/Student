@@ -380,22 +380,8 @@
 			 	//调用方法加载select管理员角色
 				loadclass("slclass", form, "college/loadclass?majorid="+paretid);
 				});
-				
-		loadcollege("addcollege",form,"college/loadcollege");
 		
-			form.on('select(slcollege)', function(data)
-					{
-					var paretid = $("#addcollege").val();
-				 	//调用方法加载select管理员角色
-					loadmajor("addmajor", form, "college/loadmajor?collegeid="+paretid);
-					});
-					
-			form.on('select(slmajor)', function(data)
-					{
-					var paretid = $("#addmajor").val();
-				 	//调用方法加载select管理员角色
-					loadclass("addclass", form, "college/loadclass?majorid="+paretid);
-					});
+		
 				
 		
 		loadcollege("addcollege",form,"college/loadcollege");
@@ -532,7 +518,7 @@
 			 page: {
 					layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
 					groups: 5,
-					limit: 10,
+					limit: 4,
 					limits: [10, 20, 30, 40, 50],
 					theme: '#1E9FFF',						
 			 },
